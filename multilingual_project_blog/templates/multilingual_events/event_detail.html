@@ -14,12 +14,12 @@
 
 {% addtoblock "js" %}
 <!-- icalendar js -->
-<script src="{{ STATIC_URL }}js/libs/icalendar/jquery.icalendar.min.js"></script> 
+<script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/icalendar/jquery.icalendar.min.js"></script> 
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
 <!-- icalendar css -->
-<link rel="stylesheet" href="{{ STATIC_URL }}js/libs/icalendar/jquery.icalendar.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/js/libs/icalendar/jquery.icalendar.css">
 {% endaddtoblock %}
 
 
@@ -104,7 +104,7 @@
 					    	  {% endif %}
 					    	  title: '{{ event_title.title }}', 
 					    	  summary: '{{ event_title.title }}',
-					    	  icons: '/static/js/libs/icalendar/icalendar.png',
+					    	  icons: '/static/multilingual_project_blog/js/libs/icalendar/icalendar.png',
 					    	  description: '{{ event.category.get_translation.title }}',
 					    	  url: window.location,
 					    	  location: '{{ event_title.venue_name  }} {{ event.get_city_and_country }}'

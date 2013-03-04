@@ -490,7 +490,7 @@ h3.blog-category span {
 /* ========= ROADMAP ========== */
 
 table.roadmap .c1 {
-  background: url("/static/multilingnual_project_blog/images/roadmap_arrow_down.png");
+  background: url("/static/multilingual_project_blog/images/roadmap_arrow_down.png");
   background-repeat: no-repeat;
   background-position: 5px 50%;
   padding-left:25px;
@@ -664,7 +664,7 @@ table.roadmap-list tr.last .c1 {
 
 
 .carousel-control {
-	background: url('/static/js/libs/fancybox/fancybox_sprite.png');
+	background: url('/static/multilingual_project_blog/js/libs/fancybox/fancybox_sprite.png');
 }
 
 .carousel-control.left {
