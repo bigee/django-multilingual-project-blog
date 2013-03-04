@@ -15,6 +15,9 @@ PROJECT_BLOG_APPS = [
     'django.contrib.admindocs',
     'django.contrib.sitemaps',
 
+    # Must come before all other apps
+    'multilingual_project_blog',
+
     # Other important apps
     'django_extensions',
     'django_libs',
@@ -57,7 +60,6 @@ PROJECT_BLOG_APPS = [
     'easy_thumbnails',
     'cmsplugin_filer_image_translated',
 
-    'multilingual_project_blog',
 ]
 
 
