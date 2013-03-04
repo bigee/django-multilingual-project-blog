@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+import os
+
+from .base_settings import PROJECT_PATH
+
+
 gettext = lambda s: s
 
 
