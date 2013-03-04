@@ -4,7 +4,7 @@ INSTALLED_APPS of the project.
 Split up into sup-lists so that we can exlude them from the coverage report.
 
 """
-BLOG_APPS = [
+PROJECT_BLOG_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -62,7 +62,7 @@ BLOG_APPS = [
 
 
 def add_project_blog_apps(installed_apps):
-    result = installed_apps.copy()
+    result = list(installed_apps)
     for app in PROJECT_BLOG_APPS:
         if app not in result:
             result.append(app)
