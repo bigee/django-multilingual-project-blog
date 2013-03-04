@@ -1,0 +1,9 @@
+include AUTHORS
+include LICENSE
+include DESCRIPTION
+include CHANGELOG.txt
+include README.md
+graft multilingual_project_blog 
+global-exclude *.orig *.pyc *.log
+prune multilingnual_project_blog/tests/coverage
+prune multilingual_project_blog/.ropeproject

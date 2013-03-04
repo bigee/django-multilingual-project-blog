@@ -1,0 +1,73 @@
+# ============================================================================
+# Django related packages
+# ============================================================================
+Django==1.4.3
+django-countries==1.5
+django_libs==0.17
+django-extensions==1.0.1
+django-debug-toolbar==0.9.4
+django-rosetta==0.6.8
+johnny-cache==1.4
+urllib3==1.5
+
+
+# ============================================================================
+# Other important packages
+# ============================================================================
+Pillow==1.7.8
+South==0.7.5
+Markdown==2.2.1
+psycopg2==2.4.5
+html5lib==0.95
+python-memcached==1.48
+requests==0.13.5
+
+
+# ============================================================================
+# Multilingual related packages
+# ============================================================================
+simple-translation==0.8.6
+django-tagging-translated==0.1
+django-multilingual-events==0.4
+cmsplugin-filer-image-translated==0.1
+
+# ============================================================================
+# django-cms related packages
+# ============================================================================
+#django-classy-tags==0.3.4.1
+django-cms==2.3.5
+django-mptt==0.5.2
+django-sekizai==0.6.1
+cmsplugin-markdown==0.1
+cmsplugin-blog-attachments==0.1
+cmsplugin-blog-authors==0.1
+django-people==0.2
+
+# There is a problem with STATIC_URL in this release.
+# cmsplugin-blog==1.1.2
+-e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
+cmsplugin-blog-categories==0.5
+-e git+git://github.com/bitmazk/cmsplugin-blog-images.git@4a812f625c8dde0cb14c7dab00a4949419bd5b89#egg=cmsplugin_blog_images
+django-document-library==0.2.1
+-e git+git://github.com/bitmazk/django-hero-slider.git@12ca685d35b410c230fc7942351b7640170fd15b#egg=hero_slider
+-e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
+
+# ============================================================================
+# django-filer related packages
+# ============================================================================
+easy-thumbnails==1.1
+django-filer==0.9.3
+cmsplugin-filer==0.9.2
+
+
+# ============================================================================
+# Test & development related packages
+# ============================================================================
+factory_boy==1.2.0
+fabric==1.4.4
+flake8==1.7.0
+watchdog==0.6.0
+nose==1.2.1
+django-nose==1.1
+coverage==3.6
+django-coverage==1.2.2
