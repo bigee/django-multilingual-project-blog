@@ -1,0 +1,70 @@
+[
+    {
+        "pk": 2, 
+        "model": "cmsplugin_blog_categories.category", 
+        "fields": {
+            "slug": "politics", 
+            "creation_date": "2013-01-28T05:56:06.153"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "cmsplugin_blog_categories.category", 
+        "fields": {
+            "slug": "energy-efficiency", 
+            "creation_date": "2013-01-28T05:55:23.924"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "cmsplugin_blog_categories.categorytitle", 
+        "fields": {
+            "category": 1, 
+            "language": "en", 
+            "title": "Energy Efficiency"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "cmsplugin_blog_categories.categorytitle", 
+        "fields": {
+            "category": 2, 
+            "language": "en", 
+            "title": "Politics"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "cmsplugin_blog_categories.categorytitle", 
+        "fields": {
+            "category": 2, 
+            "language": "zh", 
+            "title": "\u653f\u6cbb"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "cmsplugin_blog_categories.categorytitle", 
+        "fields": {
+            "category": 1, 
+            "language": "zh", 
+            "title": "\u80fd\u6e90\u6548\u7387"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "cmsplugin_blog_categories.entrycategory", 
+        "fields": {
+            "category": 1, 
+            "entry": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "cmsplugin_blog_categories.entrycategory", 
+        "fields": {
+            "category": 1, 
+            "entry": 2
+        }
+    }
+]

@@ -1,0 +1,11 @@
+{% extends "cmsplugin_blog/entry_archive_base.html" %}
+{% load i18n cmsplugin_blog_tags simple_translation_tags %}
+
+{% block archive_headline_sector %}{% trans "Entries for category: " %}{% endblock %}
+{% block archive_headline_sector_name %}{{ category.get_translation.title }}{% endblock %}
+
+{% block archive_objects %}
+    {% with entries as object_list %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

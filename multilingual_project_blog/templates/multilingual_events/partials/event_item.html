@@ -1,0 +1,43 @@
+{% load i18n simple_translation_tags multilingual_events_tags %}
+{% load url from future %}
+
+{% with event|get_preferred_translation_from_request:request as event_title %}
+<div class="span9">
+    <div class="event thumbnail type-{{ event.category.slug }}">
+        <div class="tags">
+            <span class="tag">{{ event.start_date|date:"F d, Y" }}</span> /
+            <span class="tag">{{ event.category.get_translation.title }}</span>
+        </div>
+        <h3 class="title"><a href="{{ event_title.get_absolute_url }}">{{ event_title.title }}</a></h3>
+        <p>{{ event_title.description }}</p>
+        <p><a href="{{ event_title.get_absolute_url }}" class="btn btn-mini btn-info">{% trans "Read more …"%}</a></p>
+        <hr>
+        <ul class="unstyled">
+            <li><i class="icon-calendar"></i> {{ event.start_date|date:"F d, Y" }} {% if event.end_date %}– {{ event.end_date|date:"F d, Y" }}{% endif %}</li>
+            
+            {% if event.venue_url or event.google_maps_shortlink or event_title.venue_name %}
+                <li><i class="icon-globe"></i>
+                    {% if event.venue_url %}
+                        {{ event_title.venue_name }}
+                    {% elif event_title.venue_name %}
+                        {{ event_title.venue_name }}
+                    {% endif %}
+                    {{ event.get_city_and_country }}
+                </li>
+            {% endif %}
+            
+            <li>
+                <i class="icon-time"></i>
+                {% blocktrans count amount=event.get_number_of_days %}
+                {{ amount }} day
+                {% plural %}
+                {{ amount }} days
+                {% endblocktrans %}
+            </li>
+            
+        </ul>
+        <div style="clear:both;"></div>
+    </div><!-- /event -->
+</div><!-- /span9 -->
+{% endwith %}
+

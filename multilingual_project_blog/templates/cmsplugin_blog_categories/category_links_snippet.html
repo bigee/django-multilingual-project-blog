@@ -1,0 +1,15 @@
+{% load i18n cmsplugin_blog_tags multilingual_project_blog_tags %}
+{% load simple_translation_tags %}
+
+{% language SESSION_LANGUAGE %}
+<div class="block">
+	<h4 class="title-divider"><span>{% trans "Categories" %}</span></h4>
+	<div class="category-cloud">
+    {% for item in categories %}
+        {% with item|get_preferred_translation_from_lang:SESSION_LANGUAGE as title %}
+        <span class="{% if item == category %}active{% endif %}"><a class="category" href="{{ item.get_absolute_url }}">{{ title.title }}</a> ({{ item.num_posts }})</span><br>
+        {% endwith %}
+    {% endfor %}
+	</div>
+</div>
+{% endlanguage %}

@@ -1,0 +1,10 @@
+{% load multilingual_project_blog_tags %}
+{% for child in children %}
+    <li{% if child.selected %} class="active"{% endif %}>
+        {% if not child.children %}
+            <a{% if forloop.first %} class="first" {% endif %} href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}<i class="icon-angle-right"></i>
+            </a>
+        {% endif %}
+    </li>
+    
+{% endfor %}

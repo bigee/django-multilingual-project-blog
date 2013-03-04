@@ -1,0 +1,218 @@
+[
+    {
+        "pk": 1, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "excerpt", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "excerpt", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "eventagendasession_content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "01_headline", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "02_content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "01_headline", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "02_content", 
+            "default_width": null
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "cms.placeholder", 
+        "fields": {
+            "slot": "01_sidebar", 
+            "default_width": null
+        }
+    }
+]

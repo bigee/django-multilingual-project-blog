@@ -34,6 +34,16 @@ This is because this app has a ton of dependencies which are managed in a
 ``requirements.txt`` file. By adding this as a submodule you can easily install
 this ``requirements.txt`` as part of your deployment process.
 
+A lot of settings are needed for this app, so in order to get good defaults,
+do this on top of your ``settings.py``::
+
+    from multilingual_project_app.settings import *  # NOQA
+
+Please have a look at which settings we set and make sure that you don't
+override them in your ``settings.py``. To be save, you could import the
+settings at the bottom of your ``settings.py`` and whenever you need to
+override something, move it below that import.
+
 This app depends on a ton of other apps, so the easiest way to add everything
 to your ``INSTALLED_APPS`` would be this::
 
@@ -42,7 +52,7 @@ to your ``INSTALLED_APPS`` would be this::
     INSTALLED_APPS = [
         ...
         # your installed_apps
-    ]    
+    ]
 
     INSTALLED_APPS = add_project_blog_apps(INSTALLED_APPS)
 

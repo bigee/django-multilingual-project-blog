@@ -1,0 +1,77 @@
+{% load i18n menu_tags multilingual_project_blog_tags %}
+
+<!-- navigation -->
+<div class="container">
+    <div class="navbar{% if style = 'inverse'%} navbar-inverse{% endif %}">
+        <div class="navbar-inner">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <!-- <a class="brand" href="/">Project Name</a> -->
+            <a class="brand" href="/"><i class="icon-home"></i></a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    {% show_menu 0 100 100 100 %}
+                    <li class="divider-vertical hidden-desktop"></li>
+                    <li class=" hidden-desktop">
+                        <ul class="nav">
+                            {% language_chooser "menu/language_chooser_list.html" %}
+                        </ul>
+                    </li>
+                    {% if user.is_superuser %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            X
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/prototype/proto/snippets.html">Snippets</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+                
+                {% if signup == "yes" %}
+                <ul class="nav pull-right">
+                    <li><a href="#signup">{% trans "Sign Up" %}</a></li>
+                  	<li class="divider-vertical"></li>
+					<li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">{% trans "Sign In" %} <strong class="caret"></strong></a>
+						<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+							<form method="post" action="login" accept-charset="UTF-8">
+								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+								<label class="string optional checkbox" for="user_remember_me">
+									<input type="checkbox" name="remember-me" id="remember-me" value="1">
+									 Remember me
+								 </label>
+								<input class="btn btn-block" type="submit" id="sign-in" value="Sign In">
+								<label style="text-align:center;margin-top:5px">or</label>
+                                <input class="btn btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+								<input class="btn btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+							</form>
+						</div>
+					</li>
+				</ul>
+				{% endif %}
+
+                {% if search == "google" %}
+                    <form method="get" class="navbar-search pull-right visible-desktop" id="searchform-google" action="http://www.google.com/search" target="_blank">
+                        <input type="text" value="" name="q" id="s" class="search-query input-medium" placeholder="{% trans "Search via Google" %}" />
+                        <input type="hidden" name="sitesearch" value="{{ SITE_URL }}" checked="checked" />
+                        <input type="hidden" name="domains" value="{{ SITE_URL }}">
+                        <input type='hidden' name='ie' value='iso-8859-1'>
+                        <input type='hidden' name='oe' value='iso-8859-1'>
+                    </form>
+                {% elif search == "standard" %}
+                    <form class="navbar-search pull-right">
+                        <input type="text" class="search-query" placeholder="{% trans "Search" %}">
+                    </form>
+                {% endif %}
+            </div><!--/.nav-collapse -->
+        </div><!--/.navbar-inner -->
+    </div><!--/.navbar -->
+</div><!--/.container -->
+<!-- /navigation -->

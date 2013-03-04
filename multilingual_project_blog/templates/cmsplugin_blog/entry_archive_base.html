@@ -1,0 +1,20 @@
+{% extends "cmsplugin_blog/cmsplugin_blog_base.html" %}
+{% load i18n %}
+
+{% block left-col %}
+    {{ block.super }}
+
+    {% block archive_headline %}
+        <h3 class="blog-category">{% block archive_headline_sector %}{% endblock %} <span>{% block archive_headline_sector_name %}{% endblock %}</span></h3>
+    {% endblock %}
+    {% block archive_objects %}
+        {% if object_list %}
+            {% include "cmsplugin_blog/entry_list_include.html" %}
+            {% if is_paginated %}
+                {% include "cmsplugin_blog/partials/pagination.html" %}
+            {% endif %}
+        {% else %}
+            <p>{% trans "No entries" %}</p>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

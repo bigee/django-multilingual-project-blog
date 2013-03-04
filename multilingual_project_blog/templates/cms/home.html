@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags cms_tags cmsplugin_blog_tags document_library_tags %}
+{% load hero_slider_tags multilingual_events_tags roadmap_tags multilingual_project_blog_tags %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+            <div class="span6 lead">
+                <div class="">
+                <h2 class="title-divider">
+                    <span>{% placeholder 01_headline %}</span>
+                </h2>
+                {% placeholder 02_content %}
+                </div>
+            </div>
+            <div class="span5 offset1">
+                {% render_hero_slider %}
+            </div>
+    </div> <!-- /row -->
+</div><!-- /container -->
+
+
+<div class="container">
+
+<hr>
+
+    <section>
+        <div class="row">
+
+        <div class="span4 recent-posts">
+        <h4 class="title-divider"><span><i class="icon-rss"></i> {% trans "Latest Blogposts" %}</span></h4>
+            {% render_latest_entries_links request %}
+        </div>
+
+
+        {% comment %}
+        <div class="span3 library-favs">
+        <h4 class="title-divider"><span><i class="icon-book"></i> {% trans "Library Fav's" %}</span></h4>
+            {% get_frontpage_documents as favs %} <!-- @admin: correct? -->
+            {% for fav in favs|slice:":4" %}
+                <hr style="margin:0;">
+                {% trans "No category" as no_category %}
+                <span class="meta"><!-- {{ fav.creation_date|date:"M. d Y" }} -->{{ fav.category.get_title|default:no_category }}{% if fav.get_filetype %} / [{{ fav.get_filetype }}]{% endif %}</span><br>
+                <a href="{% page_url "library" %}">{{ fav.get_title }}</a><br>
+            {% endfor %}
+        </div>
+        {% endcomment %}
+
+
+        <!-- events -->
+        {% comment %} Info: https://trello.com/card/hook-up-roadmap-on-front-end/507d1ae391b5b4ce127a91cc/69 {% endcomment %}
+        <div class="span4 next-events">
+        <h4 class="title-divider"><span><i class="icon-calendar"></i> {% trans "Next Events" %}</span></h4>
+            {% get_events amount=4 as events %}
+            {% for event in events %}
+                <hr style="margin:0;">
+                <span class="meta">{{ event.category.get_translation.title }} / {{ event.get_translation.venue_name }} {{ event.start_date|date:"M. d Y" }}</span><br>
+                <a href="{{ event.get_translation.get_absolute_url }}">{{ event.get_translation.title }}</a><br>
+            {% endfor %}
+        </div>
+
+        <div class="span4">
+        <h4 class="title-divider"><span><i class="icon-road"></i> {% trans "Our Roadmap" %}</span></h4>
+        <table class="table roadmap roadmap-list">
+            {% get_roadmap_events as roadmap_events %}
+            {% for event in roadmap_events %}
+            <tr{% if forloop.last %} class="last"{% endif %}>
+                 {% with event_trans=event.get_translation %}
+                <td class="c1 tags">{{ event_trans.start_date_text|safe }}</td>
+                <td class="c2"><a href="{% page_url "roadmap" %}">{{ event_trans.title }}</a></td>
+                {% endwith %}
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+
+        </div>
+    </section>
+</div>
+
+
+<hr>
+
+{% addtoblock "js" %}
+
+{% endaddtoblock %}
+{% endblock %}

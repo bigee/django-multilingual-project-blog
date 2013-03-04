@@ -1,0 +1,8 @@
+{% extends "project_base.html" %}
+
+{% block title %}{% page_attribute page_title %} | example.com{% endblock %}
+{% block description %}{% page_attribute meta_description %}{% endblock %}
+{% block extrahead %}{% endblock %}
+
+{% block logo %}<img src="/static/images/logo.png" alt="{% trans "Logo" %}">{% endblock %}
+{% block main %}<p>Hello world!</p>{% endblock %}

@@ -1,0 +1,67 @@
+# flake8: noqa
+"""
+Copy this file and name it ``settings_local.py``.
+
+* Change the SECRET_KEY setting.
+* If you want, change the DATABASES setting
+* If you want, change the STATIC_ROOT and MEDIA_ROOT settings
+
+"""
+import os
+
+from .base_settings import PROJECT_PATH
+from .django_settings import MIDDLEWARE_CLASSES
+from .installed_apps import INSTALLED_APPS
+
+
+DEBUG = True
+SANDBOX = True
+TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = TEMPLATE_DEBUG
+DEBUG_TOOLBAR = True
+ENVIRONMENT = 'dev'
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'myproject',                      		        # Or path to database file if using sqlite3.
+        'USER': 'myproject',                                    # Not used with sqlite3. django_bigee
+        'PASSWORD': 'myproject',                                # Not used with sqlite3. h2u28jm32n3
+        'HOST': 'localhost',              	                # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      			        # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+
+# Set this to your email if you want to test email sending
+ADMINS = (
+    ('Yourname', 'yourname@gmail.com'),
+)
+MANAGERS = ADMINS
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+CONTACT_FORM_SHARE_PAGE_FROM_EMAIL = 'Support <info@example.com>'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yourname@gmail.com'
+EMAIL_HOST_PASSWORD = 'yourgmailpw'
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'http://www.miniwebtool.com/django-secret-key-generator/'
+
+# These roots should point to directories outside of the repository. If you
+# point them to directories inside the repository, make sure that you add those
+# folders to your global gitignore file.
+MEDIA_ROOT = os.path.join(PROJECT_PATH, '../../myproject_media')
+STATIC_ROOT = os.path.join(PROJECT_PATH, '../../myproject_static')
+
+
+# Some settings the depend on the DEBUG setting
+if DEBUG_TOOLBAR:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE_CLASSES.append(
+        'debug_toolbar.middleware.DebugToolbarMiddleware')

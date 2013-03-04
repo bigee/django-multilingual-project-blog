@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags placeholder_tags cmsplugin_blog_tags simple_translation_tags %}
+{% load url from future %}
+
+{% block title %}
+{% with event|get_preferred_translation_from_request:request as event_title %}
+{{ event_title.title }} - {{ block.super }}
+{% endwith %}
+{% endblock %}
+
+
+
+{% block main %}
+
+{% addtoblock "js" %}
+<!-- icalendar js -->
+<script src="{{ STATIC_URL }}js/libs/icalendar/jquery.icalendar.min.js"></script> 
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<!-- icalendar css -->
+<link rel="stylesheet" href="{{ STATIC_URL }}js/libs/icalendar/jquery.icalendar.css">
+{% endaddtoblock %}
+
+
+    
+
+<div class="container">
+    <div class="row">
+    	{% with event|get_preferred_translation_from_request:request as event_title %}
+    	<div class="span12">
+            <a href="{% url "multilingual_events_list" %}"><i class="icon-circle-arrow-left"></i> {% trans "Back to Events" %}</a>
+    		<h2 class="title-divider">
+				<span>{{ event_title.title }}</span>
+			</h2>
+    	</div>
+    	<div class="span8">
+            <p>{{ event_title.description }}<p>
+            
+            <div class="accordion" id="additionalInfo">
+			  <div class="accordion-group">
+			    <div class="accordion-heading">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#additionalInfo" href="#additonalOne">
+			        {% trans "Additional Information" %}
+			      </a>
+			    </div>
+			    <div id="additonalOne" class="accordion-body collapse">
+			      <div class="accordion-inner">
+			        If available create Collapsible Item with some Additional Text maybe here hidden onLoad ... Anim pariatur cliche...
+			      </div>
+			    </div>
+			  </div>
+			</div>
+            
+            {% with event.placeholders|choose_placeholder:"content" as content %}
+            {% render_placeholder content %}
+            {% endwith %}
+            
+        </div>            
+        {% endwith %}
+        <div class="span3 offset1 sidebar" style="">
+
+        	<div class="block short-info">
+				<h4 class="title-divider"><span>{% trans "Short Info" %}</span></h4>
+				<div class="well">
+					<div class="tags">
+						<span class="tag">{{ event.category.get_translation.title }}</span>
+					</div>
+					<hr>
+					<i class="icon-calendar"></i> {{ event.start_date|date:"F d, Y" }}
+                    {% if event.end_date %}
+                        – {{ event.end_date|date:"F d, Y" }}
+                    {% endif %}
+					<hr>
+                    {% if event.start_time %}
+                    <i class="icon-time"></i> {{ event.start_time|date:"H:i" }} {{ event.timezone }}
+                    {% endif %}
+                    {% if event.end_time %}
+                        – {{ event.end_time|date:"H:i" }} {{ event.timezone }} 
+                    {% endif %}
+                    {% if event.start_time or event.end_time %}
+    					<hr>
+                    {% endif %}
+                    
+                    <!-- duration -->
+                    {% blocktrans count amount=event.get_number_of_days %}
+                    {{ amount }} day
+                    {% plural %}
+                    {{ amount }} days
+                    {% endblocktrans %}
+                    <hr>
+                    
+					{% addtoblock "js" %}
+						{% with event|get_preferred_translation_from_request:request as event_title %}
+						<!-- iCalendar by http://keith-wood.name/icalendar.html -->
+					    <script type="text/javascript">
+					    	//new Date(2008, 0-1, 26, 11, 30, 00), 
+					    	myEvent = {
+					    	  start: new Date({{ event.start_date|date:"Y, m-1, d" }}{% if event.start_time %}, {{ event.start_time|date:"H, i" }}, 00{% else %}, 00, 00, 00{% endif %}),
+					    	  {% if event.end_date %}
+					    	  end: new Date({{ event.end_date|date:"Y, m-1, d" }}{% if event.end_time %}, {{ event.end_time|date:"H, i" }}, 00{% else %}, 00, 00, 00{% endif %}),
+					    	  {% else %}
+					    	  end: null,
+					    	  {% endif %}
+					    	  title: '{{ event_title.title }}', 
+					    	  summary: '{{ event_title.title }}',
+					    	  icons: '/static/js/libs/icalendar/icalendar.png',
+					    	  description: '{{ event.category.get_translation.title }}',
+					    	  url: window.location,
+					    	  location: '{{ event_title.venue_name  }} {{ event.get_city_and_country }}'
+					    	}; 
+						$('#iCalendar').icalendar($.extend({
+							compact: true, sites: ['icalendar', 'google', 'outlook', 'yahoo'], echoUrl: 'http://pixelgraphik.de/media/icalendar.php'
+						}, myEvent));
+						$("#iCalendar a").addClass("no-ico");
+					    </script>
+					    {% endwith %}
+					{% endaddtoblock %}
+					
+					<span id="iCalendar"></span>
+					<div class="clearfix"></div>
+					
+					
+					<!-- adress -->
+					
+					<hr>
+                    <p>{{ event.get_address|safe }}</p>
+                    {{ event.get_translation.room }}
+                    
+					{% if event.venue_url %}
+                        <br>
+                        <a href="#mapModal" role="button" class="" data-toggle="modal"><i class="icon-map-marker"></i> {% trans "View on map" %}</a>
+
+                        <!-- modal -->
+                        {% with event|get_preferred_translation_from_request:request as event_title %}
+                        <div id="mapModal" class="modal hide fade">
+						  <div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						    <h3>{{ event_title.venue_name  }}</h3>
+						  </div>
+						  <div class="modal-body">
+						    {% addtoblock "js" %}
+                            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language={{ SESSION_LANGUAGE }}"></script>
+						    <script>
+						      var map;
+						      var myLatlng = new google.maps.LatLng({{ event.lat }}, {{ event.lng }}); 
+						      // lat, long 
+						      // http://universimmedia.pagesperso-orange.fr/geo/loc.htm
+						      
+						      function initialize() {
+						        var mapOptions = {
+						          zoom: 4,
+						          center: myLatlng,
+						          mapTypeId: google.maps.MapTypeId.ROADMAP
+						        };
+						        map = new google.maps.Map(document.getElementById('map_canvas'),
+						            mapOptions);
+						        
+						        var contentString = '<div id="content">'+
+						            //'<strong>{{ event_title.venue_name  }}</strong>'+
+						            '<div id="bodyContent">'+
+						            '<p>{{ event.get_address|safe }}</p>'+
+						            '{{ event.get_translation.room }}'+
+						            '</div>'+
+						            '</div>';
+						
+						        var infowindow = new google.maps.InfoWindow({
+						            content: contentString
+						        });
+						        
+						        
+						        var marker = new google.maps.Marker({
+						            position: myLatlng,
+						            map: map,
+						            title: '{{ event_title.title }}'
+						        }); 
+						        
+						        google.maps.event.addListener(marker, 'click', function() {
+						          infowindow.open(map,marker);
+						        }); 
+						        
+						          
+						      }
+						
+						      google.maps.event.addDomListener(window, 'load', initialize);
+						   
+						    // fix resize bug
+						    $('#mapModal').on('shown', function () {
+							    google.maps.event.trigger(map, "resize");
+							    map.setCenter(myLatlng);
+							});
+							</script>
+						    {% endaddtoblock %}
+						    
+						    <div id="map_canvas" style="height:380px; width:100%"></div>
+						  </div>
+						  
+						</div>
+						{% endwith %}
+						                        
+                        <!-- /modal -->
+                        
+                        
+                    {% endif %}
+					
+					<!-- event url -->
+					{% if event.url %}
+					<hr>
+                    <a href="{{ event.url }}">{{ event.url_name|default:event.url }}</a>
+                    {% endif %}
+               </div>
+			</div>
+			
+			<div class="block downloads">
+				<h4 class="title-divider"><span>{% trans "Attached Files" %}</span></h4>
+				<div class="btn-group">
+				  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				    <i class="icon-download-alt"></i> {{ event.category.get_translation.title }} {% trans "Summary" %}
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				    <!-- dropdown menu links -->
+				    <li><a href="#"><i class="icon-download-alt"></i> {file}</a></li>
+				    <li><a href="#"><i class="icon-download-alt"></i> {file}</a></li>
+				  </ul>
+				</div>
+				
+			</div>
+			
+			{% comment %}
+
+			<div class="block">
+                <h4 class="title-divider"><span>{% trans "Alternative" %} {{ event.category.get_translation.title }}</span></h4>
+				<div class="well">
+					<h4></h4>
+					<ul>
+                        {% for alt_event in event.get_alternative_events %}
+                            <li><a href="{{ alt_event.get_absolute_url }}">{{ alt_event.get_title }}</a> {{ alt_event.start_date|date:"Y/m/d" }}</li>
+                        {% empty %}
+                            <li>{% trans "No other events found." %}</li>
+                        {% endfor %}
+					</ul>
+				</div>
+			</div>
+			
+			{% endcomment %}
+			
+            <small>{% trans "Last Update:" %} <abbr class="timeago" title="{{ event.last_update|date:"Y-m-d\TH:i:sO" }}">{{ event.last_update|date:"l, M. d Y H:i" }}</abbr></small>
+            <br>
+            
+			
+			
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

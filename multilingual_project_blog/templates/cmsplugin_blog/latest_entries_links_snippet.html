@@ -1,0 +1,12 @@
+{% load simple_translation_tags cmsplugin_blog_categories_tags multilingual_project_blog_tags %}
+
+<div class="recent-posts">
+	{% for entry in entries|slice:":4"%}
+	    {% with entry|get_preferred_translation_from_request:request as title %}
+			<hr style="margin:0;">
+            {% get_category entry as category %}
+            <span class="meta">{{ entry.pub_date|date:"M. d Y" }} / {{ category.get_title}}</span><br>
+	    	<a href="{{ entry.get_absolute_url }}">{{ title.title|truncatechars:45 }}</a>
+	    {% endwith %}
+	{% endfor %}
+</div>

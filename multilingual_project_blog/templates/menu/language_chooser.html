@@ -1,0 +1,5 @@
+{% load menu_tags multilingual_project_blog_tags %}
+{% for language in languages %}
+    {% custom_get_language_info language.0 as lang %}
+    <a href="{% page_language_url language.0 %}?switch-language={{ language.0 }}" class="btn btn-small btn-inverse{% ifequal SESSION_LANGUAGE language.0 %} active{% endifequal %}">{{ lang.name_local }}</a>
+{% endfor %}

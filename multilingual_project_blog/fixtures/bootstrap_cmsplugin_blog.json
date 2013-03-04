@@ -1,0 +1,80 @@
+[
+    {
+        "pk": 2, 
+        "model": "cmsplugin_blog.entry", 
+        "fields": {
+            "placeholders": [
+                3, 
+                4
+            ], 
+            "tags": "second", 
+            "pub_date": "2013-01-28T06:39:03", 
+            "is_published": true
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "cmsplugin_blog.entry", 
+        "fields": {
+            "placeholders": [
+                1, 
+                2
+            ], 
+            "tags": "test", 
+            "pub_date": "2013-01-15T05:42:00", 
+            "is_published": true
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "cmsplugin_blog.entrytitle", 
+        "fields": {
+            "entry": 1, 
+            "author": [
+                "admin"
+            ], 
+            "slug": "test", 
+            "language": "zh-cn", 
+            "title": "\u6d4b\u8bd5"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "cmsplugin_blog.entrytitle", 
+        "fields": {
+            "entry": 1, 
+            "author": [
+                "admin"
+            ], 
+            "slug": "a-first-test-entry", 
+            "language": "zh", 
+            "title": "\u7b2c\u4e00\u4e2a\u6d4b\u8bd5\u9879"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "cmsplugin_blog.entrytitle", 
+        "fields": {
+            "entry": 1, 
+            "author": [
+                "staff-blog"
+            ], 
+            "slug": "a-first-test-entry", 
+            "language": "en", 
+            "title": "A first test entry"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "cmsplugin_blog.entrytitle", 
+        "fields": {
+            "entry": 2, 
+            "author": [
+                "staff-blog"
+            ], 
+            "slug": "a-second-entry", 
+            "language": "en", 
+            "title": "A second entry, only in English"
+        }
+    }
+]

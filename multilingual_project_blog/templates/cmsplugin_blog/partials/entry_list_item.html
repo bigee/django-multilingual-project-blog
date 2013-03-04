@@ -1,0 +1,151 @@
+{% load i18n sekizai_tags placeholder_tags cms_tags simple_translation_tags %}
+{% load cmsplugin_blog_categories_tags cmsplugin_blog_images_tags thumbnail %}
+{% load document_library_tags multilingual_project_blog_tags %}
+{% load url from future %}
+
+
+<div class="media {% if is_detail %} blog-post{% endif %} row-fluid">
+
+    <div class="span1 hidden-phone">
+	    <!-- Date desktop -->
+        {% language SESSION_LANGUAGE %}
+	    <div class="date-wrapper" title="{{ entry.pub_date|date:"M. d Y" }}">
+		    <span class="date-m">{{ entry.pub_date|date:"M" }}</span>
+		    <span class="date-d">{{ entry.pub_date|date:"d" }}</span>
+	    </div>
+        {% endlanguage %}
+
+	    {% comment %}
+	    <!-- Meta details desktop -->
+	    <p class="meta muted">
+	    	{% if title.author.last_name %}
+	    	<i class="icon-user"></i>
+	    	<a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }}</a>
+	    	{% endif %}
+	    </p>
+	    {% endcomment %}
+
+    </div>
+
+    <div class="span11">
+
+        {% render_entry_tag_links entry %}
+
+        <h3 class="title">{% if not is_detail %}<a href="{{ title.get_absolute_url }} ">{{ title }}</a>{% else %}{{ title }}{% endif %}</h3>
+
+
+        <!-- Meta details Desktop -->
+        <ul class="inline meta muted hidden-phone">
+        	{% if title.author.last_name %}
+        	<li>
+        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
+        	</li>
+        	{% endif %}
+        </ul>
+
+        <!-- Meta details Tablet/Phone -->
+        <ul class="inline meta muted visible-phone">
+        	<li><i class="icon-calendar"></i> {{ entry.pub_date|date:"M. d Y" }}</li>
+        	{% if title.author.last_name %}
+        	<li>
+        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
+        	</li>
+        	{% endif %}
+        </ul>
+
+
+        {% get_entry_images entry as images %}
+        {% if is_detail %}
+
+            {% if images %}
+	            <span class="media-object thumbnail"> <img src="{% thumbnail images.0.image 720x480 crop upscale %}">
+	            {% if images.0.copyright_notice %}
+	                <span class="copyright-notice muted">{{ images.0.copyright_notice }}</span>
+	            {% endif %}
+	            </span>
+            {% endif %}
+
+        	{% render_placeholder content %}
+
+
+            {% if entry.attachments.all %}
+            <a name="downloads" id="downloads"></a>
+            <div class="attachments">
+                <h4 class="title-divider"><span>{% trans "Downloads" %}</span></h4>
+                {% for attachment in entry.attachments.all %}
+                    {% with attachment.document|get_preferred_translation_from_request:request as document_title %}
+                    {% if document.download_url %}
+                        <a class="btn" href="{{ attachment.document.download_url }}" target="_blank" title="{{ attachment.document.download_url }}">{{ document_title.title }}<i class="icon-external-link"></i></a>
+                    {% else %}
+                        <div class="file">
+                            <p>
+                                <div class="btn-group">
+                                    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {{ document_title.title }} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        {% for document_title2 in attachment.document.documenttitle_set.all %}
+                                            <li><a href="{{ document_title2.filer_file.url }}">
+                                                <i class="icon-download-alt"></i>
+                                                {{ document_title2.filer_file.original_filename }}
+                                                {% custom_get_language_info document_title2.language as lang %}
+                                                [{% trans lang.name %}]
+                                            </a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </p>
+                        </div>
+                    {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for entry_author in entry.authors.all %}
+                {% if forloop.first %}
+                    <h3>{% trans "Authors" %}</h3>
+                {% endif %}
+                {% with entry_author.author as author %}
+                {{ author.get_translation.first_name }} {{ author.get_translation.last_name }}
+                {% endwith %}
+            {% endfor %}
+
+            {% render_entry_languages title %}
+
+            <!-- social bookmarks -->
+        	{% include "cmsplugin_blog/partials/social-bookmarks.html" %}
+
+        	<hr>
+        	{% language SESSION_LANGUAGE %}
+            <a href="/{{ SESSION_LANGUAGE }}{% page_url "blog" %}"><i class="icon-circle-arrow-left"></i> {% trans "back to overview" %}</a>
+			{% endlanguage %}
+
+
+        {% else %}
+            {% if images.count %}
+                <a class="media-object thumbnail" href="{{ title.get_absolute_url }}"> <img src="{% thumbnail images.0.image 440x293 crop upscale %}"></a>
+            {% endif %}
+            {% render_placeholder excerpt %}
+            <ul class="inline links">
+	            <li><a class="btn btn-info btn-mini" href="{{ title.get_absolute_url }}"><i class="icon-circle-arrow-right"></i> {% trans "Read more" %}</a></li>
+	            {% if entry.attachments.all %}
+	                <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#downloads"><i class="icon-download-alt"></i> {% trans "View Downloads" %}</a></li>
+	            {% endif %}
+                {% get_first_gallery entry as entry_gallery %}
+                {% if entry_gallery %}
+                    <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#gallery{{ entry_gallery.pk }}"><i class="icon-picture"></i> {% trans "View Gallery" %}</a></li>
+	            {% endif %}
+	            <!-- <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#comments"><i class="icon-comment"></i> 0 Comments</a></li> -->
+            </ul>
+        {% endif %}
+
+    </div><!-- /caption -->
+
+
+
+
+</div><!-- /blog-roll / blog-post row-fluid -->
+
+       {% if not is_detail %}
+       <hr>
+       {% endif %}
+

@@ -1,0 +1,13 @@
+{% load i18n cmsplugin_blog_tags multilingual_project_blog_tags %}
+
+{% language SESSION_LANGUAGE %}
+<div class="block">
+    <h4 class="title-divider"><span>{% trans "Tags" %}</span></h4>
+    <div class="tag-cloud"> 
+    	{% render_tag_links %}
+    </div>
+</div><!--/block -->	
+{% endlanguage %}
+
+<!-- {% render_latest_entries_links %} -->
+

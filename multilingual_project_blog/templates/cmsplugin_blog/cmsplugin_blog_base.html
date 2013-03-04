@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n cms_tags placeholder_tags %}
+{% load cmsplugin_blog_categories_tags multilingual_project_blog_tags %}
+{% load url from future %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}" />
+{% endblock %}
+
+
+{% block main %}
+<div class="container">
+
+	<div class="row-fluid">
+      <h2 class="title-divider">
+        {% language SESSION_LANGUAGE %}
+      	<span>{% trans "Project" %}
+      		<span class="de-em">{% trans "Blog" %}</span>
+      	</span>
+        {% endlanguage %}
+      </h2>
+    </div>
+
+    <div class="row">
+        <div class="span9 blog-roll blog-list">
+            {% block left-col %}{% endblock %}
+        </div>
+        <div class="span3 sidebar">
+            <div class="well intro">
+                <small>
+                    {% placeholder 01_sidebar %}
+                </small>
+            </div>
+
+            {% render_category_links exclude_empty=1 %}
+
+			{% include "cmsplugin_blog/partials/blog-widget-tabs.html" %}
+
+            <div class="block">
+            	 <div class="btn-group">
+            	  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
+            	    <i class="icon-rss"></i> {% trans "Subscribe via RSS" %}
+            	    <span class="caret"></span>
+            	  </a>
+            	  <ul class="dropdown-menu">
+            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
+            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
+            	  </ul>
+            	</div>
+			</div>
+
+        </div> <!-- /span3 -->
+    </div> <!-- /row -->
+</div><!-- /container -->
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load cms_tags multilingual_project_blog_tags %}
+
+{% load sekizai_tags menu_tags %}
+{% load i18n %}
+{% load url from future %}
+
+
+{% block main %}
+<div class="container">
+    <div class="row">
+
+    	{% if children %}
+
+    		 <div class="span3 sidebar">
+    		 	<div class="section-menu">
+		          <ul class="nav nav-list">
+                      <li class="nav-header">{{ request.current_page.parent.get_title }}</li>
+		            {% show_menu 1 100 100 100 "menu/submenu.html" %}
+		          </ul>
+		        </div>
+		     </div>
+
+    		 <div class="span9">
+    		 	{% placeholder content %}
+                {% block standard_content %}{% endblock %}
+    		 </div>
+
+    	{% else %}
+
+    		<div class="span12">
+    		 	{% placeholder content %}
+    		</div>
+
+    	{% endif %}
+
+    </div>
+</div>
+{% endblock %}

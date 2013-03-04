@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container">
+<div class="row">
+<div class="span12">
+	
+	<div class="alert alert-block alert-error">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button> 
+	  <i class="icon-flag"></i> You are currently viewing content different from your default language. Switch back to <a href="#">{lang.before}</a> or switch to <a href="#">{lang.permanent}</a> entirely. 
+	</div>
+
+	
+	
+	<h3 class="title-divider"><span>Nice <span class="de-em">Headline</span></span> <small>With an 100% nice subline</small></h3>
+	
+	
+	<hr>
+	
+	<h3 class="title-divider"><span>Beautiful <span class="de-em">Quotes</span></span></h3>
+	
+	
+	  <div class="row">
+	  
+	    <div class="span3">
+	      <blockquote>
+	        <p>"It's totally awesome, we're could imagine life without it!"</p>
+	        <small><img src="http://pixelgraphik.de/media/tobi_avatar.jpg" class="img-circle"> Tobias Battenberg  <span class="spacer">/</span> <a href="#">@mountbatt</a></small> </blockquote>
+	    </div>
+	    
+	    <div class="span3">
+	      <blockquote>
+	        <p>"10 out of 10, highly recommended!"</p>
+	        <small>Bill Gates <span class="spacer">/</span> <a href="#">Founder of Microsoft</a></small> </blockquote>
+	    </div>
+	    
+	    <div class="span3">
+	      <blockquote>
+	        <p>"Our productivity &amp; sales are up! Couldn't be happier!"</p>
+	        <small>Adele <span class="spacer">/</span> <a href="#">@adele</a></small> </blockquote>
+	    </div>
+	 </div><!--/row -->
+	 
+	 <div class="row">   
+	    <div class="span6">
+	      <blockquote>
+	        <p>"It's totally awesome, we're could imagine life without it!"</p>
+	        <small>RUN DMC <span class="spacer">/</span> <a href="#">@run_dmc</a></small> </blockquote>
+	    </div>
+	</div><!--/row -->
+	
+	<div class="row">    
+	    <div class="span9">
+	      <blockquote>
+	        <p>"It's totally awesome, we're could imagine life without it!"</p>
+	        <small>RUN DMC <span class="spacer">/</span> <a href="#">@run_dmc</a></small> </blockquote>
+	    </div>
+	    
+	  </div><!-- /row -->
+
+
+<hr>
+
+
+<form class="form-login form-wrapper form-narrow">
+      <h3 class="title-divider"><span>Login</span> <small>Not signed up? <a href="pricing.htm">Sign up here</a>.</small></h3>
+      <input type="text" class="input-block-level" placeholder="Email address">
+      <input type="password" class="input-block-level" placeholder="Password">
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me">
+        Remember me </label>
+      <button class="btn btn-primary" type="submit">Sign in</button>
+      | <a href="#">Forgotten Password?</a>
+    </form>
+
+<hr>
+
+<form class="form-login form-wrapper form-medium">
+      <h3 class="title-divider"><span>Sign Up</span> <small>Already signed up? <a href="login.htm">Login here</a>.</small></h3>
+      <h5>Price Plan</h5>
+      <select>
+        <option>Basic</option>
+        <option>Pro</option>
+        <option>Pro +</option>
+      </select>
+      <h5>Account Information</h5>
+      <input type="text" class="input-block-level" placeholder="First name">
+      <input type="text" class="input-block-level" placeholder="Last name">
+      <input type="text" class="input-block-level" placeholder="Username">
+      <input type="text" class="input-block-level" placeholder="Email address">
+      <input type="password" class="input-block-level" placeholder="Password">
+      <label class="checkbox">
+        <input type="checkbox" value="term">
+        I agree with the Terms and Conditions. </label>
+      <button class="btn btn-primary" type="submit">Sign up</button>
+    </form>
+
+<hr>
+
+
+
+<h2 class="title-divider"><span>The <span class="de-em">Team</span></span> <small>Our team of stars!</small></h2>
+
+<div class="block team margin-top-large" id="team">
+          <div class="media">
+            <div class="pull-left"> <img src="http://pixelgraphik.de/media/tobi_avatar.jpg" class="img-polaroid media-object" alt="Jimi"> </div>
+            <div class="media-body">
+              <h4 class="media-heading">Jimi</h4>
+              <p class="role">Founder &amp; developer</p>
+              <p>Sociis nisi facilisis lorem phasellus hac in ut. Integer sed aenean mus. Urna nunc integer in arcu et. Mus sit, risus vel nisi mattis! Sit platea tortor ultrices urna placerat rhoncus diam elementum.
+                Sed! Duis, massa, porta odio, dapibus dapibus, lundium in turpis nunc et tempor. Lacus dictumst vel et cras tortor nec nec, elementum facilisis, sed penatibus?</p>
+              <ul class="inline">
+                <li><a href="#"><i class="icon-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="icon-linkedin"></i> LinkedIn</a></li>
+                <li><a href="#"><i class="icon-google-plus"></i> Google+</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="media">
+            <div class="pull-left"> <img src="http://pixelgraphik.de/media/diana_avatar-2.jpg" class="img-polaroid media-object" alt="Adele"> </div>
+            <div class="media-body">
+              <h4 class="media-heading">Adele</h4>
+              <p class="role">Founder &amp; designer</p>
+              <p>Sociis nisi facilisis lorem phasellus hac in ut. Integer sed aenean mus. Urna nunc integer in arcu et. Mus sit, risus vel nisi mattis! Sit platea tortor ultrices urna placerat rhoncus diam elementum.
+                Sed! Duis, massa, porta odio, dapibus dapibus, lundium in turpis nunc et tempor. Lacus dictumst vel et cras tortor nec nec, elementum facilisis, sed penatibus?</p>
+              <ul class="inline">
+                <li><a href="#"><i class="icon-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="icon-linkedin"></i> LinkedIn</a></li>
+                <li><a href="#"><i class="icon-google-plus"></i> Google+</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!--/media-->
+
+</div>
+</div>
+</div> <!-- /container -->
+
+{% endblock %} 

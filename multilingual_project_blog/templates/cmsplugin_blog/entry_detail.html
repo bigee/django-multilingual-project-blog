@@ -1,0 +1,19 @@
+{% extends "cmsplugin_blog/cmsplugin_blog_base.html" %}
+{% load placeholder_tags cmsplugin_blog_tags simple_translation_tags %}
+
+{% block title %}
+{% with object|get_preferred_translation_from_request:request as title %}
+{{ title.title }} - {{ block.super }}
+{% endwith %}
+{% endblock %}
+
+{% block left-col %}
+{{ block.super }}
+{% with object|get_preferred_translation_from_request:request as title %}
+{% with object.placeholders|choose_placeholder:"excerpt" as excerpt %}
+{% with object.placeholders|choose_placeholder:"content" as content %}
+    {% include "cmsplugin_blog/partials/entry_list_item.html" with is_detail=1 %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endblock %}

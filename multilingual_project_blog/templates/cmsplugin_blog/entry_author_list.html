@@ -1,0 +1,5 @@
+{% extends "cmsplugin_blog/entry_archive_base.html" %}
+{% load i18n %}
+
+{% block archive_headline_sector %}{% trans "Entries by:" %}{% endblock %}
+{% block archive_headline_sector_name %} {{ author }}{% endblock %}

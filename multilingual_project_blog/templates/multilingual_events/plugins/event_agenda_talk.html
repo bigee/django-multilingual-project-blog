@@ -1,0 +1,32 @@
+{% load i18n %}
+
+<hr>
+
+<h5>{{ object.title }}</h5>
+
+<div class="row">
+
+	<div class="span6">
+	    <p>{{ object.description|safe|linebreaks }}</p>
+	</div>
+	
+	<div class="span2" style="text-align:right;">
+		{% if object.document.documenttitle_set.all %}
+		<div class="btn-group">
+		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		    {% trans "Download" %}
+		    <span class="caret"></span>
+		  </a>
+		  
+		  <ul class="dropdown-menu">
+		    {% for document in object.document.documenttitle_set.all %}
+	        <li><a href="{{ document.filer_file.url }}">{{ document.title }} [{{ document.document.get_filetype }}]</a></li>
+	        {% endfor %}
+		  </ul>
+		</div>
+		{% endif %}
+		
+	</div>
+
+</div><!--/row-->
+

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags simple_translation_tags multilingual_events_tags %}
+{% load cms_tags %}
+{% load url from future %}
+
+{% block main %}
+<div class="container">
+    <h2 class="title-divider"><span>{% trans "Event" %} <span class="de-em">{% trans "Database" %}</span></span></h2>
+    <!-- {{ event_title.description }} -->
+
+    <!-- // EVENT LIST FILTER -->
+    {% addtoblock "js" %}
+    <script type="text/javascript">
+        $(".event-list-filter a").click(function(e) {
+                e.preventDefault();
+                type = this.hash.split('#')[1];
+                $(".event-list-filter li").removeClass("active");
+                $(this).parent("li").addClass("active");
+                if(type == 'all'){
+                	$(".event-list .tab-pane .row .event").fadeIn();
+                } else {
+	                $(".event-list .tab-pane .row .event").hide();
+	                $(".event-list .tab-pane .row .event."+type).show();
+                }
+                
+                // count visible events
+                var numItems = $('.event:visible').length;
+                if(numItems == 0) {
+                	$(".tab-pane .no-events").hide();
+	                $(".tab-pane.active .no-events").show();
+                }else{
+	                $(".tab-pane .no-events").hide();
+                }
+                
+        });
+    </script>
+    {% endaddtoblock %}
+
+    <div class="row">
+
+    	
+    	<!-- events -->
+
+    	<div class="span9" id="events-content">
+
+    		<ul class="nav nav-tabs">
+				<li class="active"><a href="#upcoming" data-toggle="tab">{% trans "Upcoming events" %}</a></li>
+			    {% if archived_events %}
+			    <li><a href="#archived" data-toggle="tab">{% trans "Past events" %}</a></li>
+			    {% endif %}
+		    </ul>
+
+		    <div class="tab-content event-list">
+				<div class="tab-pane fade active in" id="upcoming">
+				<div class="row">
+				<div class="span9 no-events hide"><span class="label label-info">{% trans "No events found." %}</span></div>
+					<!-- EVENT -->
+				{% for event in upcoming_events %}
+                    {% include "multilingual_events/partials/event_item.html" %}
+                {% empty %}
+				    <p>{% trans "No events found." %}</p>
+				{% endfor %}
+				</div><!--/row-->
+				</div>
+                {% if archived_events %}
+                    <div class="tab-pane fade" id="archived">
+                        <div class="row">
+                        	<div class="span9 no-events hide"><span class="label label-info">{% trans "No events found." %}</span></div>
+                            {% for event in archived_events %}
+                                {% include "multilingual_events/partials/event_item.html" %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+		    </div>
+
+    	</div> <!-- /span9 events-content -->
+    	
+    	
+    	<!-- /sidebar -->
+
+    	<div class="span3 sidebar" id="events-sidebar">
+
+    		<div class="well intro">
+                <small>
+                    {% placeholder 01_sidebar %}
+                </small>
+            </div>
+
+    		<h4 class="title-divider"><span>{% trans "Filter" %}</span></h4>
+
+    		
+    		<div class="well" style="max-width: 340px; padding: 8px 0;">
+              <ul class="nav nav-list event-list-filter">
+                <li class="nav-header">{% trans "Events" %}</li>
+                {% get_event_categories as event_categories %}
+                <li class="active"><a href="#all">{% trans "All Events" %}</a></li>
+                {% for category in event_categories %}
+		            <li><a href="#type-{{ category.slug }}">{{ category.get_translation.title }}</a></li>
+		        {% endfor %}
+              </ul>
+            </div>
+
+    	</div>
+
+
+    </div><!-- /row -->
+
+</div> <!--/container -->
+{% endblock %}
