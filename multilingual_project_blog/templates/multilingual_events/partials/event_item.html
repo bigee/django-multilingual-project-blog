@@ -14,7 +14,7 @@
         <hr>
         <ul class="unstyled">
             <li><i class="icon-calendar"></i> {{ event.start_date|date:"F d, Y" }} {% if event.end_date %}– {{ event.end_date|date:"F d, Y" }}{% endif %}</li>
-            
+
             {% if event.venue_url or event.google_maps_shortlink or event_title.venue_name %}
                 <li><i class="icon-globe"></i>
                     {% if event.venue_url %}
@@ -25,7 +25,8 @@
                     {{ event.get_city_and_country }}
                 </li>
             {% endif %}
-            
+
+            {% if event.end_date %}
             <li>
                 <i class="icon-time"></i>
                 {% blocktrans count amount=event.get_number_of_days %}
@@ -34,7 +35,8 @@
                 {{ amount }} days
                 {% endblocktrans %}
             </li>
-            
+            {% endif %}
+
         </ul>
         <div style="clear:both;"></div>
     </div><!-- /event -->
