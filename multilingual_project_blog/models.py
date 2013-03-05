@@ -2,7 +2,10 @@
 from django.utils.translation import gettext_noop
 from django.utils.translation import ugettext_lazy as _
 
+from cmsplugin_blog.admin import EntryAdmin
 from cmsplugin_blog.models import Entry
+from multilingual_events.admin import EventAdmin
+from document_library.admin import AttachmentInline
 
 
 Entry._meta.get_field('tags').help_text = _(
@@ -40,3 +43,7 @@ gettext_noop('multilingual_events')
 
 gettext_noop('Sites')
 gettext_noop('sites')
+
+
+EntryAdmin.inlines = EntryAdmin.inlines[:] + [AttachmentInline]
+EventAdmin.inlines = EventAdmin.inlines[:] + [AttachmentInline]

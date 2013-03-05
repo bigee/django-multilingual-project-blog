@@ -39,7 +39,6 @@ django-cms==2.3.5
 django-mptt==0.5.2
 django-sekizai==0.6.1
 cmsplugin-markdown==0.1
-cmsplugin-blog-attachments==0.1
 cmsplugin-blog-authors==0.1
 django-people==0.3
 
@@ -48,7 +47,7 @@ django-people==0.3
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
 cmsplugin-blog-categories==0.5
 -e git+git://github.com/bitmazk/cmsplugin-blog-images.git@4a812f625c8dde0cb14c7dab00a4949419bd5b89#egg=cmsplugin_blog_images
-django-document-library==0.3
+django-document-library==0.4
 -e git+git://github.com/bitmazk/django-hero-slider.git@12ca685d35b410c230fc7942351b7640170fd15b#egg=hero_slider
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
 

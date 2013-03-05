@@ -48,7 +48,6 @@ PROJECT_BLOG_APPS = [
     'missing',
     'cmsplugin_blog_categories',
     'cmsplugin_blog_images',
-    'cmsplugin_blog_attachments',
     'cmsplugin_blog_authors',
     'tagging_translated',
 
@@ -59,7 +58,6 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_filer_folder',
     'easy_thumbnails',
     'cmsplugin_filer_image_translated',
-
 ]
 
 
