@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load simple_translation_tags document_library_tags %}
+{% load cmsplugin_blog_tags placeholder_tags simple_translation_tags document_library_tags %}
 {% load url from future %}
 
 {% block main %}
@@ -18,11 +18,13 @@
 			</h2>
     	</div>
     	<div class="span8">
-            { short.description (limited) }
+            {{ document_title.description }}
             <hr>
-            { long.description }
-        </div>  
-        {% endwith %}          
+            {% with object.placeholders|choose_placeholder:"content" as content %}
+            {% render_placeholder content %}
+            {% endwith %}
+        </div>
+        {% endwith %}
 
         <div class="span3 offset1 sidebar" style="">
 
@@ -50,8 +52,10 @@
 		                {% endif %}
 		            {% endif %}
 		            <hr>
-		            <small>{% trans "Added:" %} {{ what.added|date:"l, M. d Y H:i" }}</small><br>
-		            <small>{% trans "Last Update:" %} {{ what.last_update|date:"l, M. d Y H:i" }}(optional!)</small>
+		            <small>{% trans "Added:" %} {{ object.creation_date|date:"l, M. d Y H:i" }}</small><br>
+                    {% if object.creation_date != object.update_date %}
+		                <small>{% trans "Last Update:" %} {{ object.update_date|date:"l, M. d Y H:i" }}</small>
+                    {% endif %}
                </div>
 			</div>
 			
