@@ -41,6 +41,7 @@ django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
 django-people==0.3
+django-roadmap==0.1
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2
