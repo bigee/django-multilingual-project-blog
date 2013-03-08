@@ -3,12 +3,19 @@ from django.utils.translation import gettext_noop
 from django.utils.translation import ugettext_lazy as _
 
 from cmsplugin_blog.models import Entry
+from document_library.models import Attachment
+from multilingual_events.models import Event
 
 
 Entry._meta.get_field('tags').help_text = _(
     'Please enter all tags in English with lowercase letters only, separate'
     ' them with commas. You can translate tags in the tagging admin'
     ' <a href="/admin/tagging/tag/">here</a>.')
+
+
+from django.contrib.contenttypes import generic
+Event.add_to_class('attachments', generic.GenericRelation(Attachment))
+Entry.add_to_class('attachments', generic.GenericRelation(Attachment))
 
 
 gettext_noop('Auth')

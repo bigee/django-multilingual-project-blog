@@ -12,6 +12,15 @@ register = template.Library()
 
 
 @register.assignment_tag
+def add_to_context(obj):
+    """
+    Adds the given object to the template context.
+
+    """
+    return obj
+
+
+@register.assignment_tag
 def custom_get_language_info(language_code):
     """
     Returns the language info for the given language code.

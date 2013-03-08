@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n sekizai_tags placeholder_tags cmsplugin_blog_tags simple_translation_tags %}
+{% load i18n multilingual_project_blog_tags sekizai_tags placeholder_tags cmsplugin_blog_tags simple_translation_tags %}
 {% load url from future %}
 
 {% block title %}
@@ -36,6 +36,8 @@
     	</div>
     	<div class="span8">
             <p>{{ event_title.description }}<p>
+
+            {% include "document_library/partials/attachments.html" with attachments=event.attachments.all %}
 
             <div class="accordion" id="additionalInfo">
 			  <div class="accordion-group">
