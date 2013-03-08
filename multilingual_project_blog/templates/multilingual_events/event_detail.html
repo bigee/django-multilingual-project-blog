@@ -39,6 +39,7 @@
 
             {% include "document_library/partials/attachments.html" with attachments=event.attachments.all %}
 
+            <!--
             <div class="accordion" id="additionalInfo">
 			  <div class="accordion-group">
 			    <div class="accordion-heading">
@@ -53,10 +54,15 @@
 			    </div>
 			  </div>
 			</div>
+            -->
 
-            {% with event.placeholders|choose_placeholder:"content" as content %}
-            {% render_placeholder content %}
-            {% endwith %}
+            {% placeholder_has_plugins event.placeholders "conference" as has_plugins %}
+            {% if has_plugins %}
+                {% with event.placeholders|choose_placeholder:"conference" as content %}
+                    <h3>{% trans "Event agenda" %}</h3>
+                    {% render_placeholder content %}
+                {% endwith %}
+            {% endif %}
 
         </div>
         {% endwith %}

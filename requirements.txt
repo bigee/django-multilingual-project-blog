@@ -28,7 +28,7 @@ requests==0.13.5
 # ============================================================================
 simple-translation==0.8.6
 django-tagging-translated==0.1
-django-multilingual-events==0.4
+django-multilingual-events==0.5
 cmsplugin-filer-image-translated==0.1
 
 # ============================================================================

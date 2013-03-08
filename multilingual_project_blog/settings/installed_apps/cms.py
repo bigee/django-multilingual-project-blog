@@ -17,3 +17,12 @@ CMS_TEMPLATES = (
     ('cmsplugin_blog/cmsplugin_blog_base.html', 'Blog'),
     ('multilingual_events/event_list.html', 'Events'),
 )
+
+CMS_PLACEHOLDER_CONF = {
+    'conference': {
+        'plugins': (
+            'EventAgendaDayPlugin', 'EventAgendaSessionPlugin',
+            'EventAgendaTalkPlugin'),
+        'name': gettext('Conference'),
+    },
+}

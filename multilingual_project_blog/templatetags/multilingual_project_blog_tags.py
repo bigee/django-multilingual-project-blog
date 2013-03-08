@@ -68,6 +68,19 @@ def get_first_gallery(entry):
     return False
 
 
+@register.assignment_tag
+def placeholder_has_plugins(placeholders, placeholder_name):
+    """
+    Returns ``True`` if the given placeholder produces output.
+
+    :param placeholders: A queryset of placeholders.
+    :param placeholder_name: The placeholder to be searched for in the qs.
+
+    """
+    ph = placeholders.get(slot=placeholder_name)
+    return ph.cmsplugin_set.all().count() > 0
+
+
 @register.inclusion_tag('cmsplugin_blog/entry_languages_snippet.html',
                         takes_context=True)
 def render_entry_languages(context, entry_title):
