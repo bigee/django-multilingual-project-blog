@@ -74,7 +74,7 @@
                     <h3>{% trans "Authors" %}</h3>
                 {% endif %}
                 {% with entry_author.author as author %}
-                {{ author.get_translation.first_name }} {{ author.get_translation.last_name }}
+                    {% include "people/person_plugin.html" with person=entry_author.author display_type="small" %}
                 {% endwith %}
             {% endfor %}
 
