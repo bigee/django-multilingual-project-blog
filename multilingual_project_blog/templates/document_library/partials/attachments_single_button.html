@@ -1,0 +1,30 @@
+{% load i18n multilingual_project_blog_tags simple_translation_tags %}
+{% if attachments %}
+    <div class="file">
+        <p>
+            <div class="btn-group">
+                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {{ button_title }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    {% for attachment in attachments %}
+                        {% if attachment.document.is_published %}
+                            {% with attachment.document|get_preferred_translation_from_request:request as document_title %}
+                                {% if attachment.document.download_url %}
+                                    <li><a class="btn" href="{{ attachment.document.download_url }}" target="_blank" title="{{ attachment.document.download_url }}">{{ document_title.title }}<i class="icon-external-link"></i></a></li>
+                                {% else %}
+                                    {% for document_title2 in attachment.document.documenttitle_set.all %}
+                                        <li><a href="{{ document_title2.filer_file.url }}">
+                                            <i class="icon-download-alt"></i>
+                                            {{ document_title2.filer_file.original_filename }}
+                                            {% custom_get_language_info document_title2.language as lang %}
+                                            [{% trans lang.name %}]
+                                        </a></li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </p>
+    </div>
+{% endif %}
