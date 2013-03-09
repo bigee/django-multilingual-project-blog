@@ -74,3 +74,4 @@ from .debug_toolbar import *  # NOQA
 from .cms import *  # NOQA
 from .cmsplugin_blog import *  # NOQA
 from .registration import *  # NOQA
+from .rosetta import *  # NOQA
