@@ -29,6 +29,8 @@ LOCALE_PATHS = (
     os.path.join(PROJECT_PATH, 'locale'),
 )
 
+FORMAT_MODULE_PATH = 'multilingual_project_blog.formats'
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
