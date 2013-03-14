@@ -244,7 +244,7 @@
 
 			{% endcomment %}
 
-            <small>{% trans "Last Update:" %} <abbr class="timeago" title="{{ event.last_update }}">{{ event.last_update }}</abbr></small>
+            <small>{% trans "Last Update:" %} {{ event.last_update|timesince }}</small>
             <br>
 
 

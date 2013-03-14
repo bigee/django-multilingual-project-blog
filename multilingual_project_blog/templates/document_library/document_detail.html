@@ -52,9 +52,9 @@
 		                {% endif %}
 		            {% endif %}
 		            <hr>
-		            <small>{% trans "Added:" %} {{ object.creation_date }}</small><br>
+		            <small>{% trans "Added:" %} {{ object.creation_date.date }}</small><br>
                     {% if object.creation_date != object.update_date %}
-		                <small>{% trans "Last Update:" %} {{ object.update_date }}</small>
+		                <small>{% trans "Last Update:" %} {{ object.update_date|timesince }}</small>
                     {% endif %}
                </div>
 			</div>
