@@ -59,8 +59,15 @@ a:focus{
 	font-weight: 300;
 }
 
-
-
+h1 span p,
+h2 span p,
+h3 span p,
+h4 span p,
+h5 span p {
+	padding:0;
+	margin:0;
+	display: inline;
+}
 
 
 
@@ -761,7 +768,7 @@ video {
 footer {
   background:#f3f3f3;
   margin:0;
-  margin-top: 20px;
+  margin-top: 40px;
   padding:20px;
   color:#999;
 }
