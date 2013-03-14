@@ -71,11 +71,16 @@
 
             {% for entry_author in entry.authors.all %}
                 {% if forloop.first %}
-                    <h3>{% trans "Authors" %}</h3>
+                    <h4 class="title-divider"><span>{% trans "Authors" %}</span></h4>
                 {% endif %}
                 {% with entry_author.author as author %}
                     {% include "people/person_plugin.html" with person=entry_author.author display_type="small" %}
                 {% endwith %}
+                
+                {% if not forloop.last %}
+                	<hr>
+                {% endif %}
+                
             {% endfor %}
 
             {% render_entry_languages title %}

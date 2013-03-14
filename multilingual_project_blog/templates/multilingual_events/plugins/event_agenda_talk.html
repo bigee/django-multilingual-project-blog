@@ -4,14 +4,7 @@
 
 <h5>{{ object.title }}</h5>
 
-<div class="row">
-	<div class="span6">
-	    <p>{{ object.description|safe|linebreaks }}</p>
-	</div>
+<p>{{ object.description|safe|linebreaks }}</p>
 
-	<div class="span2" style="text-align:right;">
-        {% include "document_library/partials/attachment.html" with document=object.document %}
-	</div>
-
-</div><!--/row-->
+{% include "document_library/partials/attachment.html" with document=object.document %}
 

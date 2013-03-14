@@ -19,8 +19,8 @@
     	</div>
     	<div class="span8">
             {{ document_title.description }}
-            <hr>
             {% with object.placeholders|choose_placeholder:"content" as content %}
+            <hr>
             {% render_placeholder content %}
             {% endwith %}
         </div>
@@ -51,13 +51,14 @@
 		                    </div>
 		                {% endif %}
 		            {% endif %}
-		            <hr>
-		            <small>{% trans "Added:" %} {{ object.creation_date|date:"l, M. d Y H:i" }}</small><br>
-                    {% if object.creation_date != object.update_date %}
-		                <small>{% trans "Last Update:" %} {{ object.update_date|date:"l, M. d Y H:i" }}</small>
-                    {% endif %}
                </div>
 			</div>
+
+		            <small>{% trans "Added:" %} {{ object.creation_date|date:"M. d Y" }}</small><br>
+                   {% if object.creation_date != object.update_date %}
+                    <small>{% trans "Last Update:" %} <abbr class="timeago" title="{{ object.update_date|date:"Y-m-d\TH:i:sO" }}">{{ object.update_date|date:"l, M. d Y H:i" }}</abbr></small>
+                    {% endif %}                    
+                    
 			
 						
             

@@ -1,13 +1,10 @@
 <hr>
-<div class="row">
-	<div class="span6">
-        <h5>{{ object.start_time|date:"h:i" }} – {{ object.end_time|date:"h:i" }}: {{ object.title }}</h5>
-        <p>
-            {{ object.description|safe|linebreaks }}
-        </p>
-    </div>
 
-	<div class="span2" style="text-align:right;">
-        {% include "document_library/partials/attachment.html" with document=object.document %}
-    </div>
-</div>
+<h5>{{ object.start_time|date:"h:i" }} – {{ object.end_time|date:"h:i" }}: {{ object.title }}</h5>
+<p>
+    {{ object.description|safe|linebreaks }}
+</p>
+
+{% include "document_library/partials/attachment.html" with document=object.document %}
+        
+        

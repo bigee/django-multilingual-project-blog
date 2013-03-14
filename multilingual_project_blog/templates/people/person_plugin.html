@@ -4,18 +4,27 @@
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture 89x89 crop upscale %}">
+            {% if person.gender = "female" %}
+            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 60x60 crop upscale bw %}">
+            {% else %}
+            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 60x60 crop upscale bw %}">
+            {% endif %}
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{% if person.title %}{% trans person.title %} {% endif %}{{ trans.first_name }} {{ trans.last_name }}, {% trans person.gender %}</h4>
-            <p class="role">{{ person.role.get_translation.name }}</p>
+            <h5 class="media-heading">{% if person.title %}{% trans person.title %} {% endif %}{{ trans.first_name }} {{ trans.last_name }}</h5>
+            <p class="role">
+            	{{ person.role.get_translation.name }}
+            </p>
             {% if person.phone or person.email %}
                 <ul class="inline">
+                    {% for link in person.link_set.all %}
+	                    <li><a href="{{ link.url }}" class="no-ico"><i class="icon-{{ link.link_type.slug }}"></i></a></li>
+	                {% endfor %}
                     {% if person.phone %}
                         <li><em class="icon-phone-sign"></em> {{ person.phone }}</li>
                     {% endif %}
                     {% if person.email %}
-                        <li><em class="icon-envelope-alt"></em> {{ person.email }}</li>
+                        <li><em class="icon-envelope-alt"></em> <a href="mailto:{{ person.email }}">{{ person.email }}</a></li>
                     {% endif %}
                 </ul>
             {% endif %}
@@ -24,34 +33,39 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image 178x178 crop upscale %}">
+        	{% if person.gender = "female" %}
+            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 120x120 crop upscale bw %}">
+            {% else %}
+            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 120x120 crop upscale bw %}">
+            {% endif %}
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{% if person.title %}{% trans person.title %}{% endif %} {{ trans.first_name }} {{ trans.last_name }}, {% trans person.gender %}</h4>
+            <h4 class="media-heading">{% if person.title %}{% trans person.title %}{% endif %} {{ trans.first_name }} {{ trans.last_name }}</h4>
             <p class="role">{{ person.role.get_translation.name }}</p>
             <p>
+                {% if trans.bio %}
                 <strong>{% trans "Short Bio" %}</strong><br>
                 {{ trans.bio }}
+                {% endif %}
+                &nbsp;
             </p>
-
-            {% if person.link_set.all %}
+            
             <ul class="inline">
+            {% if person.link_set.all %}
                 {% for link in person.link_set.all %}
-                    <li><a href="{{ link.url }}"><em class="icon-{{ link.slug }}"></em> {{ link.link_type.get_translation.name }}</a></li>
+                    <li><a href="{{ link.url }}" class="no-ico"><i class="icon-{{ link.link_type.slug }}"></i> {{ link.link_type.get_translation.name }}</a></li>
                 {% endfor %}
-            </ul>
             {% endif %}
 
             {% if person.phone or person.email %}
-                <ul class="inline">
                     {% if person.phone %}
                         <li><em class="icon-phone-sign"></em> {{ person.phone }}</li>
                     {% endif %}
                     {% if person.email %}
-                        <li><em class="icon-envelope-alt"></em> {{ person.email }}</li>
+                        <li><em class="icon-envelope-alt"></em> <a href="mailto:{{ person.email }}">{{ person.email }}</a></li>
                     {% endif %}
-                </ul>
             {% endif %}
+            </ul>
         </div>
     </div>
 {% endif %}

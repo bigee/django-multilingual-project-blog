@@ -131,6 +131,8 @@ $(document).ready(function() {
     e.preventDefault();
   });
   
+ 
+
 
   // RESPONSIVE VIDEO CODES
   $(function() {

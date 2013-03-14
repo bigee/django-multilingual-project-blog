@@ -42,20 +42,20 @@
                     <span class="inner-wrapper">
                             <span class="meta muted"><i class="icon-folder-open"></i> {{ document.category }}</span>
                             <div class="title">
-                                <h4><a href="{{ document.get_absolute_url }}">{{ document_title.title }}</a></h4>
+                                <h4 class="light"><a href="{{ document.get_absolute_url }}">{{ document_title.title }}</a></h4>
                             </div>
                             <div class="description">
                                 {{ document_title.description|truncatewords:50 }}
                             </div>
 
-                            <a class="btn btn-info pull-left" href="{{ document.get_absolute_url }}">{% trans "View Details" %}</a>
+                            <a class="btn btn-info pull-left" href="{{ document.get_absolute_url }}"><i class="icon-file"></i> {% trans "View Details" %}</a>
 
                             {% if document.download_url %}
                                 <a class="btn" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "View Document" %} <i class="icon-external-link"></i></a>
                             {% else %}
                                 <div class="file pull-left" style="margin-left:10px;">
                                     <div class="btn-group">
-                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Download Document" %} <span class="caret"></span></a>
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         {% for document_title2 in document.documenttitle_set.all %}
                                             <li>

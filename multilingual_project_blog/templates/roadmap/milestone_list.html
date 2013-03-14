@@ -13,7 +13,20 @@
                 <tr{% if forloop.last %} class="last"{% endif %}>
                     {% with event|get_preferred_translation_from_request:request as event_trans %}
                     <td class="c1 tags"><span class="tag">{{ event_trans.start_date_text|safe }}</span></td>
-                    <td class="c2">{{ event_trans.title|safe }}</td>
+                    
+                    {% if event_trans.description %}
+                    <td class="c2 collapse-group">
+                    	<a href="javascript:void(0);" data-toggle="collapse" data-target="#details_{{ event.id }}">{{ event_trans.title|safe }}</a>
+                    	<p class="collapse description" id="details_{{ event.id }}">
+                    		{{ event_trans.description|safe }}
+                    	</p>
+                    </td>
+                    {% else %}
+                    <td class="c2">
+                    	{{ event_trans.title|safe }}
+                    </td>
+                    {% endif %}
+                    
                     {% endwith %}
                 </tr>
             {% endfor %}

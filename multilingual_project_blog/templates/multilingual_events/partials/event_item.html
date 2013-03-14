@@ -9,7 +9,7 @@
             <span class="tag">{{ event.category.get_translation.title }}</span>
         </div>
         <h3 class="title"><a href="{{ event_title.get_absolute_url }}">{{ event_title.title }}</a></h3>
-        <p>{{ event_title.description }}</p>
+        <p class="description">{{ event_title.description }}</p>
         <p><a href="{{ event_title.get_absolute_url }}" class="btn btn-mini btn-info">{% trans "Read more …"%}</a></p>
         <hr>
         <ul class="unstyled">

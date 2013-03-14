@@ -37,8 +37,7 @@
     	<div class="span8">
             <p>{{ event_title.description }}<p>
 
-            {% include "document_library/partials/attachments.html" with attachments=event.attachments.all %}
-
+            
             <!--
             <div class="accordion" id="additionalInfo">
 			  <div class="accordion-group">
@@ -59,7 +58,8 @@
             {% placeholder_has_plugins event.placeholders "conference" as has_plugins %}
             {% if has_plugins %}
                 {% with event.placeholders|choose_placeholder:"conference" as content %}
-                    <h3>{% trans "Event agenda" %}</h3>
+                	<br>
+                    <h4 class="title-divider"><span>{% trans "Event agenda" %}</span></h4>
                     {% render_placeholder content %}
                 {% endwith %}
             {% endif %}
@@ -220,22 +220,11 @@
                     {% endif %}
                </div>
 			</div>
-
+			
 			<div class="block downloads">
 				<h4 class="title-divider"><span>{% trans "Attached Files" %}</span></h4>
-				<div class="btn-group">
-				  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				    <i class="icon-download-alt"></i> {{ event.category.get_translation.title }} {% trans "Summary" %}
-				    <span class="caret"></span>
-				  </a>
-				  <ul class="dropdown-menu">
-				    <!-- dropdown menu links -->
-				    <li><a href="#"><i class="icon-download-alt"></i> {file}</a></li>
-				    <li><a href="#"><i class="icon-download-alt"></i> {file}</a></li>
-				  </ul>
-				</div>
-
-			</div>
+				{% trans "Event Summary" as button_title %}
+				{% include "document_library/partials/attachments_single_button.html" with attachments=event.attachments.all button_title=button_title %}			</div>
 
 			{% comment %}
 
