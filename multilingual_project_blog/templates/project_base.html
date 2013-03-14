@@ -24,19 +24,19 @@
 	    	<meta name="robots" content="noindex">
 	    	<meta name="robots" content="nofollow">
 	    {% endif %}
-        
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/bootstrap.css">
-        
+
         <!-- Custom CSS (temp) -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/project-blog-styles.css">
-        
+
         <!-- Font Awesome CSS + IE7 Support -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/font-awesome.min.css">
         <!--[if IE 7]>
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-ie7.min.css">
 		<![endif]-->
-        
+
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 
@@ -49,19 +49,19 @@
 	    <![endif]-->
 
 	    <!-- jQuery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <!-- sample href for latest 1.x jQuery: //ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js -->
-        
+
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/jquery-1.8.3.min.js"><\/script>')</script>
 
         <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/modernizr-2.6.2.min.js"></script>
-       
+
         <!-- Fav and touch icons -->
-	    <link rel="shortcut icon" href="{{ STATIC_URL }}multilingual_project_blog/favicon.ico">
-	    <link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}multilingual_project_blog/apple-touch-icon-ipad3.png">
-	    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}multilingual_project_blog/apple-touch-icon-iphone4.png">
-	    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}multilingual_project_blog/apple-touch-icon-ipad.png">
-	    <link rel="apple-touch-icon" href="{{ STATIC_URL }}multilingual_project_blog/apple-touch-icon-iphone.png">
+	    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+	    <link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}apple-touch-icon-ipad3.png">
+	    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-iphone4.png">
+	    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-ipad.png">
+	    <link rel="apple-touch-icon" href="{{ STATIC_URL }}apple-touch-icon-iphone.png">
 
         {% block extrahead %}{% endblock %}
     </head>
@@ -71,47 +71,101 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="container">
-	        <div class="row">
-		        <div class="span12">
-		        	<div class="row-fluid">
-		        		<div class="span6">
-		        			<a href="/" class="logo">
-                                {% block logo %}<img src="/static/images/logo.png" alt="{% trans "Logo" %}">{% endblock %}
-		        			</a>
-		        		</div>
-		        		<div class="span6">
-		        			<div class="btn-group pull-right visible-desktop language-chooser">
-							    {% language_chooser %}
-							</div>
-		        		</div>
-		        	</div>
-		        </div>
-	        </div>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <a href="/" class="logo">
+                                    {% block logo %}<img src="/static/images/logo.png" alt="{% trans "Logo" %}">{% endblock %}
+                                </a>
+                            </div>
+                            <div class="span6">
+                                <div class="btn-group pull-right visible-desktop language-chooser">
+                                    {% language_chooser %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% language SESSION_LANGUAGE %}
+            {% include "cms/partials/base-navigation.html" with style="" search="google" signup="no" %}
+            {% endlanguage %}
+
+            {% comment %}
+                style: 	emtpy|inverse
+                search:	empty|standard|google
+            {% endcomment %}
+
+            {% block main %}
+                <p>Hello world!</p>
+            {% endblock %}
+
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="span4">
+                            {% block footer_partners %}
+                            <h4>{% trans "Partners" %}</h4>
+                            {% endblock %}
+                        </div>
+                        <div class="span4">
+                            <h4></h4>
+                        </div>
+                        <div class="span4">
+                            {% if newsletter = "yes" %}
+                            {% block newsletter %}
+                            <h4>{% trans "Follow Us!" %}</h4>
+                            <p>{% trans "Subscribe to our monthly newsletter and be the first to know about our news and special deals!" %}</p>
+                            <form class="form-inline">
+                                <input type="text" class="input-large" placeholder="{% trans 'Enter your E-Mail' %}">
+                                <button type="submit" class="btn hidden-phone">{% trans 'Ok' %}</button>
+                            </form>
+                            {% endblock %}
+                            {% endif %}
+
+                            {% if socialmedia = "yes" %}
+                            <!-- social media -->
+                            <div class="social-media">
+                            {% block footer_socialmedia %}
+                            <a href="#"><i class="icon-twitter"></i></a>
+                            <a href="#"><i class="icon-facebook"></i></a>
+                            <a href="#"><i class="icon-linkedin"></i></a>
+                            <a href="#"><i class="icon-google-plus"></i></a>
+                            {% endblock %}
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div> <!-- end .row -->
+                </div> <!-- end .container -->
+
+                <div id="footer-extra">
+                    <div class="container">
+                        <div class="row">
+                            <div class="span12">
+                                <hr>
+                                {% block footer_extra %}
+                                <center>© {% now "Y" %} example.com | Built with <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. Icons from <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>.</center>
+                                {% endblock %}
+                            </div>
+                        </div> <!-- end .row -->
+                    </div> <!-- end .container -->
+                </div>
+
+            </footer>
         </div>
-		
-        {% language SESSION_LANGUAGE %}
-		{% include "cms/partials/base-navigation.html" with style="" search="google" signup="no" %}
-        {% endlanguage %}
-
-        {% comment %}
-        	style: 	emtpy|inverse
-        	search:	empty|standard|google
-        {% endcomment %}
-
-		{% block main %}
-			<p>Hello world!</p>
-		{% endblock %}
-
-		{% include "cms/partials/base-footer.html" with newsletter="yes" socialmedia="yes" %}
 
         <!-- Bootstrap JavaScript -->
         <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/bootstrap.min.js"></script>
-        
-        <!--Non-Bootstrap JavaScript --> 
+
+        <!--Non-Bootstrap JavaScript -->
 		<script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/jquery.quicksand.js"></script>
-		
-		<!--Custom JavaScript --> 
+
+		<!--Custom JavaScript -->
 		<script src="{{ STATIC_URL }}multilingual_project_blog/js/custom-scripts.js"></script>
 
         {% render_block "js" %}

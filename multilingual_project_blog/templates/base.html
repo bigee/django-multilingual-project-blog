@@ -7,3 +7,32 @@
 
 {% block logo %}<img src="/static/images/logo.png" alt="{% trans "Logo" %}">{% endblock %}
 {% block main %}<p>Hello world!</p>{% endblock %}
+
+
+{% block footer_partners %}
+<h4>{% trans "Partners" %}</h4>
+<img src="http://pixelgraphik.de/media/leh_partner.png">
+{% endblock %}
+
+
+{% block newsletter %}
+<h4>{% trans "Follow Us!" %}</h4>
+<p>{% trans "Subscribe to our monthly newsletter and be the first to know about our news and special deals!" %}</p>
+<form class="form-inline">
+    <input type="text" class="input-large" placeholder="{% trans 'Enter your E-Mail' %}">
+    <button type="submit" class="btn hidden-phone">{% trans 'Ok' %}</button>
+</form>
+{% endblock %}
+
+
+{% block footer_socialmedia %}
+<a href="#"><i class="icon-twitter"></i></a>
+<a href="#"><i class="icon-facebook"></i></a>
+<a href="#"><i class="icon-linkedin"></i></a>
+<a href="#"><i class="icon-google-plus"></i></a>
+{% endblock %}
+
+
+{% block footer_extra %}
+<center>© {% now "Y" %} {% trans 'Wuppertal Institute for Climate, Environment and Energy' %} | Built with <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. Icons from <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>.</center>
+{% endblock %}
