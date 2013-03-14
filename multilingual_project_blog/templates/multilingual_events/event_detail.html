@@ -75,9 +75,9 @@
 						<span class="tag">{{ event.category.get_translation.title }}</span>
 					</div>
 					<hr>
-					<i class="icon-calendar"></i> {{ event.start_date|date:"F d, Y" }}
+					<i class="icon-calendar"></i> {{ event.start_date }}
                     {% if event.end_date %}
-                        – {{ event.end_date|date:"F d, Y" }}
+                        – {{ event.end_date }}
                     {% endif %}
 					<hr>
                     {% if event.start_time %}
@@ -244,7 +244,7 @@
 
 			{% endcomment %}
 
-            <small>{% trans "Last Update:" %} <abbr class="timeago" title="{{ event.last_update|date:"Y-m-d\TH:i:sO" }}">{{ event.last_update|date:"l, M. d Y H:i" }}</abbr></small>
+            <small>{% trans "Last Update:" %} <abbr class="timeago" title="{{ event.last_update }}">{{ event.last_update }}</abbr></small>
             <br>
 
 

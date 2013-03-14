@@ -9,7 +9,7 @@
     <div class="span1 hidden-phone">
 	    <!-- Date desktop -->
         {% language SESSION_LANGUAGE %}
-	    <div class="date-wrapper" title="{{ entry.pub_date|date:"M. d Y" }}">
+	    <div class="date-wrapper" title="{{ entry.pub_date.date }}">
 		    <span class="date-m">{{ entry.pub_date|date:"M" }}</span>
 		    <span class="date-d">{{ entry.pub_date|date:"d" }}</span>
 	    </div>
@@ -45,7 +45,7 @@
 
         <!-- Meta details Tablet/Phone -->
         <ul class="inline meta muted visible-phone">
-        	<li><i class="icon-calendar"></i> {{ entry.pub_date|date:"M. d Y" }}</li>
+        	<li><i class="icon-calendar"></i> {{ entry.pub_date.date }}</li>
         	{% if title.author.last_name %}
         	<li>
         		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>

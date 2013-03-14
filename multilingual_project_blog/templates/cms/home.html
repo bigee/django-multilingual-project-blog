@@ -40,7 +40,7 @@
             {% for fav in favs|slice:":4" %}
                 <hr style="margin:0;">
                 {% trans "No category" as no_category %}
-                <span class="meta"><!-- {{ fav.creation_date|date:"M. d Y" }} -->{{ fav.category.get_title|default:no_category }}{% if fav.get_filetype %} / [{{ fav.get_filetype }}]{% endif %}</span><br>
+                <span class="meta"><!-- {{ fav.creation_date|date }} -->{{ fav.category.get_title|default:no_category }}{% if fav.get_filetype %} / [{{ fav.get_filetype }}]{% endif %}</span><br>
                 <a href="{% page_url "library" %}">{{ fav.get_title }}</a><br>
             {% endfor %}
         </div>
@@ -54,7 +54,7 @@
             {% get_events amount=4 as events %}
             {% for event in events %}
                 <hr style="margin:0;">
-                <span class="meta">{{ event.category.get_translation.title }} / {{ event.get_translation.venue_name }} {{ event.start_date|date:"M. d Y" }}</span><br>
+                <span class="meta">{{ event.category.get_translation.title }} / {{ event.get_translation.venue_name }} / {{ event.start_date }}</span><br>
                 <a href="{{ event.get_translation.get_absolute_url }}">{{ event.get_translation.title }}</a><br>
             {% endfor %}
         </div>

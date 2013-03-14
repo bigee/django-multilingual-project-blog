@@ -5,7 +5,7 @@
 <div class="span9">
     <div class="event thumbnail type-{{ event.category.slug }}">
         <div class="tags">
-            <span class="tag">{{ event.start_date|date:"F d, Y" }}</span> /
+            <span class="tag">{{ event.start_date }}</span> /
             <span class="tag">{{ event.category.get_translation.title }}</span>
         </div>
         <h3 class="title"><a href="{{ event_title.get_absolute_url }}">{{ event_title.title }}</a></h3>
@@ -13,7 +13,7 @@
         <p><a href="{{ event_title.get_absolute_url }}" class="btn btn-mini btn-info">{% trans "Read more …"%}</a></p>
         <hr>
         <ul class="unstyled">
-            <li><i class="icon-calendar"></i> {{ event.start_date|date:"F d, Y" }} {% if event.end_date %}– {{ event.end_date|date:"F d, Y" }}{% endif %}</li>
+            <li><i class="icon-calendar"></i> {{ event.start_date }} {% if event.end_date %}– {{ event.end_date }}{% endif %}</li>
 
             {% if event.venue_url or event.google_maps_shortlink or event_title.venue_name %}
                 <li><i class="icon-globe"></i>
