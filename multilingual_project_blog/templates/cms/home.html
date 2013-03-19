@@ -8,7 +8,10 @@
             <div class="span6 lead">
                 <div class="">
                 <h2 class="title-divider">
-                    <span>{% placeholder 01_headline %}</span>
+                    <span>
+                        {% placeholder_as 01_headline as headline %}
+                        {{ headline|striptags }}
+                    </span>
                 </h2>
                 {% placeholder 02_content %}
                 </div>

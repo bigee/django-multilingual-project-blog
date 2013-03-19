@@ -3,12 +3,37 @@ from django import template
 from django.utils import translation
 from django.utils.translation import get_language_info
 
+from classytags.arguments import Argument, MultiValueArgument
+from classytags.core import Options, Tag
+from classytags.helpers import AsTag
+from cms.templatetags.cms_tags import Placeholder, PlaceholderOptions
 from cmsplugin_blog.models import Entry, EntryTitle
 from simple_translation.middleware import filter_queryset_language
 from tagging.models import Tag
 
 
 register = template.Library()
+
+
+class PlaceholderAs(Placeholder):
+    name = 'placeholder_as'
+    options = PlaceholderOptions(
+        Argument('name', resolve=False),
+        MultiValueArgument('extra_bits', required=False, resolve=False),
+        'as',
+        Argument('varname', resolve=False),
+        blocks=[
+            ('endplaceholder', 'nodelist'),
+        ]
+    )
+    def render_tag(self, context, name, extra_bits, varname, nodelist=None):
+        output = super(PlaceholderAs, self).render_tag(
+            context=context, name=name, extra_bits=extra_bits)
+        if varname:
+            context[varname] = output
+            return ''
+        return ''
+register.tag(PlaceholderAs)
 
 
 @register.assignment_tag

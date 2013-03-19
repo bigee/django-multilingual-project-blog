@@ -6,7 +6,8 @@ django-countries==1.5
 django_libs==0.17
 django-extensions==1.0.1
 django-debug-toolbar==0.9.4
-django-rosetta==0.7.1
+# django-rosetta==0.7.1
+-e git+git://github.com/mbi/django-rosetta.git@3ce6ae6e8bab28e4ee56c80350e92ae16ee9bb2a#egg=rosetta
 johnny-cache==1.4
 urllib3==1.5
 
