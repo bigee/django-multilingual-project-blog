@@ -36,9 +36,8 @@
         <!--[if IE 7]>
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-ie7.min.css">
 		<![endif]-->
-
-        <!-- Google Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+		
+		{% block webfonts %}{% endblock %}
 
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/bootstrap-responsive.css">
         {% render_block "css" %}
@@ -77,12 +76,12 @@
                 <div class="row">
                     <div class="span12">
                         <div class="row-fluid">
-                            <div class="span6">
+                            <div class="span9">
                                 <a href="/" class="logo">
                                     {% block logo %}<img src="/static/images/logo.png" alt="{% trans "Logo" %}">{% endblock %}
                                 </a>
                             </div>
-                            <div class="span6">
+                            <div class="span3">
                                 <div class="btn-group pull-right visible-desktop language-chooser">
                                     {% language_chooser %}
                                 </div>
