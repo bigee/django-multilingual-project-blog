@@ -120,7 +120,7 @@
 					    	  location: '{{ event_title.venue_name  }} {{ event.get_city_and_country }}'
 					    	};
 						$('#iCalendar').icalendar($.extend({
-							compact: true, sites: ['icalendar', 'google', 'outlook', 'yahoo'], echoUrl: 'http://pixelgraphik.de/media/icalendar.php'
+                            compact: true, sites: ['icalendar', 'google', 'outlook', 'yahoo'], echoUrl: '{% url "ics_generator" %}'
 						}, myEvent));
 						$("#iCalendar a").addClass("no-ico");
 					    </script>
