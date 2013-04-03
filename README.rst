@@ -1,6 +1,6 @@
 Django Multilingual Project Blog
 ================================
-
+a
 
 This is a central reusable app that contains templates, templatetags, 
 context processors, middlewares, urls and fixtures for a multilingual project
