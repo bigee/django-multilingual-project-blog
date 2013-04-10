@@ -47,7 +47,7 @@ django-roadmap==0.1
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
-cmsplugin-blog-categories==0.5
+cmsplugin-blog-categories==0.6
 -e git+git://github.com/bitmazk/cmsplugin-blog-images.git@4a812f625c8dde0cb14c7dab00a4949419bd5b89#egg=cmsplugin_blog_images
 django-document-library==0.4.1
 -e git+git://github.com/bitmazk/django-hero-slider.git@12ca685d35b410c230fc7942351b7640170fd15b#egg=hero_slider
