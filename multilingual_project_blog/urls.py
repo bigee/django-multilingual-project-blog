@@ -32,6 +32,7 @@ urlpatterns += patterns(
     url(r'^prototype/(?P<template_path>.*)$',
         RapidPrototypingView.as_view(),
         name='prototype'),
+    url(r'^ics-generator/', include('ics_generator.urls')),
     url(r'^blog/$',
         EntryArchiveIndexView.as_view(paginate_by=5),
         name='blog_archive_index'),
