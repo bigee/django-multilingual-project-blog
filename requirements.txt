@@ -49,7 +49,7 @@ django-ics-generator==0.1
 # cmsplugin-blog==1.1.2
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
 cmsplugin-blog-categories==0.6
--e git+git://github.com/bitmazk/cmsplugin-blog-images.git@4a812f625c8dde0cb14c7dab00a4949419bd5b89#egg=cmsplugin_blog_images
+-e git+git://github.com/bitmazk/cmsplugin-blog-images.git@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
 django-document-library==0.4.1
 -e git+git://github.com/bitmazk/django-hero-slider.git@12ca685d35b410c230fc7942351b7640170fd15b#egg=hero_slider
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
