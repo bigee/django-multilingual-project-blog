@@ -5,6 +5,13 @@ Split up into sup-lists so that we can exlude them from the coverage report.
 
 """
 PROJECT_BLOG_APPS = [
+    # admin tools
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+
+    # django apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -75,3 +82,4 @@ from .cms import *  # NOQA
 from .cmsplugin_blog import *  # NOQA
 from .registration import *  # NOQA
 from .rosetta import *  # NOQA
+from .admin_tools import *  # NOQA

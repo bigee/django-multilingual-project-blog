@@ -28,6 +28,7 @@ urlpatterns += patterns(
         'django.contrib.auth.views.login',
         name='auth_login'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^prototype/(?P<template_path>.*)$',
         RapidPrototypingView.as_view(),
