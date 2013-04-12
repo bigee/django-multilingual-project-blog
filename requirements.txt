@@ -54,6 +54,7 @@ cmsplugin-blog-categories==0.6
 django-document-library==0.4.1
 -e git+git://github.com/bitmazk/django-hero-slider.git@12ca685d35b410c230fc7942351b7640170fd15b#egg=hero_slider
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
+-e git+git://github.com/bitmazk/cmsplugin-blog-language-publish.git@151e21817731ffc047a4f5476e83a66fe492a4b3#egg=cmsplugin_blog_language_publish
 
 # ============================================================================
 # django-filer related packages

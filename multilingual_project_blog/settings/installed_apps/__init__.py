@@ -56,6 +56,7 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_blog_categories',
     'cmsplugin_blog_images',
     'cmsplugin_blog_authors',
+    'cmsplugin_blog_language_publish',
     'tagging_translated',
 
     # django-filer related apps
