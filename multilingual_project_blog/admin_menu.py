@@ -22,7 +22,7 @@ class CustomMenu(Menu):
             items.MenuItem(_('Dashboard'), reverse('admin:index')),
             items.Bookmarks(),
             items.AppList(
-                _('cmsplugin blog'),
+                _('Blog'),
                 models=('cmsplugin_blog*',)
             ),
             items.AppList(

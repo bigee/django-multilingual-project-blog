@@ -15,16 +15,24 @@ class CustomIndexDashboard(Dashboard):
     Custom index dashboard for buildee.
     """
     def init_with_context(self, context):
-        # append an app list module for "Applications"
-        self.children.append(modules.AppList(
-            _('cmsplugin blog'),
-            models=('cmsplugin_blog*',)
-        ))
-
-        self.children.append(modules.AppList(
-            _('Applications'),
-            exclude=('django.contrib.*', 'cmsplugin_blog*',)
-        ))
+        self.children += [
+            modules.ModelList(_('Blog'), [
+                'cmsplugin_blog.models.Entry',
+                'cmsplugin_blog_categories.models.Category',
+                'tagging.models.Tag']),
+            modules.ModelList(_('Filer'), [
+                'cmsplugin_filer_image*',
+                'filer*']),
+            modules.ModelList(_('Document Library'), [
+                'document_library*']),
+            modules.ModelList(_('Hero Slider'), [
+                'hero_slider*']),
+            modules.ModelList(_('Events'), [
+                'multilingual_events*']),
+            modules.ModelList(_('CMS'), [
+                'cms.plugins.snippet*',
+                'cms.models.page*']),
+        ]
 
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
