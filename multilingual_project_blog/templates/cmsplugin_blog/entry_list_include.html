@@ -4,9 +4,9 @@
     {% get_published_entry entry request.LANGUAGE_CODE as published_entry %}
     {% if published_entry %}
         {% with published_entry|get_preferred_translation_from_request:request as title %}
-        {% with published_entry.placeholders|choose_placeholder:"excerpt" as excerpt %}
-            {% include "cmsplugin_blog/partials/entry_list_item.html" %}
-        {% endwith %}
+            {% with published_entry.placeholders|choose_placeholder:"excerpt" as excerpt %}
+                {% include "cmsplugin_blog/partials/entry_list_item.html" %}
+            {% endwith %}
         {% endwith %}
     {% endif %}
 {% endfor %}
