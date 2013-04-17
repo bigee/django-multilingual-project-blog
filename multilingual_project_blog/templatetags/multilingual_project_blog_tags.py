@@ -115,7 +115,8 @@ def render_entry_languages(context, entry_title):
     :param entry_title: An EntryTitle instance.
 
     """
-    qs = EntryTitle.objects.filter(entry=entry_title.entry)
+    qs = EntryTitle.objects.filter(
+        entry=entry_title.entry, is_published__is_published=True)
     qs = qs.exclude(language=entry_title.language)
     context.update({
         'entry_languages': qs,

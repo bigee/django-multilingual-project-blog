@@ -1,12 +1,10 @@
 {% load i18n placeholder_tags cmsplugin_blog_tags simple_translation_tags cmsplugin_blog_language_publish_tags %}
 
-{% for entry in object_list|annotate_with_translations %}
-    {% get_published_entry entry request.LANGUAGE_CODE as published_entry %}
-    {% if published_entry %}
-        {% with published_entry|get_preferred_translation_from_request:request as title %}
-            {% with published_entry.placeholders|choose_placeholder:"excerpt" as excerpt %}
-                {% include "cmsplugin_blog/partials/entry_list_item.html" %}
-            {% endwith %}
-        {% endwith %}
-    {% endif %}
+{% get_published_entries object_list request.LANGUAGE_CODE as published_objects %}
+{% for entry in published_objects|annotate_with_translations %}
+    {% with entry|get_preferred_translation_from_request:request as title %}
+    {% with entry.placeholders|choose_placeholder:"excerpt" as excerpt %}
+        {% include "cmsplugin_blog/partials/entry_list_item.html" %}
+    {% endwith %}
+    {% endwith %}
 {% endfor %}
