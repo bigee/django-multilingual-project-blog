@@ -79,9 +79,6 @@ $(document).ready(function() {
   });
       
   
-  // timeago plugin http://timeago.yarp.com
-  jQuery("abbr.timeago").timeago();
-  
   
   /*
   //flexslider
