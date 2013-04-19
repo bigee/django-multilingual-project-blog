@@ -1,5 +1,9 @@
 {% extends "cmsplugin_blog/entry_archive_base.html" %}
-{% load i18n %}
+{% load i18n simple_translation_tags multilingual_project_blog_tags %}
 
 {% block archive_headline_sector %}{% trans "Entries tagged:" %}{% endblock %}
-{% block archive_headline_sector_name %}{{ tag.name }}{% endblock %}
+{% block archive_headline_sector_name %}
+    {% with tag|get_preferred_translation_from_request:request as tag_title %}
+        {{ tag_title.trans_name }}
+    {% endwith %}
+{% endblock %}

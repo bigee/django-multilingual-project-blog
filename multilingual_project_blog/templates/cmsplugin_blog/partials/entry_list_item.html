@@ -76,11 +76,11 @@
                 {% with entry_author.author as author %}
                     {% include "people/person_plugin.html" with person=entry_author.author display_type="small" %}
                 {% endwith %}
-                
+
                 {% if not forloop.last %}
                 	<hr>
                 {% endif %}
-                
+
             {% endfor %}
 
             {% render_entry_languages title %}

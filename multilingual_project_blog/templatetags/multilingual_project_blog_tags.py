@@ -1,11 +1,12 @@
 """Templatetags for the multilingual_project_blog project."""
 from django import template
 from django.db.models import Count
-from django.utils import translation
+from django.utils import translation, timezone
 from django.utils.translation import get_language_info
 
 from classytags.arguments import Argument, MultiValueArgument
 from cms.templatetags.cms_tags import Placeholder, PlaceholderOptions
+from cms.utils import get_language_from_request
 from cmsplugin_blog.models import Entry, EntryTitle
 from cmsplugin_blog_categories.models import Category
 from cmsplugin_blog_language_publish.models import EntryLanguagePublish
@@ -181,5 +182,18 @@ def render_latest_entries_links(context, request=None):
     qs = filter_queryset_language(request, qs)
     context.update({
         'entries': qs[:5]
+    })
+    return context
+
+
+@register.inclusion_tag('cmsplugin_blog/tag_links_snippet.html',
+                        takes_context=True)
+def render_tags(context):
+    request = context["request"]
+    language = get_language_from_request(request)
+    filters = dict(entrytitle__is_published=True, pub_date__lte=timezone.now(),
+                   entrytitle__language=language)
+    context.update({
+        'tags': Tag.objects.usage_for_model(Entry, filters=filters)
     })
     return context
