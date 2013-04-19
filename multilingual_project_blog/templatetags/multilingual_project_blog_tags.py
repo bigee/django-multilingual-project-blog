@@ -1,13 +1,14 @@
 """Templatetags for the multilingual_project_blog project."""
 from django import template
+from django.db.models import Count
 from django.utils import translation
 from django.utils.translation import get_language_info
 
 from classytags.arguments import Argument, MultiValueArgument
-from classytags.core import Options, Tag
-from classytags.helpers import AsTag
 from cms.templatetags.cms_tags import Placeholder, PlaceholderOptions
 from cmsplugin_blog.models import Entry, EntryTitle
+from cmsplugin_blog_categories.models import Category
+from cmsplugin_blog_language_publish.models import EntryLanguagePublish
 from simple_translation.middleware import filter_queryset_language
 from tagging.models import Tag
 
@@ -26,6 +27,7 @@ class PlaceholderAs(Placeholder):
             ('endplaceholder', 'nodelist'),
         ]
     )
+
     def render_tag(self, context, name, extra_bits, varname, nodelist=None):
         output = super(PlaceholderAs, self).render_tag(
             context=context, name=name, extra_bits=extra_bits)
@@ -83,6 +85,16 @@ def get_absolute_url(obj):
     return obj.get_absolute_url()
 
 
+@register.simple_tag
+def get_entry_count_for_category(category, language):
+    """Returns the amount of published entries in a category for a language."""
+    qs = EntryLanguagePublish.objects.filter(
+        is_published=True,
+        entry_title__entry__categories__category=category,
+        entry_title__language=language).count()
+    return qs
+
+
 @register.assignment_tag
 def get_first_gallery(entry):
     """Returns the first gallery plugin of a blog Entry."""
@@ -104,6 +116,25 @@ def placeholder_has_plugins(placeholders, placeholder_name):
     """
     ph = placeholders.get(slot=placeholder_name)
     return ph.cmsplugin_set.all().count() > 0
+
+
+@register.inclusion_tag(
+    'cmsplugin_blog_categories/category_links_snippet.html',
+    takes_context=True)
+def render_categories(context, exclude_empty=False):
+    """Renders the category liks."""
+    qs = Category.objects.annotate(num_posts=Count('entry_categories'))
+    if exclude_empty:
+        qs = qs.exclude(num_posts=0)
+    request = context.get('request')
+    language = getattr(request, 'LANGUAGE_CODE', None)
+    if language:
+        qs = qs.filter(
+            entry_categories__entry__entrytitle__language=language,
+            entry_categories__entry__entrytitle__is_published__is_published=
+            True)
+    context.update({'categories': qs, })
+    return context
 
 
 @register.inclusion_tag('cmsplugin_blog/entry_languages_snippet.html',
