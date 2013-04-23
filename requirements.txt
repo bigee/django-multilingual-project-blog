@@ -28,7 +28,8 @@ requests==0.13.5
 # ============================================================================
 # Multilingual related packages
 # ============================================================================
-simple-translation==0.8.6
+# simple-translation==0.8.6
+-e git+git://github.com/mbrochh/simple-translation.git@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
 django-tagging-translated==0.1
 django-multilingual-events==0.6.1
 cmsplugin-filer-image-translated==0.1

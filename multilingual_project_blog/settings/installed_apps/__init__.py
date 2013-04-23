@@ -11,6 +11,9 @@ PROJECT_BLOG_APPS = [
     'admin_tools.menu',
     'admin_tools.dashboard',
 
+    # Must come before all other apps
+    'multilingual_project_blog',
+
     # django apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,9 +24,6 @@ PROJECT_BLOG_APPS = [
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.sitemaps',
-
-    # Must come before all other apps
-    'multilingual_project_blog',
 
     # Other important apps
     'django_extensions',
