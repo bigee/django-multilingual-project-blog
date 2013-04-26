@@ -5,7 +5,7 @@
     <ul class="inline entryLanguages">
         {% for lang_title in entry_languages %}
             {% custom_get_language_info lang_title.language as lang %}
-            <li><a class="btn btn-small" href="{{ lang_title.get_absolute_url }}"><i class="icon-flag"></i> {{ lang_title.title }}</a></li>
+            <li><a class="btn btn-small" href="{% if SESSION_LANGUAGE == lang_title.language %}/{{ SESSION_LANGUAGE }}{% endif %}{{ lang_title.get_absolute_url }}"><i class="icon-flag"></i> {{ lang_title.title }}</a></li>
         {% endfor %}
     </ul>
     {% endlanguage %}
