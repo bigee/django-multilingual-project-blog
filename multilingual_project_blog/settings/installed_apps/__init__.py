@@ -34,6 +34,7 @@ PROJECT_BLOG_APPS = [
     'hero_slider',
     'multilingual_events',
     'people',
+    'localized_names',
     'roadmap',
 
     # django-cms related apps
@@ -84,3 +85,4 @@ from .cmsplugin_blog import *  # NOQA
 from .registration import *  # NOQA
 from .rosetta import *  # NOQA
 from .admin_tools import *  # NOQA
+from .localized_names import *  # NOQA

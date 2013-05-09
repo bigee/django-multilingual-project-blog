@@ -1,17 +1,17 @@
-{% load i18n simple_translation_tags thumbnail %}
+{% load i18n simple_translation_tags thumbnail localized_names_tags %}
 
 {% with person|get_preferred_translation_from_request:request as trans %}
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
             {% if person.gender = "female" %}
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 60x60 crop upscale bw %}">
+            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 60x60 crop upscale bw %}">
             {% else %}
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 60x60 crop upscale bw %}">
+            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 60x60 crop upscale bw %}">
             {% endif %}
         </div>
         <div class="media-body">
-            <h5 class="media-heading">{% if person.title %}{% trans person.title %} {% endif %}{{ trans.first_name }} {{ trans.last_name }}</h5>
+            <h5 class="media-heading">{{ person.get_translation|get_name }}</h5>
             <p class="role">
             	{{ person.role.get_translation.name }}
             </p>
@@ -34,13 +34,13 @@
     <div class="media team">
         <div class="pull-left">
         	{% if person.gender = "female" %}
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 120x120 crop upscale bw %}">
+            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 120x120 crop upscale bw %}">
             {% else %}
-            <img alt="{{ trans.first_name }} {{ trans.last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 120x120 crop upscale bw %}">
+            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 120x120 crop upscale bw %}">
             {% endif %}
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{% if person.title %}{% trans person.title %}{% endif %} {{ trans.first_name }} {{ trans.last_name }}</h4>
+            <h4 class="media-heading">{{ person.get_translation|get_name }}</h4>
             <p class="role">{{ person.role.get_translation.name }}</p>
             <p>
                 {% if trans.bio %}
@@ -49,7 +49,7 @@
                 {% endif %}
                 &nbsp;
             </p>
-            
+
             <ul class="inline">
             {% if person.link_set.all %}
                 {% for link in person.link_set.all %}
