@@ -53,10 +53,10 @@ django-ics-generator==0.1
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
 cmsplugin-blog-categories==0.6
 -e git+git://github.com/bitmazk/cmsplugin-blog-images.git@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
-django-document-library==0.5.1
+django-document-library==0.6
 -e git+git://github.com/bitmazk/django-hero-slider.git@7c7b350b73c4c3d8dccf3e35163ee648036b9cdb#egg=hero_slider
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
-cmsplugin-blog-language-publish==0.1.1
+cmsplugin-blog-language-publish==0.1.2
 
 # ============================================================================
 # django-filer related packages
