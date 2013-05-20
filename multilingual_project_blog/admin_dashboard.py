@@ -32,13 +32,9 @@ class CustomIndexDashboard(Dashboard):
             modules.ModelList(_('CMS'), [
                 'cms.plugins.snippet*',
                 'cms.models.page*']),
+            modules.ModelList(_('People'), [
+                'people.models.Person']),
         ]
-
-        # append an app list module for "Administration"
-        self.children.append(modules.AppList(
-            _('Administration'),
-            models=('django.contrib.*',),
-        ))
 
 
 class CustomAppIndexDashboard(AppIndexDashboard):
