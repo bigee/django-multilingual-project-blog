@@ -1,0 +1,44 @@
+{% load i18n simple_translation_tags thumbnail %}
+
+{% with organization|get_preferred_translation_from_request:request as trans %}
+{% if display_type == 'small' %}
+    <div class="media team-short">
+        <div class="pull-left">
+            <img alt="{{ trans.title }}" class="media-object" src="{% thumbnail organization.logo.image 80x80 crop upscale %}">
+        </div>
+        <div class="media-body">
+            <h5 class="media-heading">{{ organization.get_translation.title }}</h5>
+            {% if organization.phone or organization.website %}
+                <ul class="inline">
+                    {% if organization.website %}
+                        <li><em class="icon-globe-alt"></em> <a href="{{ organization.website }}">{{ organization.website }}</a></li>
+                    {% endif %}
+                    {% if organization.phone %}
+                        <li><em class="icon-phone-sign"></em> {{ organization.phone }}</li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+    <div class="media team">
+        <div class="pull-left">
+            <img alt="{{ trans.title }}" class="img-polaroid media-object" src="{% thumbnail organization.picture.image 140x140 crop upscale %}">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{ organization.get_translation.title }}</h4>
+            {% if organization.phone or organization.website %}
+                <ul class="inline">
+                    {% if organization.website %}
+                        <li><em class="icon-globe-alt"></em> <a href="{{ organization.website }}">{{ organization.website }}</a></li>
+                    {% endif %}
+                    {% if organization.phone %}
+                        <li><em class="icon-phone-sign"></em> {{ organization.phone }}</li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endif %}
+{% endwith %}

@@ -34,6 +34,8 @@ class CustomIndexDashboard(Dashboard):
                 'cms.models.page*']),
             modules.ModelList(_('People'), [
                 'people.models.Person']),
+            modules.ModelList(_('Organizations'), [
+                'multilingual_orgs.models.Organizatio*']),
         ]
 
 
