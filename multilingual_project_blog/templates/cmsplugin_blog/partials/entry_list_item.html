@@ -3,15 +3,15 @@
 {% load document_library_tags multilingual_project_blog_tags %}
 {% load url from future %}
 
-
 <div class="media {% if is_detail %} blog-post{% endif %} row-fluid">
 
-    <div class="span1 hidden-phone">
+    <div class="span1 visible-desktop">
 	    <!-- Date desktop -->
         {% language SESSION_LANGUAGE %}
 	    <div class="date-wrapper" title="{{ entry.pub_date.date }}">
 		    <span class="date-m">{{ entry.pub_date|date:"M" }}</span>
 		    <span class="date-d">{{ entry.pub_date|date:"d" }}</span>
+		    <!-- span class="date-y">{{ entry.pub_date|date:"Y" }}</span> -->
 	    </div>
         {% endlanguage %}
 
@@ -33,24 +33,30 @@
 
         <h3 class="title">{% if not is_detail %}<a href="{{ title.get_absolute_url }} ">{{ title }}</a>{% else %}{{ title }}{% endif %}</h3>
 
-
+        {% comment %}
         <!-- Meta details Desktop -->
-        <ul class="inline meta muted hidden-phone">
-        	{% if title.author.last_name %}
-        	<li>
-        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
-        	</li>
-        	{% endif %}
-        </ul>
-
-        <!-- Meta details Tablet/Phone -->
-        <ul class="inline meta muted visible-phone">
+        <ul class="inline meta muted visible-desktop">
         	<li><i class="icon-calendar"></i> {{ entry.pub_date.date }}</li>
         	{% if title.author.last_name %}
         	<li>
         		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
         	</li>
         	{% endif %}
+        </ul>
+        {% endcomment %}
+        
+        
+        <!-- Meta details Tablet/Phone -->
+        <ul class="inline meta muted{% if not is_detail %} hidden-desktop{% endif %}">
+        	<li><i class="icon-calendar"></i> {% trans "Written on" %} {{ entry.pub_date.date }}</li>
+        	
+        	{% comment %}
+	        	{% if title.author.last_name %}
+	        	<li>
+	        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
+	        	</li>
+	        	{% endif %}
+        	{% endcomment %}
         </ul>
 
 

@@ -384,7 +384,7 @@ form-wrapper {
 
 .blog-roll .title, .blog-post .title {
     line-height: 1;
-    margin: 0 0 5px;
+    margin: 0 0 10px;
 }
 
 .tags {
@@ -496,6 +496,10 @@ h3.blog-category {
 }
 h3.blog-category span {
 	text-transform: uppercase;
+}
+
+ul.entryLanguages li {
+	margin:10px 0px;
 }
 
 
