@@ -68,6 +68,9 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_filer_folder',
     'easy_thumbnails',
     'cmsplugin_filer_image_translated',
+
+    # fake app to have country translations in rosetta
+    'multilingual_project_blog.country_translations',
 ]
 
 
