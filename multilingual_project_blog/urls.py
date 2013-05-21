@@ -8,10 +8,20 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from cms.sitemaps import CMSSitemap
 from cmsplugin_blog.sitemaps import BlogSitemap
 from cmsplugin_blog.views import EntryArchiveIndexView
+from django.views.generic.dates import BaseDateDetailView, ArchiveIndexView, _date_lookup_for_field, _date_from_string
 from django_libs.views import RapidPrototypingView
+from simple_translation.middleware import filter_queryset_language
 
 
 admin.autodiscover()
+
+
+class CustomEntryArchiveIndexView(EntryArchiveIndexView):
+    def get_dated_queryset(self, **lookup):
+        queryset = super(EntryArchiveIndexView, self).get_dated_queryset(**lookup)
+        queryset = filter_queryset_language(self.request, queryset)
+        queryset = queryset.filter(entrytitle__is_published__is_published=True)
+        return queryset
 
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -35,7 +45,7 @@ urlpatterns += patterns(
         name='prototype'),
     url(r'^ics-generator/', include('ics_generator.urls')),
     url(r'^blog/$',
-        EntryArchiveIndexView.as_view(paginate_by=5),
+        CustomEntryArchiveIndexView.as_view(paginate_by=5),
         name='blog_archive_index'),
     url(r'^', include('cms.urls')),
 )
