@@ -20,17 +20,14 @@
             </h5>
             {% if person.title %}
                 <p class="personTitle">
-                    {{ person.title }}
+                    {% trans person.title %}
                 </p>
             {% endif %}
-            {% if person.chosen_name %}
-                <p class="nickname">
-                    {% trans "Nickname" %}: {{ person.chosen_name }}
+            {% if person.chosen_name or person.role %}
+                <p class="role">
+                    {% if person.chosen_name %}{% trans "Nickname" %}: {{ person.chosen_name }}{% endif %}{% if person.role and person.chosen_name %}, {% endif %}{% if person.role %}{{ person.role.get_translation.name }}{% endif %}
                 </p>
             {% endif %}
-            <p class="role">
-            	{{ person.role.get_translation.name }}
-            </p>
             {% if person.phone or person.email %}
                 <ul class="inline">
                     {% for link in person.link_set.all %}
@@ -65,12 +62,12 @@
             </h4>
             {% if person.title %}
                 <p class="personTitle">
-                    {{ person.title }}
+                    {% trans person.title %}
                 </p>
             {% endif %}
-            {% if person.chosen_name %}
+            {% if person.chosen_name or person.role %}
                 <p class="nickname">
-                    {% trans "Nickname" %}: {{ person.chosen_name }}
+                    {% if person.chosen_name %}{% trans "Nickname" %}: {{ person.chosen_name }}{% endif %}{% if person.role and person.chosen_name %}, {% endif %}{% if person.role %}{{ person.role.get_translation.name }}{% endif %}
                 </p>
             {% endif %}
             <p class="role">{{ person.role.get_translation.name }}</p>
