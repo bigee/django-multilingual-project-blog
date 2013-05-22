@@ -11,7 +11,23 @@
             {% endif %}
         </div>
         <div class="media-body">
-            <h5 class="media-heading">{{ person.get_translation|get_name }}</h5>
+            <h5 class="media-heading">
+                {% if person.non_roman_first_name %}
+                    {{ person.get_translation|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
+                {% else %}
+                    {{ person.get_translation|get_name }}
+                {% endif %}
+            </h5>
+            {% if person.title %}
+                <p class="personTitle">
+                    {{ person.title }}
+                </p>
+            {% endif %}
+            {% if person.chosen_name %}
+                <p class="nickname">
+                    {% trans "Nickname" %}: {{ person.chosen_name }}
+                </p>
+            {% endif %}
             <p class="role">
             	{{ person.role.get_translation.name }}
             </p>
@@ -40,7 +56,23 @@
             {% endif %}
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{{ person.get_translation|get_name }}</h4>
+            <h4 class="media-heading">
+                {% if person.non_roman_first_name %}
+                    {{ person.get_translation|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
+                {% else %}
+                    {{ person.get_translation|get_name }}
+                {% endif %}
+            </h4>
+            {% if person.title %}
+                <p class="personTitle">
+                    {{ person.title }}
+                </p>
+            {% endif %}
+            {% if person.chosen_name %}
+                <p class="nickname">
+                    {% trans "Nickname" %}: {{ person.chosen_name }}
+                </p>
+            {% endif %}
             <p class="role">{{ person.role.get_translation.name }}</p>
             <p>
                 {% if trans.bio %}

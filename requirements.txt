@@ -43,8 +43,8 @@ django-mptt==0.5.2
 django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
-django-people==0.5.4
-django-localized-names==0.1.2
+django-people==0.5.5
+django-localized-names==0.2
 django-roadmap==0.1
 django-ics-generator==0.1
 django-multilingual-orgs==0.1.1
