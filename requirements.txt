@@ -48,7 +48,8 @@ django-people==0.5.5
 -e git+git://github.com/bitmazk/django-localized-names.git@0f87ce8eb162af0bf7e61b1c96db60f4afc97a2f#egg=localized_names
 django-roadmap==0.1
 django-ics-generator==0.1
-django-multilingual-orgs==0.2
+django-multilingual-orgs==0.3
+django-multilingual-initiatives==0.2
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2

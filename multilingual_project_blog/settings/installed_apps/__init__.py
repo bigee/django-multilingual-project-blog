@@ -60,6 +60,7 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_blog_language_publish',
     'tagging_translated',
     'multilingual_orgs',
+    'multilingual_initiatives',
 
     # django-filer related apps
     'filer',

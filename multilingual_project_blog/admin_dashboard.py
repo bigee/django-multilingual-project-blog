@@ -35,9 +35,9 @@ class CustomIndexDashboard(Dashboard):
             modules.ModelList(_('People'), [
                 'people.models.Person']),
             modules.ModelList(_('Organizations'), [
-                'multilingual_orgs.models.Organizatio*']),
-            modules.ModelList(_('Organizations'), [
-                'multilingual_orgs.models.Organizatio*']),
+                'multilingual_orgs.models.Organization']),
+            modules.ModelList(_('Initiatives'), [
+                'multilingual_initiatives.models.Initiative']),
             modules.ModelList(_('Roadmap'), [
                 'roadmap.models*']),
         ]
