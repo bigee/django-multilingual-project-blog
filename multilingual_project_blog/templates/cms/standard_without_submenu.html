@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load cms_tags multilingual_project_blog_tags %}
+
+{% load sekizai_tags menu_tags %}
+{% load i18n %}
+{% load url from future %}
+
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            {% placeholder content %}
+        </div>
+    </div>
+</div>
+{% endblock %}

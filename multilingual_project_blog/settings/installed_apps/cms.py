@@ -13,7 +13,8 @@ CMS_FRONTEND_LANGUAGES = ('en', 'zh', )
 
 CMS_TEMPLATES = (
     ('cms/home.html', 'Homepage'),
-    ('cms/standard.html', 'Standard'),
+    ('cms/standard.html', 'Page With Submenu'),
+    ('cms/standard_without_submenu.html', 'Page Without Submenu'),
     ('cmsplugin_blog/cmsplugin_blog_base.html', 'Blog'),
     ('multilingual_events/event_list.html', 'Events'),
 )
