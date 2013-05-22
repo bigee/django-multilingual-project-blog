@@ -3,7 +3,7 @@
 # ============================================================================
 Django==1.4.3
 django-countries==1.5
-django_libs==1.4.8
+django_libs==1.5
 django-extensions==1.0.1
 django-debug-toolbar==0.9.4
 # django-rosetta==0.7.1
@@ -31,7 +31,7 @@ requests==0.13.5
 # simple-translation==0.8.6
 -e git+git://github.com/mbrochh/simple-translation.git@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
 django-tagging-translated==0.1
-django-multilingual-events==0.6.1
+django-multilingual-events==0.6.2
 cmsplugin-filer-image-translated==0.1
 
 # ============================================================================
@@ -48,17 +48,17 @@ django-people==0.5.5
 -e git+git://github.com/bitmazk/django-localized-names.git@0f87ce8eb162af0bf7e61b1c96db60f4afc97a2f#egg=localized_names
 django-roadmap==0.1
 django-ics-generator==0.1
-django-multilingual-orgs==0.1.1
+django-multilingual-orgs==0.2
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
 cmsplugin-blog-categories==0.6
 -e git+git://github.com/bitmazk/cmsplugin-blog-images.git@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
-django-document-library==0.6.1
--e git+git://github.com/bitmazk/django-hero-slider.git@7c7b350b73c4c3d8dccf3e35163ee648036b9cdb#egg=hero_slider
+django-document-library==0.6.2
+django-hero-slider==0.2
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
-cmsplugin-blog-language-publish==0.1.2
+cmsplugin-blog-language-publish==0.1.3
 
 # ============================================================================
 # django-filer related packages
