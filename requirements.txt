@@ -48,7 +48,7 @@ cmsplugin-blog-authors==0.1
 # /virtualenvs/buildee/lib/python2.7/site-packages/modulename in extra_locales
 # and when you install the source distribution the symlink will no longer be
 # valid
-django-people==0.6.1
+django-people==0.6.2
 cmsplugin-blog-categories==0.6
 django-document-library==0.6.2
 django-multilingual-events==0.6.2
