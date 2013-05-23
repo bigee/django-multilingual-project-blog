@@ -1,4 +1,4 @@
-{% load i18n simple_translation_tags thumbnail localized_names_tags %}
+{% load i18n simple_translation_tags thumbnail localized_names_tags multilingual_project_blog_tags %}
 
 {% with person|get_preferred_translation_from_request:request as trans %}
 {% if display_type == 'small' %}
@@ -18,14 +18,10 @@
                     {{ person.get_translation|get_name }}
                 {% endif %}
             </h5>
-            {% if person.title %}
-                <p class="personTitle">
-                    {% trans person.title %}
-                </p>
-            {% endif %}
-            {% if person.chosen_name or person.role %}
+            {% get_person_info person as person_info %}
+            {% if person_info %}
                 <p class="role">
-                    {% if person.chosen_name %}{% trans "Nickname" %}: {{ person.chosen_name }}{% endif %}{% if person.role and person.chosen_name %}, {% endif %}{% if person.role %}{{ person.role.get_translation.name }}{% endif %}
+                    {{ person_info }}
                 </p>
             {% endif %}
             {% if person.phone or person.email %}
@@ -60,17 +56,12 @@
                     {{ person.get_translation|get_name }}
                 {% endif %}
             </h4>
-            {% if person.title %}
-                <p class="personTitle">
-                    {% trans person.title %}
+            {% get_person_info person as person_info %}
+            {% if person_info %}
+                <p class="role">
+                    {{ person_info }}
                 </p>
             {% endif %}
-            {% if person.chosen_name or person.role %}
-                <p class="nickname">
-                    {% if person.chosen_name %}{% trans "Nickname" %}: {{ person.chosen_name }}{% endif %}{% if person.role and person.chosen_name %}, {% endif %}{% if person.role %}{{ person.role.get_translation.name }}{% endif %}
-                </p>
-            {% endif %}
-            <p class="role">{{ person.role.get_translation.name }}</p>
             <p>
                 {% if trans.bio %}
                 <strong>{% trans "Short Bio" %}</strong><br>

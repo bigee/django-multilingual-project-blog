@@ -107,6 +107,18 @@ def get_first_gallery(entry):
 
 
 @register.assignment_tag
+def get_person_info(person):
+    result_parts = []
+    if person.title:
+        result_parts.append(person.title)
+    if person.chosen_name:
+        result_parts.append(person.chosen_name)
+    if person.role:
+        result_parts.append(person.role.get_translation().name)
+    return ', '.join(result_parts)
+
+
+@register.assignment_tag
 def placeholder_has_plugins(placeholders, placeholder_name):
     """
     Returns ``True`` if the given placeholder produces output.
