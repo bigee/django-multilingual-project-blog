@@ -43,7 +43,7 @@ django-mptt==0.5.2
 django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
-django-people==0.5.5
+django-people==0.6
 # django-localized-names==0.2
 -e git+git://github.com/bitmazk/django-localized-names.git@0f87ce8eb162af0bf7e61b1c96db60f4afc97a2f#egg=localized_names
 django-roadmap==0.1
