@@ -111,7 +111,7 @@ def get_first_gallery(entry):
 def get_person_info(person):
     result_parts = []
     if person.title:
-        result_parts.append(person.title)
+        result_parts.append(u'{0}'.format(_(person.title)))
     if person.chosen_name:
         result_parts.append(u'{0}: {1}'.format(
             _('Nickname'), person.chosen_name))
