@@ -3,6 +3,7 @@ from django import template
 from django.db.models import Count
 from django.utils import translation, timezone
 from django.utils.translation import get_language_info
+from django.utils.translation import ugettext_lazy as _
 
 from classytags.arguments import Argument, MultiValueArgument
 from cms.templatetags.cms_tags import Placeholder, PlaceholderOptions
@@ -112,7 +113,8 @@ def get_person_info(person):
     if person.title:
         result_parts.append(person.title)
     if person.chosen_name:
-        result_parts.append(person.chosen_name)
+        result_parts.append(u'{0}: {1}'.format(
+            _('Nickname'), person.chosen_name))
     if person.role:
         result_parts.append(person.role.get_translation().name)
     return ', '.join(result_parts)
