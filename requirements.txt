@@ -30,8 +30,6 @@ requests==0.13.5
 # ============================================================================
 # simple-translation==0.8.6
 -e git+git://github.com/mbrochh/simple-translation.git@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
-django-tagging-translated==0.1
-django-multilingual-events==0.6.2
 cmsplugin-filer-image-translated==0.1
 
 # ============================================================================
@@ -43,8 +41,21 @@ django-mptt==0.5.2
 django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
-#django-people==0.6
--e git+git://github.com/bitmazk/django-people.git@8e39fa74369a2e10edf500aa87249c9c483f63a7#egg=people
+
+
+# ATTENTION: You MUST NOT use -e git+... for the following modules because they 
+# are symlinked on the server to
+# /virtualenvs/buildee/lib/python2.7/site-packages/modulename in extra_locales
+# and when you install the source distribution the symlink will no longer be
+# valid
+django-people==0.6.1
+cmsplugin-blog-categories==0.6
+django-document-library==0.6.2
+django-multilingual-events==0.6.2
+django-tagging-translated==0.1
+# END OF ATTENTION
+
+
 # django-localized-names==0.2
 -e git+git://github.com/bitmazk/django-localized-names.git@0f87ce8eb162af0bf7e61b1c96db60f4afc97a2f#egg=localized_names
 django-roadmap==0.1
@@ -55,9 +66,7 @@ django-multilingual-initiatives==0.2
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2
 -e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
-cmsplugin-blog-categories==0.6
 -e git+git://github.com/bitmazk/cmsplugin-blog-images.git@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
-django-document-library==0.6.2
 django-hero-slider==0.2
 -e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
 cmsplugin-blog-language-publish==0.1.3
