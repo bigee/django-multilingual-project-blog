@@ -47,8 +47,8 @@
         
         
         <!-- Meta details Tablet/Phone -->
-        <ul class="inline meta muted{% if not is_detail %} hidden-desktop{% endif %}">
-        	<li><i class="icon-calendar"></i> {% trans "Written on" %} {{ entry.pub_date.date }}</li>
+        <ul class="inline meta muted">
+        	<li><i class="icon-calendar"></i> {% trans "Posted on" %} {{ entry.pub_date.date }}</li>
         	
         	{% comment %}
 	        	{% if title.author.last_name %}
