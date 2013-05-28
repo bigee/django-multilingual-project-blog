@@ -43,7 +43,7 @@ cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
 
 
-# ATTENTION: You MUST NOT use -e git+... for the following modules because they 
+# ATTENTION: You MUST NOT use -e git+... for the following modules because they
 # are symlinked on the server to
 # /virtualenvs/buildee/lib/python2.7/site-packages/modulename in extra_locales
 # and when you install the source distribution the symlink will no longer be
@@ -51,7 +51,7 @@ cmsplugin-blog-authors==0.1
 django-people==0.6.4
 cmsplugin-blog-categories==0.6
 django-document-library==0.6.2
-django-multilingual-events==0.6.2
+django-multilingual-events==0.6.3
 django-tagging-translated==0.1
 # END OF ATTENTION
 
