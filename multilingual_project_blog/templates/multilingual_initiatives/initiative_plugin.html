@@ -1,4 +1,4 @@
-{% load i18n simple_translation_tags thumbnail %}
+{% load i18n l10n simple_translation_tags thumbnail %}
 
 {% with initiative|get_preferred_translation_from_request:request as trans %}
 {% if display_type == 'small' %}
@@ -8,10 +8,10 @@
         </div>
         <div class="media-body">
             <h5 class="media-heading">{{ initiative.get_translation.title }}</h5>
-            {% if initiative.phone or initiative.website %}
+            {% if initiative.phone or initiative.website or initiative.description or initiative.start_date %}
                 <ul class="inline">
                     {% if initiative.start_date %}
-                        <li><em class="icon-time"></em> {{ initiative.start_date }}{% if initiative.end_date %} - {{ initiative.end_date }}{% endif %}</li>
+                        <li><em class="icon-time"></em> {{ initiative.start_date|localize }}{% if initiative.end_date %} - {{ initiative.end_date|localize }}{% endif %}</li>
                     {% endif %}
                     {% if initiative.description %}
                         <li><em class="icon-info-sign"></em> {{ initiative.description }}</li>
@@ -36,7 +36,7 @@
             {% if initiative.phone or initiative.website %}
                 <ul class="inline">
                     {% if initiative.start_date %}
-                        <li><em class="icon-time"></em> {{ initiative.start_date }}{% if initiative.end_date %} - {{ initiative.end_date }}{% endif %}</li>
+                        <li><em class="icon-time"></em> {{ initiative.start_date|localize }}{% if initiative.end_date %} - {{ initiative.end_date|localize }}{% endif %}</li>
                     {% endif %}
                     {% if initiative.description %}
                         <li><em class="icon-info-sign"></em> {{ initiative.description }}</li>

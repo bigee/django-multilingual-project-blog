@@ -1,0 +1,30 @@
+{% load i18n l10n simple_translation_tags thumbnail %}
+
+{% with event|get_preferred_translation_from_request:request as event_title %}
+    {{ display_type }}
+{% if plugin.display_type == 'small' %}
+    <div class="media team-short">
+        <div class="pull-left">
+            <img alt="{{ event_title.title }}" class="media-object" src="{{ MEDIA_URL }}images/event_placeholder.png">
+        </div>
+        <div class="media-body">
+            <h5 class="media-heading">{{ event_title.title }}</h5>
+            <ul class="inline">
+                <li><em class="icon-time"></em> {{ event.start_date|localize }}{% if event.end_date %} - {{ event.end_date|localize }}{% endif %}</li>
+            </ul>
+        </div>
+    </div>
+{% else %}
+    <div class="media team">
+        <div class="pull-left">
+            <img alt="{{ event_title.title }}" class="media-object" src="{{ MEDIA_URL }}images/event_placeholder.png">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{ event_title.title }}</h4>
+            <ul class="inline">
+                <li><em class="icon-time"></em> {{ event.start_date|localize }}{% if event.end_date %} - {{ event.end_date|localize }}{% endif %}</li>
+            </ul>
+        </div>
+    </div>
+{% endif %}
+{% endwith %}
