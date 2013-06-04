@@ -3,6 +3,7 @@ CANONICAL_URL_IGNORE_PATTERNS = [
     r'\.ico',
     r'\.ics',
     r'/ctype/$',
+    r'/admin/',
 ]
 
 
