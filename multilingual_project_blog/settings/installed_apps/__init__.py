@@ -45,7 +45,6 @@ PROJECT_BLOG_APPS = [
     'cms.plugins.text',
     'cms.plugins.link',
     'cms.plugins.snippet',
-    'cms.plugins.googlemap',
     'cmsplugin_link_extended',
 
     # blog related apps
@@ -67,6 +66,7 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_filer_file',
     'cmsplugin_filer_image',
     'cmsplugin_filer_folder',
+    'cmsplugin_googlemap',
     'easy_thumbnails',
     'cmsplugin_filer_image_translated',
 
