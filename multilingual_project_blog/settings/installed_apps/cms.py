@@ -17,6 +17,7 @@ CMS_TEMPLATES = (
     ('cms/standard_without_submenu.html', 'Page Without Submenu'),
     ('cmsplugin_blog/cmsplugin_blog_base.html', 'Blog'),
     ('multilingual_events/event_list.html', 'Events'),
+    ('good_practice_examples/examples_list.html', 'Good practice examples'),
 )
 
 CMS_PLACEHOLDER_CONF = {

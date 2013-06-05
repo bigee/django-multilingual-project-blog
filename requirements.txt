@@ -3,7 +3,7 @@
 # ============================================================================
 Django==1.4.3
 django-countries==1.5
-django_libs==1.5
+django_libs==1.6
 django-extensions==1.0.1
 django-debug-toolbar==0.9.4
 # django-rosetta==0.7.1
@@ -17,7 +17,7 @@ django-admin-tools==0.5.1
 # Other important packages
 # ============================================================================
 Pillow==1.7.8
-South==0.7.5
+South==0.8.1
 Markdown==2.2.1
 psycopg2==2.4.5
 html5lib==0.95
@@ -63,6 +63,7 @@ django-roadmap==0.1
 django-ics-generator==0.1
 django-multilingual-orgs==0.3
 django-multilingual-initiatives==0.2
+django-good-practice-examples==0.2.1
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2

@@ -36,6 +36,7 @@ PROJECT_BLOG_APPS = [
     'people',
     'localized_names',
     'roadmap',
+    'good_practice_examples',
 
     # django-cms related apps
     'cms',

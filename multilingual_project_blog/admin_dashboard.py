@@ -38,6 +38,8 @@ class CustomIndexDashboard(Dashboard):
                 'multilingual_orgs.models.Organization']),
             modules.ModelList(_('Initiatives'), [
                 'multilingual_initiatives.models.Initiative']),
+            modules.ModelList(_('Good Practices'), [
+                'good_practice_examples.models*']),
             modules.ModelList(_('Roadmap'), [
                 'roadmap.models*']),
         ]

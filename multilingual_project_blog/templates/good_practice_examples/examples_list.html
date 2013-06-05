@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags simple_translation_tags %}
+{% load cms_tags %}
+{% load url from future %}
+
+{% block main %}
+<div class="container">
+    <h2 class="title-divider"><span>{% trans "Good Practice Examples" %}</span></h2>
+
+    <!-- // EVENT LIST FILTER -->
+    {% addtoblock "js" %}
+    <script type="text/javascript">
+        $(".example-list-filter a").click(function(e) {
+            e.preventDefault();
+            list_item = $(this).parent("li");
+
+            if (list_item.hasClass("active") && list_item.hasClass("filter")) {
+                list_item.removeClass("active");
+                if (list_item.parent().children(".filter.active").length==0) {
+                    list_item.parent().children(".no_filter").addClass("active");
+                }
+            } else if (list_item.hasClass("filter")) {
+                list_item.addClass("active");
+                list_item.parent().children(".no_filter").removeClass("active");
+            } else if (list_item.hasClass("no_filter")) {
+                list_item.addClass("active");
+                list_item.parent().children(".filter").removeClass("active");
+            }
+
+            var filterClasses = []
+            $('.filter.active').each(function() {
+                filterClasses.push($(this).children("a").attr("name"));
+            })
+
+            console.log(filterClasses);
+
+            $(".example").each(function() {
+                $(this).removeClass("hide");
+                for (var i = 0; i < filterClasses.length; i++) {
+                    if (!$(this).hasClass(filterClasses[i])) {
+                        $(this).addClass("hide");
+                    }
+                }
+            });
+
+        });
+    </script>
+    {% endaddtoblock %}
+
+    <div class="row">
+
+
+    	<!-- examples -->
+
+    	<div class="span9" id="examples-content">
+		    <div class="example-list">
+				<div class="row">
+                    <div class="span9 no-examples hide"><span class="label label-info">{% trans "No examples found." %}</span></div>
+                        <!-- EXAMPLE -->
+                    {% for example in object_list %}
+                        {% include "good_practice_examples/partials/example_item.html" %}
+                    {% empty %}
+                        <div class="span9">
+                            <div class="alert alert-warning">{% trans "No examples found." %}</div>
+                        </div>
+                    {% endfor %}
+				</div><!--/row-->
+            </div>
+    	</div> <!-- /span9 exampes-content -->
+
+    	<!-- /sidebar -->
+
+    	<div class="span3 sidebar" id="examples-sidebar">
+
+    		<div class="well intro">
+                <small>
+                    {% placeholder 01_sidebar %}
+                </small>
+            </div>
+
+    		<h4 class="title-divider"><span>{% trans "Filter" %}</span></h4>
+
+    		<div class="well" style="max-width: 340px; padding: 8px 0;">
+              <ul class="nav nav-list countries-list-filter example-list-filter">
+                <li class="nav-header">{% trans "Countries" %}</li>
+                <li class="no_filter active country"><a href="#" name="{% for country in countrys %}country{{ country.pk }} {% endfor %}">{% trans "All Countries" %}</a></li>
+                {% for country in countries %}
+                    <li class="filter country"><a href="#" name="country{{ country.pk }}">{{ country }}</a></li>
+		        {% endfor %}
+              </ul>
+            </div>
+
+    		<div class="well" style="max-width: 340px; padding: 8px 0;">
+              <ul class="nav nav-list goals-list-filter example-list-filter">
+                <li class="nav-header">{% trans "Goals" %}</li>
+                <li class="no_filter active goal"><a href="#" name="">{% trans "All Goals" %}</a></li>
+                {% for goal in goals %}
+                    <li class="filter goal"><a href="#" name="goal{{ goal.pk }}">{{ goal }}</a></li>
+		        {% endfor %}
+              </ul>
+            </div>
+
+    		<div class="well" style="max-width: 340px; padding: 8px 0;">
+              <ul class="nav nav-list goals-list-filter example-list-filter">
+                <li class="nav-header">{% trans "Sectors" %}</li>
+                <li class="no_filter active sector"><a href="#" name="">{% trans "All Sectors" %}</a></li>
+                {% for sector in sectors %}
+                    <li class="filter sector"><a href="#" name="sector{{ sector.pk }}">{{ sector }}</a></li>
+		        {% endfor %}
+              </ul>
+            </div>
+
+    	</div>
+
+
+    </div><!-- /row -->
+
+</div> <!--/container -->
+{% endblock %}
+
