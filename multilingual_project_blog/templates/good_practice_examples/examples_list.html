@@ -14,25 +14,14 @@
             e.preventDefault();
             list_item = $(this).parent("li");
 
-            if (list_item.hasClass("active") && list_item.hasClass("filter")) {
-                list_item.removeClass("active");
-                if (list_item.parent().children(".filter.active").length==0) {
-                    list_item.parent().children(".no_filter").addClass("active");
-                }
-            } else if (list_item.hasClass("filter")) {
-                list_item.addClass("active");
-                list_item.parent().children(".no_filter").removeClass("active");
-            } else if (list_item.hasClass("no_filter")) {
-                list_item.addClass("active");
-                list_item.parent().children(".filter").removeClass("active");
-            }
+
+            list_item.parent().children().removeClass("active");
+            list_item.addClass("active");
 
             var filterClasses = []
             $('.filter.active').each(function() {
                 filterClasses.push($(this).children("a").attr("name"));
             })
-
-            console.log(filterClasses);
 
             $(".example").each(function() {
                 $(this).removeClass("hide");
@@ -42,6 +31,12 @@
                     }
                 }
             });
+
+            if ($(".example").not(".hide").length==0) {
+                $(".no-examples").removeClass("hide");
+            } else {
+                $(".no-examples").addClass("hide");
+            }
 
         });
     </script>
