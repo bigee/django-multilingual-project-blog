@@ -23,7 +23,7 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <img alt="{{ trans.title }}" class="img-polaroid media-object" src="{% thumbnail organization.picture.image|default:'images/org_placeholder.png' 140x140 crop upscale %}">
+            <img alt="{{ trans.title }}" class="img-polaroid media-object" src="{% thumbnail organization.logo.image|default:'images/org_placeholder.png' 140x140 crop upscale %}">
         </div>
         <div class="media-body">
             <h4 class="media-heading">{{ organization.get_translation.title }}</h4>

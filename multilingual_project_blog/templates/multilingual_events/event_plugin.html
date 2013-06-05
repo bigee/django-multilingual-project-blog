@@ -4,7 +4,7 @@
 {% if plugin.display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
-            <img alt="{{ event_title.title }}" class="media-object" src="{{ MEDIA_URL }}images/event_placeholder.png">
+            <img alt="{{ event_title.title }}" class="media-object img-polaroid plugin-image-small" src="{{ MEDIA_URL }}images/event_placeholder.png">
         </div>
         <div class="media-body">
             <h5 class="media-heading">{{ event_title.title }}</h5>
@@ -16,7 +16,7 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <img alt="{{ event_title.title }}" class="media-object" src="{{ MEDIA_URL }}images/event_placeholder.png">
+            <img alt="{{ event_title.title }}" class="media-object img-polaroid plugin-image-big" src="{{ MEDIA_URL }}images/event_placeholder.png">
         </div>
         <div class="media-body">
             <h4 class="media-heading">{{ event_title.title }}</h4>

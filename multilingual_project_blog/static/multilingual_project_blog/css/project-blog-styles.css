@@ -556,13 +556,23 @@ table.roadmap-list tr.last .c1 {
 .icalendar_compact {
 	border:none !important;
 }
-  
+
 .sidebar .short-info {
 	font-size: 85%;
-}  
+}
 
 .sidebar .short-info i {
 	font-size: 115%;
+}
+
+.plugin-image-small {
+    height: 60px;
+    width: 60px;
+}
+
+.plugin-image-big {
+    height: 140px;
+    width: 140px;
 }
 
 
@@ -752,12 +762,12 @@ video {
 /* ========== FILER SLIDESHOW / GALLERY ========== */
 /* see also: cmsplugin_filer_folder/css/slideshow.css */
 
-.cmsplugin_filer_folder_list ul { 
+.cmsplugin_filer_folder_list ul {
   overflow:auto;
 }
 
-.cmsplugin_filer_folder_list li { 
-  float:left; 
+.cmsplugin_filer_folder_list li {
+  float:left;
   margin-right: 5px;
   margin-bottom: 5px;
 }
@@ -795,7 +805,7 @@ footer {
 }
 @media (min-width: 980px) {
   /* Navbar Expanded (desktop) */
-  
+
 }
 @media (min-width: 1200px) {
   /* Responsive: Large desktop and up (wide) */
@@ -826,7 +836,7 @@ footer {
   	margin-top: 20px;
   }
 
-  
+
 
 }
 @media (max-width: 480px) {
@@ -839,5 +849,5 @@ footer {
   .blog-roll.blog-list .media-object img,
   .blog-post.blog-list .media-object img {
     max-width: 100%;
-  }  
+  }
 }
