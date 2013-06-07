@@ -9,36 +9,47 @@
 
     <!-- // EVENT LIST FILTER -->
     {% addtoblock "js" %}
+    <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/bootstrap-multiselect.js"></script>
     <script type="text/javascript">
-        $(".example-list-filter a").click(function(e) {
-            e.preventDefault();
-            list_item = $(this).parent("li");
-
-
-            list_item.parent().children().removeClass("active");
-            list_item.addClass("active");
-
-            var filterClasses = []
-            $('.filter.active').each(function() {
-                filterClasses.push($(this).children("a").attr("name"));
-            })
-
-            $(".example").each(function() {
-                $(this).removeClass("hide");
-                for (var i = 0; i < filterClasses.length; i++) {
-                    if (!$(this).hasClass(filterClasses[i])) {
-                        $(this).addClass("hide");
+        $(document).ready(function() {
+            $('.example-list-filter').multiselect()
+            $(".multiselect-container").children("li").children("a").children("label").click(function(e) {
+                {% comment %}
+                if (list_item.hasClass("active") && list_item.hasClass("filter")) {
+                    list_item.removeClass("active");
+                    if (list_item.parent().children(".filter.active").length==0) {
+                        list_item.parent().children(".no_filter").addClass("active");
                     }
+                } else if (list_item.hasClass("filter")) {
+                    list_item.addClass("active");
+                    list_item.parent().children(".no_filter").removeClass("active");
+                } else if (list_item.hasClass("no_filter")) {
+                    list_item.addClass("active");
+                    list_item.parent().children(".filter").removeClass("active");
                 }
+                {% endcomment %}
+                var filterClasses = []
+                $('.active').children("a").children("label").children("input").each(function() {
+                    filterClasses.push($(this).val());
+                })
+
+                $(".example").each(function() {
+                    $(this).removeClass("hide");
+                    for (var i = 0; i < filterClasses.length; i++) {
+                        if (!$(this).hasClass(filterClasses[i])) {
+                            $(this).addClass("hide");
+                        }
+                    }
+                });
+
+                if ($(".example").not(".hide").length==0) {
+                    $(".no-examples").removeClass("hide");
+                } else {
+                    $(".no-examples").addClass("hide");
+                }
+
             });
-
-            if ($(".example").not(".hide").length==0) {
-                $(".no-examples").removeClass("hide");
-            } else {
-                $(".no-examples").addClass("hide");
-            }
-
-        });
+        })
     </script>
     {% endaddtoblock %}
 
@@ -76,35 +87,37 @@
     		<h4 class="title-divider"><span>{% trans "Filter" %}</span></h4>
 
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
-              <ul class="nav nav-list countries-list-filter example-list-filter">
-                <li class="nav-header">{% trans "Countries" %}</li>
-                <li class="no_filter active country"><a href="#" name="{% for country in countrys %}country{{ country.pk }} {% endfor %}">{% trans "All Countries" %}</a></li>
-                {% for country in countries %}
-                    <li class="filter country"><a href="#" name="country{{ country.pk }}">{{ country.country.name }}</a></li>
-		        {% endfor %}
-              </ul>
+                <div class="nav-list nav">
+                    <div class="nav-header">{% trans "Countries" %}</div>
+                    <select class="countries-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                        {% for country in countries %}
+                            <option value="country{{ country.pk }}">{{ country.country.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
 
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
-              <ul class="nav nav-list goals-list-filter example-list-filter">
-                <li class="nav-header">{% trans "Goals" %}</li>
-                <li class="no_filter active goal"><a href="#" name="">{% trans "All Goals" %}</a></li>
-                {% for goal in goals %}
-                    <li class="filter goal"><a href="#" name="goal{{ goal.pk }}">{{ goal }}</a></li>
-		        {% endfor %}
-              </ul>
+                <div class="nav-list nav">
+                    <div class="nav-header">{% trans "Goals" %}</div>
+                    <select class="goals-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                        {% for goal in goals %}
+                            <option value="goal{{ goal.pk }}">{{ goal }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
 
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
-              <ul class="nav nav-list goals-list-filter example-list-filter">
-                <li class="nav-header">{% trans "Sectors" %}</li>
-                <li class="no_filter active sector"><a href="#" name="">{% trans "All Sectors" %}</a></li>
-                {% for sector in sectors %}
-                    <li class="filter sector"><a href="#" name="sector{{ sector.pk }}">{{ sector }}</a></li>
-		        {% endfor %}
-              </ul>
+                <div class="nav-list nav">
+                    <div class="nav-header">{% trans "Sectors" %}</div>
+                    <select class="sectors-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                        {% for sector in sectors %}
+                            <option value="sector{{ sector.pk }}">{{ sector }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
-
     	</div>
 
 
@@ -112,4 +125,3 @@
 
 </div> <!--/container -->
 {% endblock %}
-
