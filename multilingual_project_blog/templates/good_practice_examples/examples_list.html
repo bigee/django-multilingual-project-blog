@@ -80,7 +80,7 @@
                 <li class="nav-header">{% trans "Countries" %}</li>
                 <li class="no_filter active country"><a href="#" name="{% for country in countrys %}country{{ country.pk }} {% endfor %}">{% trans "All Countries" %}</a></li>
                 {% for country in countries %}
-                    <li class="filter country"><a href="#" name="country{{ country.pk }}">{{ country }}</a></li>
+                    <li class="filter country"><a href="#" name="country{{ country.pk }}">{{ country.country.name }}</a></li>
 		        {% endfor %}
               </ul>
             </div>
