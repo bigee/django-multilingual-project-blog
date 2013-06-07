@@ -63,7 +63,7 @@ django-roadmap==0.1
 django-ics-generator==0.1
 django-multilingual-orgs==0.3
 django-multilingual-initiatives==0.2
-django-good-practice-examples==0.2.1
+django-good-practice-examples==0.2.3
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2

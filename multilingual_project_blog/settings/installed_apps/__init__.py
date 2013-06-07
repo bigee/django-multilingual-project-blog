@@ -61,6 +61,7 @@ PROJECT_BLOG_APPS = [
     'tagging_translated',
     'multilingual_orgs',
     'multilingual_initiatives',
+    'multilingual_news',
 
     # django-filer related apps
     'filer',
