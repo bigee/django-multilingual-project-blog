@@ -11,6 +11,7 @@
             <ul class="inline">
                 <li><em class="icon-time"></em> {{ event.start_date|localize }}{% if event.end_date %} - {{ event.end_date|localize }}{% endif %}</li>
             </ul>
+            <a class="btn btn-mini btn-info" href="{{ event_title.get_absolute_url }}">{% trans "Read more ..." %}</a>
         </div>
     </div>
 {% else %}
@@ -23,6 +24,7 @@
             <ul class="inline">
                 <li><em class="icon-time"></em> {{ event.start_date|localize }}{% if event.end_date %} - {{ event.end_date|localize }}{% endif %}</li>
             </ul>
+            <a class="btn btn-mini btn-info" href="{{ event_title.get_absolute_url }}">{% trans "Read more ..." %}</a>
         </div>
     </div>
 {% endif %}
