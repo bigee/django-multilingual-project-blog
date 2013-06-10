@@ -3,16 +3,30 @@
 
 {% with example|get_preferred_translation_from_request:request as example_trans %}
 <div class="span9">
-    <div class="example thumbnail{% for goal in example.goals.all %} goal{{ goal.pk }}{% endfor %}{% for sector in example.sectors.all %} sector{{ sector.pk }}{% endfor %}{% for country in example.countries.all %} country{{ country.pk }}{% endfor %}">
-        <div class="tags">
-            {% for sector in example.sectors.all %}
-                <span class="tag">{{ sector }}{% if not forloop.last %}, {% endif %}</span>
-            {% endfor %} /
-            {% for country in example.countries.all %}
-                <span class="tag">{{ country }}{% if not forloop.last %}, {% endif %}</span>
-            {% endfor %}
-        </div>
+    <div class="example event thumbnail{% for goal in example.goals.all %} goal{{ goal.pk }}{% endfor %}{% for sector in example.sectors.all %} sector{{ sector.pk }}{% endfor %}{% for country in example.countries.all %} country{{ country.pk }}{% endfor %}">
 
+        <ul class="unstyled">
+
+            <li>
+                <strong>{% trans "Country" %}</strong>: {% for country in example.countries.all %}
+                <span class="badge badge-info">{{ country.country.name }}</span>
+                {% endfor %}
+            </li>
+            <li>
+                <strong>{% trans "Sector" %}</strong>: {% for sector in example.sectors.all %}
+                <span class="badge badge-warning">{{ sector }}</span>
+                {% endfor %}
+            </li>
+            
+            <li>
+                <strong>{% trans "Goal" %}</strong>: {% for goal in example.goals.all %}
+                <span class="badge badge-success">{{ goal }}</span>
+                {% endfor %}
+            </li>
+            
+        </ul> 
+
+        <hr>
 
         <h3 class="title">{{ example_trans.title }}</h3>
 
@@ -21,14 +35,6 @@
                 <p class="description">{{ plugin.render_plugin }}</p>
             {% endfor %}
         {% endfor %}
-        <hr>
-        <h4>{% trans "Goals" %}</h4>
-        <ul class="unstyled">
-            {% for goal in example.goals.all %}
-                <li>{{ goal }}{% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-        </ul>
-        <div style="clear:both;"></div>
     </div><!-- /example -->
 </div><!-- /span9 -->
 {% endwith %}
