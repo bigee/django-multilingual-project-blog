@@ -4,7 +4,7 @@
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
-            <img alt="{{ trans.title }}" class="img-polaroid media-object" src="{% thumbnail organization.logo.image|default:'images/org_placeholder.png' 60x60 crop upscale %}">
+            <div title="{{ trans.title }}" class="img-polaroid" style="width:60px;height:60px;background:url({% thumbnail organization.logo.image|default:'images/initiative_placeholder.png' 60x60 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
             <h5 class="media-heading">{{ organization.get_translation.title }}</h5>
@@ -23,7 +23,7 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <img alt="{{ trans.title }}" class="img-polaroid media-object" src="{% thumbnail organization.logo.image|default:'images/org_placeholder.png' 140x140 crop upscale %}">
+            <div title="{{ trans.title }}" class="img-polaroid" style="width:140px;height:140px;background:url({% thumbnail organization.logo.image|default:'images/initiative_placeholder.png' 140x140 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
             <h4 class="media-heading">{{ organization.get_translation.title }}</h4>
