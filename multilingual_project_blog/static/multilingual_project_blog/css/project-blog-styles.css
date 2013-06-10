@@ -576,6 +576,13 @@ table.roadmap-list tr.last .c1 {
 }
 
 
+/* ========= GOOGLEMAP ========== */
+
+.plugin_googlemap {
+    margin: 0 0 10px;
+}
+
+
 /* ========= LIBRARY ========== */
 
 
