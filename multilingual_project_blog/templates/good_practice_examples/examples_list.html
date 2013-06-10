@@ -12,27 +12,21 @@
     <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/bootstrap-multiselect.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.example-list-filter').multiselect()
-            $(".multiselect-container").children("li").children("a").children("label").click(function(e) {
-                {% comment %}
-                if (list_item.hasClass("active") && list_item.hasClass("filter")) {
-                    list_item.removeClass("active");
-                    if (list_item.parent().children(".filter.active").length==0) {
-                        list_item.parent().children(".no_filter").addClass("active");
-                    }
-                } else if (list_item.hasClass("filter")) {
-                    list_item.addClass("active");
-                    list_item.parent().children(".no_filter").removeClass("active");
-                } else if (list_item.hasClass("no_filter")) {
-                    list_item.addClass("active");
-                    list_item.parent().children(".filter").removeClass("active");
-                }
-                {% endcomment %}
+
+            // initiating the multiselect widget
+            $(".example-list-filter").multiselect();
+
+            // triggering the filtering of examples
+            $(".multiselect-container li a label").click(function(e) {
                 var filterClasses = []
-                $('.active').children("a").children("label").children("input").each(function() {
+
+                // get the values of all selected inputs
+                $(".active a label input").each(function() {
                     filterClasses.push($(this).val());
                 })
 
+                // hide all examples that do not have the values from above as
+                // classes
                 $(".example").each(function() {
                     $(this).removeClass("hide");
                     for (var i = 0; i < filterClasses.length; i++) {
@@ -42,6 +36,7 @@
                     }
                 });
 
+                // show no-examples badge if the examples list is empty
                 if ($(".example").not(".hide").length==0) {
                     $(".no-examples").removeClass("hide");
                 } else {
@@ -89,36 +84,36 @@
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
                 <div class="nav-list nav">
                     <div class="nav-header">{% trans "Countries" %}</div>
-                    <select class="countries-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                    <select class="countries-list-filter example-list-filter" multiple="multiple">
                         {% for country in countries %}
                             <option value="country{{ country.pk }}">{{ country.country.name }}</option>
                         {% endfor %}
                     </select>
-                </div>
-            </div>
+                </div> <!-- /nav -->
+            </div> <!-- /well -->
 
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
                 <div class="nav-list nav">
                     <div class="nav-header">{% trans "Goals" %}</div>
-                    <select class="goals-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                    <select class="goals-list-filter example-list-filter" multiple="multiple">
                         {% for goal in goals %}
                             <option value="goal{{ goal.pk }}">{{ goal }}</option>
                         {% endfor %}
                     </select>
-                </div>
-            </div>
+                </div> <!-- /nav -->
+            </div> <!-- /well -->
 
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
                 <div class="nav-list nav">
                     <div class="nav-header">{% trans "Sectors" %}</div>
-                    <select class="sectors-list-filter example-list-filter" class="multiselect" multiple="multiple">
+                    <select class="sectors-list-filter example-list-filter" multiple="multiple">
                         {% for sector in sectors %}
                             <option value="sector{{ sector.pk }}">{{ sector }}</option>
                         {% endfor %}
                     </select>
-                </div>
-            </div>
-    	</div>
+                </div> <!-- /nav -->
+            </div> <!-- /well -->
+        </div> <!-- /span3 sidebar -->
 
 
     </div><!-- /row -->
