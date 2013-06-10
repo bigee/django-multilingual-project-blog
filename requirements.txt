@@ -41,7 +41,7 @@ django-mptt==0.5.2
 django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
-cmsplugin_googlemap==0.1.2
+cmsplugin_googlemap==0.1.3
 
 
 # ATTENTION: You MUST NOT use -e git+... for the following modules because they
