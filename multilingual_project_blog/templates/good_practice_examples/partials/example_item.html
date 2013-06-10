@@ -1,4 +1,4 @@
-{% load i18n simple_translation_tags %}
+{% load i18n simple_translation_tags multilingual_events_tags placeholder_tags multilingual_project_blog_tags cmsplugin_blog_tags %}
 {% load url from future %}
 
 {% with example|get_preferred_translation_from_request:request as example_trans %}
@@ -17,24 +17,25 @@
                 <span class="badge badge-warning">{{ sector }}</span>
                 {% endfor %}
             </li>
-            
+
             <li>
                 <strong>{% trans "Goal" %}</strong>: {% for goal in example.goals.all %}
                 <span class="badge badge-success">{{ goal }}</span>
                 {% endfor %}
             </li>
-            
-        </ul> 
+
+        </ul>
 
         <hr>
 
         <h3 class="title">{{ example_trans.title }}</h3>
 
-        {% for placeholder in example.placeholders.all %}
-            {% for plugin in placeholder.cmsplugin_set.all %}
-                <p class="description">{{ plugin.render_plugin }}</p>
-            {% endfor %}
-        {% endfor %}
+        {% placeholder_has_plugins example.placeholders "description" as has_plugins %}
+        {% if has_plugins %}
+            {% with example.placeholders|choose_placeholder:"description" as description %}
+                <span class="description">{% render_placeholder description %}</span>
+            {% endwith %}
+        {% endif %}
     </div><!-- /example -->
 </div><!-- /span9 -->
 {% endwith %}
