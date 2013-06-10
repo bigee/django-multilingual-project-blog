@@ -52,7 +52,7 @@ cmsplugin_googlemap==0.1.3
 django-people==0.6.4
 cmsplugin-blog-categories==0.6
 django-document-library==0.6.2
-django-multilingual-events==0.6.5
+django-multilingual-events==0.6.6
 django-tagging-translated==0.1
 # END OF ATTENTION
 

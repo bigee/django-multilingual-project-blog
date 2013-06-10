@@ -1,5 +1,6 @@
 """Templatetags for the multilingual_project_blog project."""
 from django import template
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 from django.utils import translation, timezone
 from django.utils.translation import get_language_info
@@ -129,7 +130,10 @@ def placeholder_has_plugins(placeholders, placeholder_name):
     :param placeholder_name: The placeholder to be searched for in the qs.
 
     """
-    ph = placeholders.get(slot=placeholder_name)
+    try:
+        ph = placeholders.get(slot=placeholder_name)
+    except ObjectDoesNotExist:
+        return False
     return ph.cmsplugin_set.all().count() > 0
 
 

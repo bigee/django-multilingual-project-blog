@@ -37,7 +37,7 @@
     	<div class="span8">
             <p>{{ event_title.description }}<p>
 
-            
+
             <!--
             <div class="accordion" id="additionalInfo">
 			  <div class="accordion-group">
@@ -54,6 +54,15 @@
 			  </div>
 			</div>
             -->
+
+            {% placeholder_has_plugins event.placeholders "detailed_description" as has_plugins %}
+            {% if has_plugins %}
+                {% with event.placeholders|choose_placeholder:"detailed_description" as content %}
+                	<br>
+                    <h4 class="title-divider"><span>{% trans "Detailed description" %}</span></h4>
+                    {% render_placeholder content %}
+                {% endwith %}
+            {% endif %}
 
             {% placeholder_has_plugins event.placeholders "conference" as has_plugins %}
             {% if has_plugins %}
@@ -220,7 +229,7 @@
                     {% endif %}
                </div>
 			</div>
-			
+
 			<div class="block downloads">
 				<h4 class="title-divider"><span>{% trans "Attached Files" %}</span></h4>
 				{% trans "Event Summary" as button_title %}
