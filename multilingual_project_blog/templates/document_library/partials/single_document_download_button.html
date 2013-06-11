@@ -1,0 +1,27 @@
+{% load i18n multilingual_project_blog_tags %}
+
+{% if document.download_url %}
+    <a class="btn {{ btn_class }}" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "Download" %} <i class="icon-external-link"></i></a>
+{% else %}
+    <div class="btn-group">
+        <a class="btn dropdown-toggle {{ btn_class }}" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            {% for document_title2 in document.documenttitle_set.all %}
+                {% if document_title2.filer_file %}
+                    <li>
+                        <a href="{{ document_title2.filer_file.url }}">
+                            <i class="icon-download-alt"></i>
+                            {% custom_get_language_info document_title2.language as lang %}
+                            [{% trans lang.name %}]
+                            {% if document_title2.title %}
+                                {{ document_title2.title }}
+                            {% else %}
+                                {{ document_title2.filer_file.original_filename }}
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,6 +1,6 @@
 {% load i18n document_library_tags %}
 {% if document.download_url %}
-    <a class="btn" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "View Document" %} <i class="icon-external-link"></i></a>
+    <a class="btn {{ btn_class }}" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "View Document" %} <i class="icon-external-link"></i></a>
 {% else %}
     {% get_files_for_document document as files %}
     {% if files %}

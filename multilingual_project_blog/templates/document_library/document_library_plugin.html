@@ -1,1 +1,14 @@
-{% include "document_library/partials/attachment.html" %}
+{% load i18n simple_translation_tags %}
+{% with document|get_preferred_translation_from_request:request as document_title %}
+    <div class="media team-short" style="overflow:visible;">
+        <div class="pull-left">
+            <img alt="{{ document_title.title }}" class="media-object img-polaroid plugin-image-small" src="{{ MEDIA_URL }}images/document_placeholder.png">
+        </div>
+        <div class="media-body" style="overflow:visible;">
+            <h5 class="media-heading" style="padding-top:10px;">{{ document_title.title }}</h5>
+            <a class="btn btn-mini btn-info" href="{{ document.get_absolute_url }}">{% trans "Read more ..." %}</a>
+            {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini" %}
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+{% endwith %}

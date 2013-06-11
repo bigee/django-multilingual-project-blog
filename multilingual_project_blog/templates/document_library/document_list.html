@@ -55,25 +55,25 @@
                             {% else %}
                                 <div class="file pull-left" style="margin-left:10px;">
                                     <div class="btn-group">
-                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        {% for document_title2 in document.documenttitle_set.all %}
-                                            {% if document_title2.filer_file %}
-                                                <li>
-                                                    <a href="{{ document_title2.filer_file.url }}">
-                                                        <i class="icon-download-alt"></i>
-                                                        {% custom_get_language_info document_title2.language as lang %}
-                                                        [{% trans lang.name %}]
-                                                        {% if document_title2.title %}
-                                                            {{ document_title2.title }}
-                                                        {% else %}
-                                                            {{ document_title2.filer_file.original_filename }}
-                                                        {% endif %}
-                                                    </a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            {% for document_title2 in document.documenttitle_set.all %}
+                                                {% if document_title2.filer_file %}
+                                                    <li>
+                                                        <a href="{{ document_title2.filer_file.url }}">
+                                                            <i class="icon-download-alt"></i>
+                                                            {% custom_get_language_info document_title2.language as lang %}
+                                                            [{% trans lang.name %}]
+                                                            {% if document_title2.title %}
+                                                                {{ document_title2.title }}
+                                                            {% else %}
+                                                                {{ document_title2.filer_file.original_filename }}
+                                                            {% endif %}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
                                     </div>
                                 </div>
                             {% endif %}
