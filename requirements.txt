@@ -57,8 +57,7 @@ django-tagging-translated==0.1
 # END OF ATTENTION
 
 
-# django-localized-names==0.2
--e git+git://github.com/bitmazk/django-localized-names.git@0f87ce8eb162af0bf7e61b1c96db60f4afc97a2f#egg=localized_names
+django-localized-names==0.2
 django-roadmap==0.1
 django-ics-generator==0.1
 django-multilingual-orgs==0.3
