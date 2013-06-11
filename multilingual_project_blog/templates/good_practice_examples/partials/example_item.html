@@ -33,7 +33,7 @@
         {% placeholder_has_plugins example.placeholders "description" as has_plugins %}
         {% if has_plugins %}
             {% with example.placeholders|choose_placeholder:"description" as description %}
-                <span class="description">{% render_placeholder description %}</span>
+                <div class="description">{% render_placeholder description %}</div>
             {% endwith %}
         {% endif %}
     </div><!-- /example -->
