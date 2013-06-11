@@ -85,6 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
     'multilingual_project_blog.context_processors.project_settings',
     'multilingual_project_blog.context_processors.session_language',
+    'django_libs.context_processors.analytics',
 )
 
 

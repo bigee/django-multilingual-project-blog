@@ -20,6 +20,8 @@ TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = TEMPLATE_DEBUG
 DEBUG_TOOLBAR = True
 ENVIRONMENT = 'dev'
+SITE_URL = 'http://www.example.com'
+ANALYTICS_TRACKING_ID = 'UA-XXXXXXX-XX'
 
 
 DATABASES = {
@@ -36,7 +38,8 @@ DATABASES = {
 
 # Set this to your email if you want to test email sending
 ADMINS = (
-    ('Yourname', 'yourname@gmail.com'),
+    # ('Yourname', 'yourname@gmail.com'),
+    # ('WI Support', 'servercontrolwi@gmail.com'),
 )
 MANAGERS = ADMINS
 
