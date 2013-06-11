@@ -63,18 +63,20 @@
         </div>
 
         <div class="span4">
-        <h4 class="title-divider"><span><i class="icon-road"></i> {% trans "Our Roadmap" %}</span></h4>
-        <table class="table roadmap roadmap-list">
-            {% get_roadmap_events as roadmap_events %}
-            {% for event in roadmap_events %}
-            <tr{% if forloop.last %} class="last"{% endif %}>
-                 {% with event_trans=event.get_translation %}
-                <td class="c1 tags">{{ event_trans.start_date_text|safe }}</td>
-                <td class="c2"><a href="{% page_url "roadmap" %}">{{ event_trans.title }}</a></td>
-                {% endwith %}
-            </tr>
-            {% endfor %}
-        </table>
+            {% block roadmap %}
+                <h4 class="title-divider"><span><i class="icon-road"></i> {% trans "Our Roadmap" %}</span></h4>
+                <table class="table roadmap roadmap-list">
+                    {% get_roadmap_events as roadmap_events %}
+                    {% for event in roadmap_events %}
+                    <tr{% if forloop.last %} class="last"{% endif %}>
+                        {% with event_trans=event.get_translation %}
+                        <td class="c1 tags">{{ event_trans.start_date_text|safe }}</td>
+                        <td class="c2"><a href="{% page_url "roadmap" %}">{{ event_trans.title }}</a></td>
+                        {% endwith %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endblock %}
         </div>
 
         </div>
