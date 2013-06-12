@@ -26,6 +26,13 @@ class CustomEntryArchiveIndexView(EntryArchiveIndexView):
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.ENVIRONMENT == 'prod':
+    urlpatterns += patterns(
+        '',
+        url(r'^rosetta/', include('rosetta.urls')),
+    )
+
 urlpatterns += patterns(
     '',
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {
@@ -39,7 +46,6 @@ urlpatterns += patterns(
         name='auth_login'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
-    url(r'^rosetta/', include('rosetta.urls')),
     url(r'^prototype/(?P<template_path>.*)$',
         RapidPrototypingView.as_view(),
         name='prototype'),
