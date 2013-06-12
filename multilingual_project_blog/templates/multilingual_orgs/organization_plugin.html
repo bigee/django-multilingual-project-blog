@@ -4,14 +4,14 @@
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
-            <div title="{{ trans.title }}" class="img-polaroid" style="width:60px;height:60px;background:url({% thumbnail organization.logo.image|default:'images/initiative_placeholder.png' 60x60 upscale %}) no-repeat center center;"></div>
+            <div title="{{ trans.title }}" class="media-object img-polaroid plugin-image-small" style="width:60px;height:60px;background:url({% thumbnail organization.logo.image|default:'images/org_placeholder.png' 60x60 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
             <h5 class="media-heading">{{ organization.get_translation.title }}</h5>
             {% if organization.phone or organization.website %}
                 <ul class="inline">
                     {% if organization.website %}
-                        <li><em class="icon-globe-alt"></em> <a href="{{ organization.website }}">{{ organization.website }}</a></li>
+                        <li><em class="icon-globe"></em> <a href="{{ organization.website }}">{{ organization.website }}</a></li>
                     {% endif %}
                     {% if organization.phone %}
                         <li><em class="icon-phone-sign"></em> {{ organization.phone }}</li>
@@ -23,7 +23,7 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <div title="{{ trans.title }}" class="img-polaroid" style="width:140px;height:140px;background:url({% thumbnail organization.logo.image|default:'images/initiative_placeholder.png' 140x140 upscale %}) no-repeat center center;"></div>
+            <div title="{{ trans.title }}" class="media-object img-polaroid plugin-image-big" style="width:140px;height:140px;background:url({% thumbnail organization.logo.image|default:'images/org_placeholder.png' 140x140 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
             <h4 class="media-heading">{{ organization.get_translation.title }}</h4>

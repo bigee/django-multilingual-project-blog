@@ -5,9 +5,9 @@
             <img alt="{{ document_title.title }}" class="media-object img-polaroid plugin-image-small" src="{{ MEDIA_URL }}images/document_placeholder.png">
         </div>
         <div class="media-body" style="overflow:visible;">
-            <h5 class="media-heading" style="padding-top:10px;">{{ document_title.title }}</h5>
-            <a class="btn btn-mini btn-info" href="{{ document.get_absolute_url }}">{% trans "Read more ..." %}</a>
-            {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini" %}
+            <h5 class="media-heading" style="padding:10px 0;">{{ document_title.title }}</h5>
+            {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini btn-info" %}
+            <a class="btn btn-mini" href="{{ document.get_absolute_url }}">{% trans "View details ..." %}</a>
         </div>
     </div>
     <div style="clear:both;"></div>
