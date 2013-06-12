@@ -27,7 +27,7 @@ class CustomEntryArchiveIndexView(EntryArchiveIndexView):
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
 
-if settings.ENVIRONMENT == 'prod':
+if settings.ENVIRONMENT == 'dev':
     urlpatterns += patterns(
         '',
         url(r'^rosetta/', include('rosetta.urls')),
