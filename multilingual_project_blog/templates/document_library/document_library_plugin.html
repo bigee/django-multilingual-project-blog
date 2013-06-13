@@ -2,12 +2,12 @@
 {% with document|get_preferred_translation_from_request:request as document_title %}
     <div class="media team-short" style="overflow:visible;">
         <div class="pull-left">
-            <img alt="{{ document_title.title }}" class="media-object img-polaroid plugin-image-small" src="{{ MEDIA_URL }}images/document_placeholder.png">
+            <img alt="{{ document_title.title }}" class="media-object img-polaroid plugin-image-small" style="height:60p;width;60px;" src="{{ MEDIA_URL }}images/document_placeholder.png">
         </div>
         <div class="media-body" style="overflow:visible;">
             <h5 class="media-heading" style="padding:10px 0;">{{ document_title.title }}</h5>
             {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini btn-info" %}
-            <a class="btn btn-mini" href="{{ document.get_absolute_url }}">{% trans "View details ..." %}</a>
+            <a class="btn btn-mini" href="{{ document.get_absolute_url }}">{% trans "View details" %}</a>
         </div>
     </div>
     <div style="clear:both;"></div>
