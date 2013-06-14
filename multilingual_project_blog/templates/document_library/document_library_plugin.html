@@ -7,7 +7,7 @@
         <div class="media-body" style="overflow:visible;">
             <h5 class="media-heading" style="padding:10px 0;">{{ document_title.title }}</h5>
             {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini btn-info" %}
-            <a class="btn btn-mini" href="{{ document.get_absolute_url }}">{% trans "View details" %}</a>
+            <a class="btn btn-mini" style="margin-bottom:2px;" href="{{ document.get_absolute_url }}">{% trans "View details" %}</a>
         </div>
     </div>
     <div style="clear:both;"></div>
