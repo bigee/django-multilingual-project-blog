@@ -85,6 +85,7 @@ def add_project_blog_apps(installed_apps):
     return result
 
 
+from .easy_thumbnails import *  # NOQA
 from .multilingual_project_blog import *  # NOQA
 from .debug_toolbar import *  # NOQA
 from .cms import *  # NOQA
