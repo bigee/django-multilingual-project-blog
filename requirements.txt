@@ -63,6 +63,7 @@ django-ics-generator==0.1
 django-multilingual-orgs==0.3
 django-multilingual-initiatives==0.2
 django-good-practice-examples==0.2.4
+django-generic-positions==0.1
 
 # We need this because it is a dependency of the good-practice-example-app.
 django-multilingual-news==0.1.1

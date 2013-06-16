@@ -3,7 +3,7 @@ from django.utils.translation import gettext_noop
 from django.utils.translation import ugettext_lazy as _
 
 from cmsplugin_blog.models import Entry
-from document_library.models import Attachment
+from document_library.models import Attachment, DocumentCategory
 from multilingual_events.models import Event
 
 
@@ -16,6 +16,10 @@ Entry._meta.get_field('tags').help_text = _(
 from django.contrib.contenttypes import generic
 Event.add_to_class('attachments', generic.GenericRelation(Attachment))
 Entry.add_to_class('attachments', generic.GenericRelation(Attachment))
+
+
+DocumentCategory.add_to_class('generic_position', generic.GenericRelation(
+    'generic_positions.ObjectPosition'))
 
 
 gettext_noop('Auth')

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load simple_translation_tags document_library_tags multilingual_project_blog_tags %}
+{% load simple_translation_tags document_library_tags multilingual_project_blog_tags position_tags %}
 
 {% block main %}
 <div class="container">
@@ -24,12 +24,12 @@
 
             -->
             <ul id="quicksand-categories" class="nav nav-tabs hidden-phone">
-                <li class="active"><a class="all" href="#">{% trans "All Documents" %}</a></li>
-                {% for category in categories %}
+                {% for category in categories|order_by_position %}
                     {% with category|get_preferred_translation_from_request:request as category_title %}
                     <li><a class="type-{{ category.slug }}" href="#">{{ category_title.title }}</a></li>
                     {% endwith %}
                 {% endfor %}
+                <li class="active"><a class="all" href="#">{% trans "All Documents" %}</a></li>
             </ul>
 
 

@@ -53,5 +53,6 @@ urlpatterns += patterns(
     url(r'^blog/$',
         CustomEntryArchiveIndexView.as_view(paginate_by=5),
         name='blog_archive_index'),
+    url(r'^pos/', include('generic_positions.urls')),
     url(r'^', include('cms.urls')),
 )

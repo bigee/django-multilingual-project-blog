@@ -62,6 +62,7 @@ PROJECT_BLOG_APPS = [
     'multilingual_orgs',
     'multilingual_initiatives',
     'multilingual_news',
+    'generic_positions',
 
     # django-filer related apps
     'filer',
