@@ -36,7 +36,7 @@
         <!--[if IE 7]>
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-ie7.min.css">
 		<![endif]-->
-		
+
 		{% block webfonts %}{% endblock %}
 
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/bootstrap-responsive.css">
@@ -172,9 +172,7 @@
 
         {% if ENVIRONMENT == "prod" %}
 	        <script type="text/javascript">
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', '{{ ANALYTICS_TRACKING_ID }}']);
-                _gaq.push(['_trackPageview']);
+                var _gaq=[['_setAccount','{{ ANALYTICS_TRACKING_ID }}'],['_trackPageview'],['_gat._anonymizeIp']];
 
                 (function() {
                     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
