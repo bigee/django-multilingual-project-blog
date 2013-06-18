@@ -43,7 +43,7 @@
 
             closeEffect : 'elastic',
             closeSpeed  : 150,
-            
+
             prevEffect : 'fade',
             nextEffect : 'fade',
 
@@ -57,7 +57,7 @@
                     height : 50
                 },
                 title : {
-                    type : 'outside' 
+                    type : 'outside'
                 }*/
             }
         });
@@ -74,7 +74,11 @@
         <ul class="unstyled">
             {% for image in folder_images %}
                 {% with image|get_preferred_translation_from_request:request as image_trans %}
-                <li><a class="fancybox thumbnail" rel="group" href="{{ image.url }}" title="{{ image_trans.trans_name }} {{ image_trans.trans_caption|default:"" }}"><img src="{% thumbnail image.file 130x87 crop="True" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}"></a></li>
+                    <li>
+                        <a class="fancybox thumbnail" rel="group" href="{{ image.url }}" title="{{ image_trans.trans_name }} {{ image_trans.trans_caption|default:"" }}">
+                            <img src="{% thumbnail image.file 130x87 crop="scale" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}">
+                        </a>
+                    </li>
                 {% endwith %}
             {% endfor %}
         </ul>
@@ -86,7 +90,7 @@
 	        {% for image in folder_images %}
                 {% with image|get_preferred_translation_from_request:request as image_trans %}
 	            <div class="item{% if forloop.first %} active{% endif %}">
-                    <img src="{% thumbnail image.file 790x527 crop="True" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}">
+                    <img src="{% thumbnail image.file 790x527 crop="scale" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}">
                     <div class="carousel-caption">
                         {% if image_trans.trans_caption %}<h4>{{ image_trans.trans_caption }}</h4>{% endif %}
                         {% if image_trans.trans_description %}<p>{{ image_trans.trans_description }}</p>{% endif %}
