@@ -8,10 +8,9 @@
 {% endwith %}
 {% endblock %}
 
-
+{% block meta_container %}{% endblock %}
 
 {% block main %}
-
 {% addtoblock "js" %}
 <!-- icalendar js -->
 <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/icalendar/jquery.icalendar.min.js"></script>
@@ -21,9 +20,6 @@
 <!-- icalendar css -->
 <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/js/libs/icalendar/jquery.icalendar.css">
 {% endaddtoblock %}
-
-
-
 
 <div class="container">
     <div class="row">
