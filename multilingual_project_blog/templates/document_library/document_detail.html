@@ -3,7 +3,7 @@
 {% load cmsplugin_blog_tags placeholder_tags simple_translation_tags document_library_tags %}
 {% load url from future %}
 
-{% block meta_container %}{% endblock %}
+{% block description %}{% with object|get_preferred_translation_from_request:request as document_title %}{{ document_title.get_meta_description }}{% endwith %}{% endblock %}
 
 {% block main %}
 

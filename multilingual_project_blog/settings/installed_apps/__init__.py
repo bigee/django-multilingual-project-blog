@@ -58,6 +58,7 @@ PROJECT_BLOG_APPS = [
     'cmsplugin_blog_images',
     'cmsplugin_blog_authors',
     'cmsplugin_blog_language_publish',
+    'cmsplugin_blog_seo_addons',
     'tagging_translated',
     'multilingual_orgs',
     'multilingual_initiatives',
