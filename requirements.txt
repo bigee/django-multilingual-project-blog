@@ -42,7 +42,7 @@ django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
 cmsplugin_googlemap==0.1.4
-# cmsplugin-seo-addons=0.2
+cmsplugin-seo-addons=0.2.1
 
 
 # ATTENTION: You MUST NOT use -e git+... for the following modules because they
