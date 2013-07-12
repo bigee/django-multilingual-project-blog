@@ -3,7 +3,7 @@
 # ============================================================================
 Django==1.4.3
 django-countries==1.5
-django_libs==1.6
+django_libs==1.13
 django-extensions==1.0.1
 django-debug-toolbar==0.9.4
 # django-rosetta==0.7.1
@@ -52,8 +52,8 @@ cmsplugin-blog-seo-addons==0.2.2
 # valid
 django-people==0.6.4
 cmsplugin-blog-categories==0.6
-django-document-library==0.6.3
-django-multilingual-events==0.6.8
+django-document-library==0.9.1
+django-multilingual-events==0.6.9
 django-tagging-translated==0.1
 # END OF ATTENTION
 
