@@ -42,7 +42,7 @@ django-sekizai==0.6.1
 cmsplugin-markdown==0.1
 cmsplugin-blog-authors==0.1
 cmsplugin_googlemap==0.1.4
-cmsplugin-blog-seo-addons==0.2.2
+cmsplugin-blog-seo-addons==0.2.3
 
 
 # ATTENTION: You MUST NOT use -e git+... for the following modules because they
@@ -52,8 +52,8 @@ cmsplugin-blog-seo-addons==0.2.2
 # valid
 django-people==0.6.4
 cmsplugin-blog-categories==0.6
-django-document-library==0.9.1
-django-multilingual-events==0.6.9
+django-document-library==0.9.2
+django-multilingual-events==0.6.10
 django-tagging-translated==0.1
 # END OF ATTENTION
 
