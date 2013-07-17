@@ -30,10 +30,10 @@
 
         <h3 class="title">{{ example_trans.title }}</h3>
 
-        {% placeholder_has_plugins example.placeholders "description" as has_plugins %}
+        {% placeholder_has_plugins example.placeholders "practice_description" as has_plugins %}
         {% if has_plugins %}
-            {% with example.placeholders|choose_placeholder:"description" as description %}
-                <div class="description">{% render_placeholder description %}</div>
+            {% with example.placeholders|choose_placeholder:"practice_description" as practice_description %}
+                <div class="description">{% render_placeholder practice_description %}</div>
             {% endwith %}
         {% endif %}
     </div><!-- /example -->
