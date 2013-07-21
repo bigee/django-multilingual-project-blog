@@ -53,7 +53,7 @@ cmsplugin-blog-seo-addons==0.2.3
 django-people==0.6.4
 cmsplugin-blog-categories==0.6
 django-document-library==0.9.2
-django-multilingual-events==0.6.10
+django-multilingual-events==0.6.11
 django-tagging-translated==0.1
 # END OF ATTENTION
 
