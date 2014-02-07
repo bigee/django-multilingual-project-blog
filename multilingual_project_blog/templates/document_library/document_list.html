@@ -24,12 +24,13 @@
 
             -->
             <ul id="quicksand-categories" class="nav nav-tabs hidden-phone">
+                <li class="active"><a class="all" href="#">{% trans "All Documents" %}</a></li>
                 {% for category in categories|order_by_position %}
                     {% with category|get_preferred_translation_from_request:request as category_title %}
                     <li><a class="type-{{ category.slug }}" href="#">{{ category_title.title }}</a></li>
                     {% endwith %}
                 {% endfor %}
-                <li class="active"><a class="all" href="#">{% trans "All Documents" %}</a></li>
+                
             </ul>
 
 
@@ -41,11 +42,15 @@
                     <li class="span6 type-{{ document.category.slug }}" data-id="id-{{ document_title.id }}" data-type="type-{{ document.category.slug }}">
                     <span class="inner-wrapper">
                             <span class="meta muted"><i class="icon-folder-open"></i> {{ document.category }}</span>
-                            <div class="title">
-                                <h4 class="light"><a href="{{ document.get_absolute_url }}">{{ document_title.title }}</a></h4>
-                            </div>
-                            <div class="description">
-                                {{ document_title.description|truncatewords:50 }}
+                            
+                            <div class="document_info_wrapper">
+	                            <div class="title">
+	                                <h4 class="light"><a href="{{ document.get_absolute_url }}">{{ document_title.title }}</a></h4>
+	                            </div>
+	                            <div class="description">
+	                                {{ document_title.description }}
+	                            </div>
+	                            <div class="bottom_fade"></div>
                             </div>
 
                             <a class="btn btn-info pull-left" href="{{ document.get_absolute_url }}"><i class="icon-file"></i> {% trans "View Details" %}</a>

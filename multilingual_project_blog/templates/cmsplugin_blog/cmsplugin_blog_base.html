@@ -31,11 +31,14 @@
             {% block left-col %}{% endblock %}
         </div>
         <div class="span3 sidebar">
-            <div class="well intro">
+            {% placeholder "blog_introtext" as my_placeholder %}
+			{% if my_placeholder %}
+			<div class="well intro">
                 <small>
-                    {% placeholder 01_sidebar %}
+                    {{ my_placeholder }}
                 </small>
             </div>
+			{% endif %}
 
             {% render_categories exclude_empty=1 %}
 

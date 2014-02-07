@@ -55,11 +55,15 @@
         <div class="span4 next-events">
         <h4 class="title-divider"><span><i class="icon-calendar"></i> {% trans "Next Events" %}</span></h4>
             {% get_events amount=4 as events %}
+            {% if event %}
             {% for event in events %}
                 <hr style="margin:0;">
                 <span class="meta">{{ event.category.get_translation.title }} / {{ event.get_translation.venue_name }} / {{ event.start_date }}</span><br>
                 <a href="{{ event.get_translation.get_absolute_url }}">{{ event.get_translation.title }}</a><br>
             {% endfor %}
+            {% else %}
+            	{% trans "No events found." %}
+            {% endif %}
         </div>
 
         <div class="span4">

@@ -5,29 +5,6 @@
 <div class="span9">
     <div class="example event thumbnail{% for goal in example.goals.all %} goal{{ goal.pk }}{% endfor %}{% for sector in example.sectors.all %} sector{{ sector.pk }}{% endfor %}{% for country in example.countries.all %} country{{ country.pk }}{% endfor %}">
 
-        <ul class="unstyled">
-
-            <li>
-                <strong>{% trans "Country" %}</strong>: {% for country in example.countries.all %}
-                <span class="badge badge-info">{{ country.country.name }}</span>
-                {% endfor %}
-            </li>
-            <li>
-                <strong>{% trans "Sector" %}</strong>: {% for sector in example.sectors.all %}
-                <span class="badge badge-warning">{{ sector }}</span>
-                {% endfor %}
-            </li>
-
-            <li>
-                <strong>{% trans "Goal" %}</strong>: {% for goal in example.goals.all %}
-                <span class="badge badge-success">{{ goal }}</span>
-                {% endfor %}
-            </li>
-
-        </ul>
-
-        <hr>
-
         <h3 class="title">{{ example_trans.title }}</h3>
 
         {% placeholder_has_plugins example.placeholders "practice_description" as has_plugins %}
@@ -36,6 +13,22 @@
                 <div class="description">{% render_placeholder practice_description %}</div>
             {% endwith %}
         {% endif %}
+        
+        <table class="table table-condensed table-bordered table-striped">
+        	<tr>
+        		<td class="span1"><strong>{% trans "Country" %}: </strong></td>
+        		<td>{% for country in example.countries.all %} <span class="badge">{{ country.country.name }}</span> {% endfor %}</td>
+        	</tr>
+        	<tr>
+        		<td class="span1"><strong>{% trans "Sector" %}: </strong></td>
+        		<td>{% for sector in example.sectors.all %} <span class="badge">{{ sector }}</span> {% endfor %}</td>
+        	</tr>
+        	<tr>
+        		<td class="span1"><strong>{% trans "Goal" %}: </strong></td>
+        		<td>{% for goal in example.goals.all %} <span class="badge">{{ goal }}</span> {% endfor %}</td>
+        	</tr>
+        </table>
+        
     </div><!-- /example -->
 </div><!-- /span9 -->
 {% endwith %}
