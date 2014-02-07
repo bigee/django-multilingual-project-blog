@@ -424,7 +424,7 @@ a.category {
     color: #55A79A;
 }
 
-.category-cloud span {
+.category-cloud span.item {
 	background: none repeat scroll 0 0 #E6E6E6;
 	border-radius: 2px 2px 2px 2px;
 	display: inline-block;
@@ -598,7 +598,7 @@ table.roadmap-list tr.last .c1 {
   border-radius: 3px;
   display: block;
   position: relative;
-   background-color: #fcfcfc;
+   background-color: #f3f3f3;
   /* background-color: #fefefe;
   background-image: -moz-linear-gradient(top, #fefefe, #f3f3f3);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#f3f3f3));
@@ -628,14 +628,14 @@ table.roadmap-list tr.last .c1 {
 
 
 .library li .title {
-  height:45px;
+  /*height:45px;*/
 }
 .library li .description {
-  height:120px;
+  /*height:120px;
   overflow: hidden;
   padding-bottom: 10px;
   padding-top: 5px;
-  font-size: 90%;
+  font-size: 90%;*/
 }
 .library li .file {
 
@@ -645,13 +645,28 @@ table.roadmap-list tr.last .c1 {
 }
 .library li:hover .inner-wrapper {
   background-color: #f3f3f3;
-  background-image: -moz-linear-gradient(top, #f3f3f3, #fefefe);
+  /*background-image: -moz-linear-gradient(top, #f3f3f3, #fefefe);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#fefefe));
   background-image: -webkit-linear-gradient(top, #f3f3f3, #fefefe);
   background-image: -o-linear-gradient(top, #f3f3f3, #fefefe);
   background-image: linear-gradient(to bottom, #f3f3f3, #fefefee0e0e0);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff3f3f3', endColorstr='#fffefefe', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff3f3f3', endColorstr='#fffefefe', GradientType=0);*/
+}
+
+.document_info_wrapper {
+	height:180px;margin-bottom:15px; 
+	overflow: hidden;
+}
+
+.bottom_fade {
+	background: url("/static/multilingual_project_blog/images/library_item_fadeout.png") repeat-x scroll bottom left;
+	width: 540px;
+	height: 48px;
+	z-index: 99;
+	position: absolute;
+	top:170px;
+
 }
 
 

@@ -7,8 +7,8 @@
 	<div class="category-cloud">
     {% for item in categories %}
         {% with item|get_preferred_translation_from_lang:SESSION_LANGUAGE as title %}
-            <span class="{% if item == category %}active{% endif %}">
-                <a class="category" href="{{ item.get_absolute_url }}">{{ title.title }}</a> ({% get_entry_count_for_category item SESSION_LANGUAGE %})
+            <span class="item {% if item == category %}active{% endif %}">
+                <a class="category" href="{{ item.get_absolute_url }}">{{ title.title }}</a> <span class="label">{% get_entry_count_for_category item SESSION_LANGUAGE %}</span>
             </span><br>
         {% endwith %}
     {% endfor %}
