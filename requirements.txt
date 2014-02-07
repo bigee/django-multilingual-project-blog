@@ -7,7 +7,7 @@ django_libs==1.13
 django-extensions==1.0.1
 django-debug-toolbar==0.9.4
 # django-rosetta==0.7.1
--e git+git://github.com/mbi/django-rosetta.git@3ce6ae6e8bab28e4ee56c80350e92ae16ee9bb2a#egg=rosetta
+-e git+https://github.com/mbi/django-rosetta@3ce6ae6e8bab28e4ee56c80350e92ae16ee9bb2a#egg=rosetta
 johnny-cache==1.4
 urllib3==1.5
 django-admin-tools==0.5.1
@@ -29,7 +29,7 @@ requests==0.13.5
 # Multilingual related packages
 # ============================================================================
 # simple-translation==0.8.6
--e git+git://github.com/mbrochh/simple-translation.git@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
+-e git+https://github.com/mbrochh/simple-translation@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
 cmsplugin-filer-image-translated==0.1
 
 # ============================================================================
@@ -71,10 +71,10 @@ django-multilingual-news==0.1.1
 
 # There is a problem with STATIC_URL in this release.
 # cmsplugin-blog==1.1.2
--e git+git://github.com/fivethreeo/cmsplugin-blog.git@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
--e git+git://github.com/bitmazk/cmsplugin-blog-images.git@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
+-e git+https://github.com/fivethreeo/cmsplugin-blog@cd91a4eb066437aa254574759eed51da973314ab#egg=cmsplugin_blog
+-e git+https://github.com/bitmazk/cmsplugin-blog-images@5030205894e6fc2db1fb42ee0a895055cce3de8f#egg=cmsplugin_blog_images
 django-hero-slider==0.2
--e git+git://github.com/bitmazk/cmsplugin-link-extended.git@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
+-e git+https://github.com/bitmazk/cmsplugin-link-extended@acec221aef3966d30c89608ef9ad38cd1c1fa7d7#egg=cmsplugin_link_extended
 cmsplugin-blog-language-publish==0.1.3
 
 # ============================================================================
