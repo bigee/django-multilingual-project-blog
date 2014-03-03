@@ -1,0 +1,9 @@
+<div class="pagination pagination-centered">
+    <ul>
+        <li class="{% if not page_obj.has_previous %}disabled{% endif %}"><a href="?page={% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% endif %}">«</a></li>
+        {% for page_number in paginator.page_range %}
+            <li class="{% if page_number == page_obj.number%}active{% endif %}"><a href="?page={{ page_number }}">{{ page_number }}</a></li>
+        {% endfor %}
+        <li class="{% if not page_obj.has_next %}disabled{% endif %}"><a href="?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}">»</a></li>
+    </ul>
+</div>

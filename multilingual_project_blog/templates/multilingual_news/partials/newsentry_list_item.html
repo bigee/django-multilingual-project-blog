@@ -1,26 +1,22 @@
-{% load i18n sekizai_tags placeholder_tags cms_tags simple_translation_tags %}
-{% load cmsplugin_blog_categories_tags cmsplugin_blog_images_tags thumbnail %}
-{% load document_library_tags multilingual_project_blog_tags %}
-{% load url from future %}
-
+{% load i18n l10n sekizai_tags cms_tags %}
+{% load thumbnail document_library_tags multilingual_project_blog_tags %}
 <div class="media {% if is_detail %} blog-post{% endif %} row-fluid">
+    {% get_translation entry SESSION_LANGUAGE as entry_trans %}
 
     <div class="span1 visible-desktop">
 	    <!-- Date desktop -->
-        {% language SESSION_LANGUAGE %}
 	    <div class="date-wrapper" title="{{ entry.pub_date.date }}">
 		    <span class="date-m">{{ entry.pub_date|date:"M" }}</span>
 		    <span class="date-d">{{ entry.pub_date|date:"d" }}</span>
 		    <!-- span class="date-y">{{ entry.pub_date|date:"Y" }}</span> -->
 	    </div>
-        {% endlanguage %}
 
 	    {% comment %}
 	    <!-- Meta details desktop -->
 	    <p class="meta muted">
-	    	{% if title.author.last_name %}
+	    	{% if entry.author.last_name %}
 	    	<i class="icon-user"></i>
-	    	<a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }}</a>
+	    	<a href="{% url "blog_archive_author" author=entry.author.username %}">{{ entry.author.first_name }}</a>
 	    	{% endif %}
 	    </p>
 	    {% endcomment %}
@@ -29,38 +25,41 @@
 
     <div class="span11">
 
-        {% render_entry_tag_links entry %}
+        {% if entry %}
+            {% render_entry_tag_links entry %}
+        {% endif %}
 
-        <h3 class="title">{% if not is_detail %}<a href="{{ title.get_absolute_url }} ">{{ title }}</a>{% else %}{{ title }}{% endif %}</h3>
+        <h3 class="title">{% if not is_detail %}<a href="{{ entry_trans.master.get_absolute_url }} ">{{ entry_trans.title }}</a>{% else %}{{ entry_trans.title }}{% endif %}</h3>
 
         {% comment %}
         <!-- Meta details Desktop -->
         <ul class="inline meta muted visible-desktop">
         	<li><i class="icon-calendar"></i> {{ entry.pub_date.date }}</li>
-        	{% if title.author.last_name %}
+        	{% if entry.author.last_name %}
         	<li>
-        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
+        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=entry.author.username %}">{{ entry.author.first_name }} {{ entry.author.last_name }}</a>
         	</li>
         	{% endif %}
         </ul>
         {% endcomment %}
-        
-        
+
+
         <!-- Meta details Tablet/Phone -->
         <ul class="inline meta muted">
-        	<li><i class="icon-calendar"></i> {% trans "Posted on" %} {{ entry.pub_date.date }}</li>
-        	
+            {% language SESSION_LANGUAGE %}
+                <li><i class="icon-calendar"></i> {% trans "Posted on" %} {{ entry.pub_date.date }}</li>
+            {% endlanguage %}
+
         	{% comment %}
-	        	{% if title.author.last_name %}
+	        	{% if entry.author.last_name %}
 	        	<li>
-	        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=title.author.username %}">{{ title.author.first_name }} {{ title.author.last_name }}</a>
+	        		<i class="icon-user"></i> <a href="{% url "blog_archive_author" author=entry.author.username %}">{{ entry.author.first_name }} {{ entry.author.last_name }}</a>
 	        	</li>
 	        	{% endif %}
         	{% endcomment %}
         </ul>
 
 
-        {% get_entry_images entry as images %}
         {% if is_detail %}
 
             {% if images %}
@@ -71,7 +70,7 @@
 	            </span>
             {% endif %}
 
-        	{% render_placeholder content %}
+        	{% render_placeholder entry.content language SESSION_LANGUAGE %}
 
             {% include "document_library/partials/attachments.html" with attachments=entry.attachments.all %}
 
@@ -89,32 +88,30 @@
 
             {% endfor %}
 
-            {% render_entry_languages title %}
+            {% render_entry_languages entry %}
 
             <!-- social bookmarks -->
-        	{% include "cmsplugin_blog/partials/social-bookmarks.html" %}
+        	{% include "multilingual_news/partials/social-bookmarks.html" %}
 
         	<hr>
-        	{% language SESSION_LANGUAGE %}
-            <a href="/{{ SESSION_LANGUAGE }}{% page_url "blog" %}"><i class="icon-circle-arrow-left"></i> {% trans "back to overview" %}</a>
-			{% endlanguage %}
+            <a href="{% page_url "blog" %}"><i class="icon-circle-arrow-left"></i> {% trans "back to overview" %}</a>
 
 
         {% else %}
             {% if images.count %}
-                <a class="media-object thumbnail" href="{{ title.get_absolute_url }}"> <img src="{% thumbnail images.0.image 440x293 crop upscale %}"></a>
+                <a class="media-object thumbnail" href="{{ entry.get_absolute_url }}"> <img src="{% thumbnail images.0.image 440x293 crop upscale %}"></a>
             {% endif %}
-            {% render_placeholder excerpt %}
+            {% render_placeholder entry.excerpt %}
             <ul class="inline links">
-	            <li><a class="btn btn-info btn-mini" href="{{ title.get_absolute_url }}"><i class="icon-circle-arrow-right"></i> {% trans "Read more" %}</a></li>
+	            <li><a class="btn btn-info btn-mini" href="{{ entry.get_absolute_url }}"><i class="icon-circle-arrow-right"></i> {% trans "Read more" %}</a></li>
 	            {% if entry.attachments.all %}
-	                <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#downloads"><i class="icon-download-alt"></i> {% trans "View Downloads" %}</a></li>
+	                <li><a class="btn btn-mini" href="{{ entry.get_absolute_url }}#downloads"><i class="icon-download-alt"></i> {% trans "View Downloads" %}</a></li>
 	            {% endif %}
                 {% get_first_gallery entry as entry_gallery %}
                 {% if entry_gallery %}
-                    <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#gallery{{ entry_gallery.pk }}"><i class="icon-picture"></i> {% trans "View Gallery" %}</a></li>
+                    <li><a class="btn btn-mini" href="{{ entry.get_absolute_url }}#gallery{{ entry_gallery.pk }}"><i class="icon-picture"></i> {% trans "View Gallery" %}</a></li>
 	            {% endif %}
-	            <!-- <li><a class="btn btn-mini" href="{{ title.get_absolute_url }}#comments"><i class="icon-comment"></i> 0 Comments</a></li> -->
+	            <!-- <li><a class="btn btn-mini" href="{{ entry.get_absolute_url }}#comments"><i class="icon-comment"></i> 0 Comments</a></li> -->
             </ul>
         {% endif %}
 

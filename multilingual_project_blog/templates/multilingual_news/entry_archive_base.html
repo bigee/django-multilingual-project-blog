@@ -1,4 +1,4 @@
-{% extends "cmsplugin_blog/cmsplugin_blog_base.html" %}
+{% extends "multilingual_news/multilingual_news_base.html" %}
 {% load i18n %}
 
 {% block left-col %}
@@ -9,9 +9,9 @@
     {% endblock %}
     {% block archive_objects %}
         {% if object_list %}
-            {% include "cmsplugin_blog/entry_list_include.html" %}
+            {% include "multilingual_news/entry_list_include.html" %}
             {% if is_paginated %}
-                {% include "cmsplugin_blog/partials/pagination.html" %}
+                {% include "multilingual_news/partials/pagination.html" %}
             {% endif %}
         {% else %}
             <p>{% trans "No entries" %}</p>

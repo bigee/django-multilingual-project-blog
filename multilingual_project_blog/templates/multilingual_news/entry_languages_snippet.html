@@ -1,0 +1,9 @@
+{% load i18n multilingual_project_blog_tags %}
+{% if entry_languages %}
+    <h4 class="title-divider"><span>{% trans "Available translations:" %}</span></h4>
+    <ul class="unstyled entryLanguages">
+        {% for entry_translation in entry_languages %}
+            <li><a class="btn btn-small" href="{{ entry_translation.master.get_absolute_url }}?lang={{ entry_translation.language_code }}"><i class="icon-flag"></i> {{ entry_translation.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

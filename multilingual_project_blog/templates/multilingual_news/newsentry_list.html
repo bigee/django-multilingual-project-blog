@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "multilingual_news/multilingual_news_base.html" %}
 {% load i18n cms_tags placeholder_tags %}
-{% load cmsplugin_blog_categories_tags multilingual_project_blog_tags %}
+{% load  multilingual_project_blog_tags %}
 {% load url from future %}
 
 {% block meta_container %}{{ block.super }}{% endblock %}
@@ -8,8 +8,10 @@
 {% block extrahead %}
 {{ block.super }}
 {% block extrameta %}{% endblock %}
+{% comment %}TODO
 <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}" />
 <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}" />
+{% endcomment %}
 {% endblock %}
 
 
@@ -28,7 +30,19 @@
 
     <div class="row">
         <div class="span9 blog-roll blog-list">
-            {% block left-col %}{% endblock %}
+            {% block archive_headline %}
+                <h3 class="blog-category">{% block archive_headline_sector %}{% endblock %} <span>{% block archive_headline_sector_name %}{% endblock %}</span></h3>
+            {% endblock %}
+            {% block archive_objects %}
+                {% if object_list %}
+                    {% include "multilingual_news/entry_list_include.html" %}
+                    {% if is_paginated %}
+                        {% include "multilingual_news/partials/pagination.html" %}
+                    {% endif %}
+                {% else %}
+                    <p>{% trans "No entries" %}</p>
+                {% endif %}
+            {% endblock %}
         </div>
         <div class="span3 sidebar">
             {% placeholder "blog_introtext" as my_placeholder %}
@@ -42,8 +56,9 @@
 
             {% render_categories exclude_empty=1 %}
 
-			{% include "cmsplugin_blog/partials/blog-widget-tabs.html" %}
+			{% include "multilingual_news/partials/blog-widget-tabs.html" %}
 
+                      {% comment %}TODO
             <div class="block">
             	 <div class="btn-group">
             	  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
@@ -56,6 +71,7 @@
             	  </ul>
             	</div>
 			</div>
+                      {% endcomment %}
 
         </div> <!-- /span3 -->
     </div> <!-- /row -->

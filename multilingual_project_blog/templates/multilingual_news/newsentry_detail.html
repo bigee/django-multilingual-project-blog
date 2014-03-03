@@ -1,0 +1,15 @@
+{% extends "multilingual_news/multilingual_news_base.html" %}
+{% load cms_tags multilingual_news_tags %}
+
+{% block title %}
+{{ object.title }} - {{ block.super }}
+{% endblock %}
+{% block description %}{% get_newsentry_meta_description object %}{% endblock %}
+{% block extrameta %}
+<meta name="date" content="{{ object.pub_date|date:"c" }}">
+{% endblock %}
+
+{% block left-col %}
+{{ block.super }}
+{% include "multilingual_news/partials/newsentry_list_item.html" with entry=object is_detail=1 %}
+{% endblock %}
