@@ -15,7 +15,7 @@ CMS_TEMPLATES = (
     ('cms/home.html', 'Homepage'),
     ('cms/standard.html', 'Page With Submenu'),
     ('cms/standard_without_submenu.html', 'Page Without Submenu'),
-    ('cmsplugin_blog/cmsplugin_blog_base.html', 'Blog'),
+    ('multilingual_news/newsentry_list.html', 'Blog'),
     ('multilingual_events/event_list.html', 'Events'),
     ('good_practice_examples/examples_list.html', 'Good practice examples'),
 )

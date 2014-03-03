@@ -39,31 +39,25 @@ PROJECT_BLOG_APPS = [
     'good_practice_examples',
 
     # django-cms related apps
+    'djangocms_text_ckeditor',
     'cms',
+    'djangocms_link',
+    'djangocms_snippet',
     'sekizai',
     'mptt',
     'menus',
-    'cms.plugins.text',
-    'cms.plugins.link',
-    'cms.plugins.snippet',
     'cmsplugin_link_extended',
 
     # blog related apps
-    'cmsplugin_blog',
-    'djangocms_utils',
-    'simple_translation',
+    'hvad',
     'tagging',
     'missing',
-    'cmsplugin_blog_categories',
-    'cmsplugin_blog_images',
-    'cmsplugin_blog_authors',
-    'cmsplugin_blog_language_publish',
-    'cmsplugin_blog_seo_addons',
     'tagging_translated',
     'multilingual_orgs',
     'multilingual_initiatives',
     'multilingual_news',
     'generic_positions',
+    'cmsplugin_blog_to_multilingual_news',
 
     # django-filer related apps
     'filer',
