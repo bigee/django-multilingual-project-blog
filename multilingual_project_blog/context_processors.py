@@ -55,4 +55,6 @@ def session_language(request):
     else:
         lang = translation.get_language_from_request(request)
         request.session['django_language'] = lang
+    if 'lang' in request.GET:
+        lang = request.GET.get('lang')
     return {'SESSION_LANGUAGE': lang, }
