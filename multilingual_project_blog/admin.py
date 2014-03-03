@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from cmsplugin_blog.admin import EntryAdmin
 from document_library.admin import AttachmentInline, DocumentCategoryAdmin
 from document_library.models import DocumentCategory
 from generic_positions.admin import GenericPositionsAdmin
@@ -21,7 +20,6 @@ class OrderedDocumentCategoryAdmin(DocumentCategoryAdmin,
     pass
 
 
-EntryAdmin.inlines = EntryAdmin.inlines[:] + [AttachmentInline]
 EventAdmin.inlines = EventAdmin.inlines[:] + [AttachmentInline]
 
 
