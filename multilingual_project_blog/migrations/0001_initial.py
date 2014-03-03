@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
 
     depends_on = (
         ('cms', '0058_placeholderref_table_rename'),
-        ('multilingual_news', '0011_auto__add_category__add_categoryplugin__add_categorytranslation__add_u'),
+        ('multilingual_news', '0015_auto__chg_field_newsentry_author'),
         ('good_practice_examples', '0004_auto__add_field_goodpracticeexample_practice_description'),
         ('hero_slider', '0006_auto__add_field_slideritem_category'),
     )
