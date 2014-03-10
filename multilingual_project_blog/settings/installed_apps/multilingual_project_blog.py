@@ -8,7 +8,7 @@ CANONICAL_URL_IGNORE_PATTERNS = [
 
 
 HERO_SLIDER_APPS_MODELS_LIST = [
-    ('cmsplugin_blog', 'entry'),
+    ('multilingual_news', 'newsentry'),
     ('document_library', 'document'),
     ('multilingual_events', 'event'),
 ]
