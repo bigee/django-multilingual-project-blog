@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% load i18n sekizai_tags simple_translation_tags %}
-{% load cms_tags %}
-{% load url from future %}
+{% load i18n sekizai_tags cms_tags %}
 
 {% block main %}
 <div class="container">
@@ -15,9 +13,9 @@
 
             // initiating the multiselect widget
             //$(".example-list-filter").multiselect();
-            
-            
-            
+
+
+
             $('.example-list-filter').multiselect({
               // buttonWidth: '239px',
 		      buttonText: function(options, select) {
@@ -32,7 +30,7 @@
 		            var selected = '';
 		            options.each(function() {
 		              var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
-		 
+
 		              selected += label + ', ';
 		            });
 		            return selected.substr(0, selected.length - 2) + ' <b class="caret"></b>';
@@ -40,7 +38,7 @@
 		        }
 		      }
 		    });
-		  
+
 
             // triggering the filtering of examples
             $(".multiselect-container li a label").click(function(e) {
@@ -101,11 +99,11 @@
 
     		{% placeholder "goodpractice_introtext" as my_placeholder %}
 			{% if my_placeholder %}
-			<div class="well intro">
-                <small>
-                    {{ my_placeholder }}
-                </small>
-            </div>
+                <div class="well intro">
+                    <small>
+                        {{ my_placeholder }}
+                    </small>
+                </div>
 			{% endif %}
 
     		<h4 class="title-divider"><span>{% trans "Filter" %}</span></h4>
@@ -126,23 +124,23 @@
                     <div class="nav-header">{% trans "Sectors" %}</div>
                     <select class="sectors-list-filter example-list-filter" multiple="multiple">
                         {% for sector in sectors %}
-                            <option value="sector{{ sector.pk }}">{{ sector }}</option>
+                            <option value="sector{{ sector.pk }}">{{ sector.name }}</option>
                         {% endfor %}
                     </select>
                 </div> <!-- /nav -->
             </div> <!-- /well -->
-            
+
             <div class="well" style="max-width: 340px; padding: 8px 0;">
                 <div class="nav-list nav">
                     <div class="nav-header">{% trans "Goals" %}</div>
                     <select class="goals-list-filter example-list-filter" multiple="multiple">
                         {% for goal in goals %}
-                            <option value="goal{{ goal.pk }}">{{ goal }}</option>
+                            <option value="goal{{ goal.pk }}">{{ goal.name }}</option>
                         {% endfor %}
                     </select>
                 </div> <!-- /nav -->
             </div> <!-- /well -->
-            
+
         </div> <!-- /span3 sidebar -->
 
 
