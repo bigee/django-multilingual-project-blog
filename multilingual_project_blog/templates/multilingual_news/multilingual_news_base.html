@@ -6,10 +6,8 @@
 {% block extrahead %}
 {{ block.super }}
 {% block extrameta %}{% endblock %}
-{% comment %}TODO add new rss feature
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}" />
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}" />
-{% endcomment %}
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% url "news_rss" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% url "news_rss_any" %}" />
 {% endblock %}
 
 
@@ -42,7 +40,6 @@
 
 			{% include "multilingual_news/partials/blog-widget-tabs.html" %}
 
-{% comment %}TODO add new rss feature
             <div class="block">
             	 <div class="btn-group">
             	  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
@@ -50,12 +47,11 @@
             	    <span class="caret"></span>
             	  </a>
             	  <ul class="dropdown-menu">
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
+            	    <li><a href="{% url "news_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
+            	    <li><a href="{% url "news_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
             	  </ul>
             	</div>
 			</div>
-            {% endcomment %}
 
         </div> <!-- /span3 -->
     </div> <!-- /row -->

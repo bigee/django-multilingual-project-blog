@@ -5,11 +5,13 @@
 
     <div class="span1 visible-desktop">
 	    <!-- Date desktop -->
-	    <div class="date-wrapper" title="{{ entry.pub_date.date }}">
-		    <span class="date-m">{{ entry.pub_date|date:"M" }}</span>
-		    <span class="date-d">{{ entry.pub_date|date:"d" }}</span>
-		    <!-- span class="date-y">{{ entry.pub_date|date:"Y" }}</span> -->
+        {% render_model_block entry %}
+	    <div class="date-wrapper" title="{{ instance.pub_date.date }}">
+		    <span class="date-m">{{ instance.pub_date|date:"M" }}</span>
+		    <span class="date-d">{{ instance.pub_date|date:"d" }}</span>
+		    <!-- span class="date-y">{{ instance.pub_date|date:"Y" }}</span> -->
 	    </div>
+        {% endrender_model_block %}
 
 	    {% comment %}
 	    <!-- Meta details desktop -->
@@ -68,6 +70,13 @@
 	                <span class="copyright-notice muted">{{ images.0.copyright_notice }}</span>
 	            {% endif %}
 	            </span>
+            {% endif %}
+
+            {% if preview %}
+                <p class="alert-info">{% trans "The excerpt is only rendered here, because you are in preview mode, so that you can edit it before you publish the entry." %}</p>
+                {% render_placeholder entry.excerpt language SESSION_LANGUAGE %}
+                <hr>
+                <p class="alert-info">{% trans "Content" %}</p>
             {% endif %}
 
         	{% render_placeholder entry.content language SESSION_LANGUAGE %}

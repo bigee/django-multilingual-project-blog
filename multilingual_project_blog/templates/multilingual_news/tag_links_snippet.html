@@ -2,11 +2,11 @@
 {% load url from future %}
 
 <div class="tag-cloud">
-{% for tag in tags %}
-    {% url "news_archive_tagged" tag=tag.name as tag_url %}
+{% for item in tag_list %}
+    {% url "news_archive_tagged" tag=item.tag.name as tag_url %}
     <span class="{% if tag_url == request.path %}active{% endif %}">
-        <a class="tag" href="{{ tag_url }}">{{ tag.name }}</a>
-        ({{ tag.tagged_items.all.count }})
+        <a class="tag" href="{{ tag_url }}">{{ item.tag.name }}</a>
+        ({{ item.tagged_items }})
     </span>
 {% endfor %}
 </div>

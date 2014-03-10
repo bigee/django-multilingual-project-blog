@@ -8,10 +8,8 @@
 {% block extrahead %}
 {{ block.super }}
 {% block extrameta %}{% endblock %}
-{% comment %}TODO
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}" />
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}" />
-{% endcomment %}
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% url "news_rss" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% url "news_rss_any" %}" />
 {% endblock %}
 
 
@@ -33,6 +31,7 @@
             {% block archive_headline %}
                 <h3 class="blog-category">{% block archive_headline_sector %}{% endblock %} <span>{% block archive_headline_sector_name %}{% endblock %}</span></h3>
             {% endblock %}
+            {% render_model_add object_list.0 %}
             {% block archive_objects %}
                 {% if object_list %}
                     {% include "multilingual_news/entry_list_include.html" %}
@@ -58,7 +57,6 @@
 
 			{% include "multilingual_news/partials/blog-widget-tabs.html" %}
 
-                      {% comment %}TODO
             <div class="block">
             	 <div class="btn-group">
             	  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
@@ -66,12 +64,11 @@
             	    <span class="caret"></span>
             	  </a>
             	  <ul class="dropdown-menu">
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
+            	    <li><a href="{% url "news_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
+            	    <li><a href="{% url "news_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
             	  </ul>
             	</div>
 			</div>
-                      {% endcomment %}
 
         </div> <!-- /span3 -->
     </div> <!-- /row -->
