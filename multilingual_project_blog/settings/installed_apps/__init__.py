@@ -50,9 +50,8 @@ PROJECT_BLOG_APPS = [
 
     # blog related apps
     'hvad',
-    'tagging',
     'missing',
-    'tagging_translated',
+    'multilingual_tags',
     'multilingual_orgs',
     'multilingual_initiatives',
     'multilingual_news',
@@ -85,7 +84,6 @@ from .easy_thumbnails import *  # NOQA
 from .multilingual_project_blog import *  # NOQA
 from .debug_toolbar import *  # NOQA
 from .cms import *  # NOQA
-from .cmsplugin_blog import *  # NOQA
 from .registration import *  # NOQA
 from .rosetta import *  # NOQA
 from .admin_tools import *  # NOQA
