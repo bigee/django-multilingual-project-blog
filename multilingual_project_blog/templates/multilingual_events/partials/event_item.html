@@ -1,32 +1,28 @@
-{% load i18n simple_translation_tags multilingual_events_tags placeholder_tags multilingual_project_blog_tags cmsplugin_blog_tags %}
-{% load url from future %}
+{% load i18n multilingual_events_tags placeholder_tags multilingual_project_blog_tags %}
 
-{% with event|get_preferred_translation_from_request:request as event_title %}
 <div class="span9">
     <div class="event thumbnail type-{{ event.category.slug }}">
         <div class="tags">
             <span class="tag">{{ event.start_date }}</span> /
-            <span class="tag">{{ event.category.get_translation.title }}</span>
+            <span class="tag">{{ event.category.title }}</span>
         </div>
-        <h3 class="title"><a href="{{ event_title.get_absolute_url }}">{{ event_title.title }}</a></h3>
-        <p class="description">{{ event_title.description }}</p>
-        {% placeholder_has_plugins event.placeholders "detailed_description" as has_plugins %}
+        <h3 class="title"><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h3>
+        <p class="description">{{ event.description }}</p>
+        {% placeholder_has_plugins event.detailed_description as has_plugins %}
         {% if has_plugins %}
-            {% with event.placeholders|choose_placeholder:"detailed_description" as description %}
-                <span class="description">{% render_placeholder description %}</span>
-            {% endwith %}
+            <span class="description">{% render_placeholder event.detailed_description %}</span>
         {% endif %}
-        <p><a href="{{ event_title.get_absolute_url }}" class="btn btn-mini btn-info">{% trans "Read more …"%}</a></p>
+        <p><a href="{{ event.get_absolute_url }}" class="btn btn-mini btn-info">{% trans "Read more …"%}</a></p>
         <hr>
         <ul class="unstyled">
             <li><i class="icon-calendar"></i> {{ event.start_date }} {% if event.end_date %}– {{ event.end_date }}{% endif %}</li>
 
-            {% if event.venue_url or event.google_maps_shortlink or event_title.venue_name %}
+            {% if event.venue_url or event.google_maps_shortlink or event.venue_name %}
                 <li><i class="icon-globe"></i>
                     {% if event.venue_url %}
-                        {{ event_title.venue_name }}
-                    {% elif event_title.venue_name %}
-                        {{ event_title.venue_name }}
+                        {{ event.venue_name }}
+                    {% elif event.venue_name %}
+                        {{ event.venue_name }}
                     {% endif %}
                     {{ event.get_city_and_country }}
                 </li>
@@ -47,5 +43,3 @@
         <div style="clear:both;"></div>
     </div><!-- /event -->
 </div><!-- /span9 -->
-{% endwith %}
-
