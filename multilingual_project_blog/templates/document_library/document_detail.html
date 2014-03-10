@@ -1,29 +1,23 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% load cmsplugin_blog_tags placeholder_tags simple_translation_tags document_library_tags %}
-{% load url from future %}
+{% load i18n cms_tags document_library_tags %}
 
-{% block description %}{% with object|get_preferred_translation_from_request:request as document_title %}{{ document_title.get_meta_description }}{% endwith %}{% endblock %}
+{% block description %}{{ document.get_meta_description }}{% endblock %}
 
 {% block main %}
 
 <div class="container">
     <div class="row">
-    	{% with object|get_preferred_translation_from_request:request as document_title %}
     	<div class="span12">
             <a href="{% url "document_library_list" %}"><i class="icon-circle-arrow-left"></i> {% trans "Back to Library" %}</a>
     		<h2 class="title-divider">
-				<span>{{ document_title.title }}</span>
+				<span>{{ document.title }}</span>
 			</h2>
     	</div>
     	<div class="span8">
-            {{ document_title.description }}
-            {% with object.placeholders|choose_placeholder:"content" as content %}
+            {{ document.description }}
             <hr>
-            {% render_placeholder content %}
-            {% endwith %}
+            {% render_placeholder object.content %}
         </div>
-        {% endwith %}
 
         <div class="span3 offset1 sidebar" style="">
 
@@ -43,7 +37,7 @@
 		                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download Document" %} <span class="caret"></span></a>
 		                        <ul class="dropdown-menu">
 		                            {% for file in files %}
-		                                <li><a href="{{ file.url }}"><i class="icon-download-alt"></i> [{{ object.get_filetype }}] {{ file.name|default:file.original_filename }}</a></li>
+                                        <li><a href="{{ file.url }}"><i class="icon-download-alt"></i> [{{ file.extension.upper }}] {{ file.name|default:file.original_filename }} ({{ file.language }})</a></li>
 		                            {% endfor %}
 		                        </ul>
 		                        </div>

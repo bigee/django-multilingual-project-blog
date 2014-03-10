@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load simple_translation_tags document_library_tags multilingual_project_blog_tags position_tags %}
+{% load document_library_tags multilingual_project_blog_tags position_tags %}
 
 {% block main %}
 <div class="container">
@@ -26,11 +26,9 @@
             <ul id="quicksand-categories" class="nav nav-tabs hidden-phone">
                 <li class="active"><a class="all" href="#">{% trans "All Documents" %}</a></li>
                 {% for category in categories|order_by_position %}
-                    {% with category|get_preferred_translation_from_request:request as category_title %}
-                    <li><a class="type-{{ category.slug }}" href="#">{{ category_title.title }}</a></li>
-                    {% endwith %}
+                    <li><a class="type-{{ category.slug }}" href="#">{{ category.title }}</a></li>
                 {% endfor %}
-                
+
             </ul>
 
 
@@ -38,67 +36,62 @@
 
             <ul class="thumbnails block library" id="quicksand">
             {% for document in object_list %}
-                {% with document|get_preferred_translation_from_request:request as document_title %}
-                    <li class="span6 type-{{ document.category.slug }}" data-id="id-{{ document_title.id }}" data-type="type-{{ document.category.slug }}">
-                    <span class="inner-wrapper">
-                            <span class="meta muted"><i class="icon-folder-open"></i> {{ document.category }}</span>
-                            
-                            <div class="document_info_wrapper">
-	                            <div class="title">
-	                                <h4 class="light"><a href="{{ document.get_absolute_url }}">{{ document_title.title }}</a></h4>
-	                            </div>
-	                            <div class="description">
-	                                {{ document_title.description }}
-	                            </div>
-	                            <div class="bottom_fade"></div>
+                <li class="span6 type-{{ document.category.slug }}" data-id="id-{{ document.id }}" data-type="type-{{ document.category.slug }}">
+                <span class="inner-wrapper">
+                    <span class="meta muted"><i class="icon-folder-open"></i> {{ document.category }}</span>
+
+                    <div class="document_info_wrapper">
+                        <div class="title">
+                            <h4 class="light"><a href="{{ document.get_absolute_url }}">{{ document.title }}</a></h4>
+                        </div>
+                        <div class="description">
+                            {{ document.description }}
+                        </div>
+                        <div class="bottom_fade"></div>
+                    </div>
+
+                    <a class="btn btn-info pull-left" href="{{ document.get_absolute_url }}"><i class="icon-file"></i> {% trans "View Details" %}</a>
+
+                    {% if document.download_url %}
+                        <a class="btn" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "View Document" %} <i class="icon-external-link"></i></a>
+                    {% else %}
+                        <div class="file pull-left" style="margin-left:10px;">
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    {% for document_title2 in document.translations.all %}
+                                        {% if document_title2.filer_file %}
+                                            <li>
+                                                <a href="{{ document_title2.filer_file.url }}">
+                                                    <i class="icon-download-alt"></i>
+                                                    {% custom_get_language_info document_title2.language_code as lang %}
+                                                    [{% trans lang.name %}]
+                                                    {% if document_title2.title %}
+                                                        {{ document_title2.title }}
+                                                    {% else %}
+                                                        {{ document_title2.filer_file.original_filename }}
+                                                    {% endif %}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
                             </div>
-
-                            <a class="btn btn-info pull-left" href="{{ document.get_absolute_url }}"><i class="icon-file"></i> {% trans "View Details" %}</a>
-
-                            {% if document.download_url %}
-                                <a class="btn" href="{{ document.download_url }}" target="_blank" title="{{ document.download_url }}">{% trans "View Document" %} <i class="icon-external-link"></i></a>
-                            {% else %}
-                                <div class="file pull-left" style="margin-left:10px;">
-                                    <div class="btn-group">
-                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            {% for document_title2 in document.documenttitle_set.all %}
-                                                {% if document_title2.filer_file %}
-                                                    <li>
-                                                        <a href="{{ document_title2.filer_file.url }}">
-                                                            <i class="icon-download-alt"></i>
-                                                            {% custom_get_language_info document_title2.language as lang %}
-                                                            [{% trans lang.name %}]
-                                                            {% if document_title2.title %}
-                                                                {{ document_title2.title }}
-                                                            {% else %}
-                                                                {{ document_title2.filer_file.original_filename }}
-                                                            {% endif %}
-                                                        </a>
-                                                    </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            {% endif %}
-                    </span>
-                    </li>
-                {% endwith %}
+                        </div>
+                    {% endif %}
+                </span>
+                </li>
             {% endfor %}
             </ul>
 
-            <!-- {% load simple_translation_tags document_library_tags %}
             {% for document in documents %}
-                {% with document|get_preferred_translation_from_request:request as document_title %}
-                <h2>{{ document_title.title }}</h2>
-                <p>{{ document_title.description }}</p>
-                {% endwith %}
+                <h2>{{ document.title }}</h2>
+                <p>{{ document.description }}</p>
                 {% get_files_for_document document as files %}
                 {% for file in files %}
                     <p><a href="{{ file.url }}">{{ file.name|default:file.original_filename }}</a></p>
                 {% endfor %}
-            {% endfor %} -->
+            {% endfor %}
         </div>
     </div>
 </div>

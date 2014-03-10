@@ -6,17 +6,17 @@
     <div class="btn-group">
         <a class="btn dropdown-toggle {{ btn_class }}" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {% trans "Download" %} <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            {% for document_title2 in document.documenttitle_set.all %}
-                {% if document_title2.filer_file %}
+            {% for document_translation in document.translations.all %}
+                {% if document_translation.filer_file %}
                     <li>
-                        <a href="{{ document_title2.filer_file.url }}">
+                        <a href="{{ document_translation.filer_file.url }}">
                             <i class="icon-download-alt"></i>
-                            {% custom_get_language_info document_title2.language as lang %}
+                            {% custom_get_language_info document_translation.language_code as lang %}
                             [{% trans lang.name %}]
-                            {% if document_title2.title %}
-                                {{ document_title2.title }}
+                            {% if document_translation.title %}
+                                {{ document_translation.title }}
                             {% else %}
-                                {{ document_title2.filer_file.original_filename }}
+                                {{ document_translation.filer_file.original_filename }}
                             {% endif %}
                         </a>
                     </li>
