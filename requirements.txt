@@ -63,7 +63,7 @@ django-multilingual-orgs==1.0
 django-multilingual-initiatives==1.0
 django-good-practice-examples==1.0
 django-generic-positions==0.1.6
-django-hero-slider==1.0
+django-hero-slider==1.0.1
 
 django-multilingual-news==2.0
 
