@@ -3,7 +3,7 @@
 # ============================================================================
 Django==1.6.2
 django-countries==1.5
-django_libs==1.43
+django_libs==1.46
 django-extensions==1.3.3
 django-debug-toolbar==1.0.1
 django-rosetta==0.7.3
@@ -35,8 +35,6 @@ cmsplugin-filer-image-translated==0.2
 # django-cms related packages
 # ============================================================================
 -e git+https://github.com/divio/django-cms.git@3a09d5c39b3469e64aeecc0205a193f5b70c2061#egg=cms
--e git+https://github.com/django-mptt/django-mptt.git@23ca2c380fd35266facc7259cd4f58a3b6551b12#egg=mptt
-django-sekizai==0.7
 cmsplugin-markdown==0.1.1
 cmsplugin_googlemap==0.1.4
 cmsplugin_link_extended==0.2
