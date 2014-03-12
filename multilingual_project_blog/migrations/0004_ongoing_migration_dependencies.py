@@ -20,6 +20,7 @@ class Migration(SchemaMigration):
 
     depends_on = (
         ('document_library', '0022_move_from_simple_trans_to_hvad'),
+        ('multilingual_tags', '0001_initial'),
     )
 
     def forwards(self, orm):
