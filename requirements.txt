@@ -56,7 +56,7 @@ django-multilingual-events==1.0
 django-multilingual-tags==0.4
 django-localized-names==0.2
 django-roadmap==0.2
-django-ics-generator==0.1
+django-ics-generator==0.1.1
 django-multilingual-orgs==1.0
 django-multilingual-initiatives==1.0
 django-good-practice-examples==1.0
