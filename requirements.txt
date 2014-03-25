@@ -63,7 +63,7 @@ django-good-practice-examples==1.0
 django-generic-positions==0.1.6
 django-hero-slider==1.0.1
 
-django-multilingual-news==2.0.1
+django-multilingual-news==2.0.2
 
 # app for cmsplugin_blog to multilingual-news datamigrations
 -e git+https://github.com/bitmazk/cmsplugin-blog-to-multilingual-news.git#egg=cmsplugin_blog_to_multilingual_news
