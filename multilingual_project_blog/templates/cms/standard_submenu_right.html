@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load cms_tags multilingual_project_blog_tags %}
+
+{% load sekizai_tags menu_tags %}
+{% load i18n %}
+{% load url from future %}
+
+
+{% block main %}
+<div class="container">
+	
+	<h2 class="title-divider"><span>{% trans "Virtual" %} <span class="de-em">{% trans "Academy" %}</span></span></h2>
+	
+	<div class="alert alert-primary">
+		Hier steht vorher ein Introtext - dabei ist der Aufbau gleich, aber rechts sind alle Chapter zugeklappt.
+	</div>
+	
+    <div class="row">
+	    
+	    <div class="span3 sidebar sidebar-list-filter pull-right">
+			
+			<h4 class="title-divider"><span>{% trans "Chapters" %}</span></h4>
+			
+			<div class="well" style="max-width: 340px; padding: 8px 0;">
+		      <ul class="nav nav-list">
+		        <li class="nav-header"><a href="#intro">Introduction</a></li>
+		      </ul>
+		    </div>
+			
+			<div class="well active-chapter" style="max-width: 340px; padding: 8px 0;">
+		      <ul class="nav nav-list">
+		        <li class="nav-header">1. What are sustainable cities</li>
+	            <li class="active"><a href="#">1.1 Status Quo Assessment of GHG Emissions and Resource Use</a></li>
+				<li><a href="#">1.2 Building Long-Term Low Carbon Scenarios for a Chinese City</a></li>
+				<li><a href="#">1.3 Integrating Resource Efficiency and Low Carbon Scenarios</a></li>
+				<li><a href="#">1.4 Integrating Urban Climate Change Adaptation into Low Carbon City Strategies</a></li>
+				<li><a href="#">1.5 Identifying Business Opportunities Deriving from Low Carbon Development in a Chinese City</a></li>
+				<li><a href="#">1.6 Low Carbon Retail</a></li>
+				<li><a href="#">1.7 Designing and Implementing a Sino-International Stakeholder Dialogue</a></li>
+		      </ul>
+		    </div>
+		    
+		    <div class="well" style="max-width: 340px; padding: 8px 0;">
+		      <ul class="nav nav-list">
+		        <li class="nav-header"><a href="#direkt_zu_2.1">2. Low Carbon City Initiatives in China</a></li>
+		      </ul>
+		    </div>
+		    
+		    <div class="well" style="max-width: 340px; padding: 8px 0;">
+		      <ul class="nav nav-list">
+		        <li class="nav-header"><a href="#direkt_zu_3.1">3. Link immer zum 1. Submenüpunkt und aufklappen!</a></li>
+		      </ul>
+		    </div>
+	    </div><!--/span3-->
+	    
+	    
+	    <div class="span9 pull-left">
+			{% placeholder content %}
+			<h5 class="uppercase"><strong>1 What are sustainable cities</strong></h5>
+			<h2>1.1 Status Quo Assessment of GHG Emissions and Resource Use</h2>
+			<div class='videoWrapper'>
+				<iframe height=498 width=510 src="http://player.youku.com/embed/XNzQ4OTIwNDQ0" frameborder=0 allowfullscreen></iframe>
+			</div>
+			<div class="lead">
+				<h3>Status Quo Assessment of GHG Emissions and Resource Use </h3>
+				<p>Increasing urbanisation and climate change are two of the great challenges of the 21st century. In response, the Low Carbon Future Cities (LCFC) project was initiated to develop a low carbon, adaptation and circular economy strategy to address the large mitigation potential in urban areas by and through engaging cities and stakeholders in both China and Germany.
+				</p>
+			</div><!--/lead-->
+			
+			<p>Historically, iron processing industries and close trading relations to the heavy industry of the industrial Ruhr area have laid the foundation for the economic development of Düsseldorf City. Today, Düsseldorf City is characterized by its modern and high-performance industry. About 140 industrial enterprises are located within.
+			</p>
+			<hr>
+			<div class="pagination pagination-centered span9 hidden-phone">
+			    <ul>
+		            <li class="active"><a href="?">« {% trans "Previous Chapter" %}</a></li>
+		            <li class="active"><a href="?">{% trans "Previous Sub-Chapter" %}</a></li>
+		            <li class=""><a href="?">{% trans "Next Sub-Chapter" %}</a></li>
+		            <li class=""><a href="?">{% trans "Next Chapter" %} »</a></li>
+			    </ul>
+			</div>
+	    </div><!--/span9-->
+    
+    </div><!--/row-->
+    
+</div><!--/container-->
+{% endblock %}
+
