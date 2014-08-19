@@ -18,6 +18,12 @@ from multilingual_tags.models import Tag
 register = template.Library()
 
 
+@register.assignment_tag
+def debug(obj):
+    import ipdb; ipdb.set_trace() # BREAKPOINT
+    return obj
+
+
 class PlaceholderAs(Placeholder):
     name = 'placeholder_as'
     options = PlaceholderOptions(
@@ -114,6 +120,71 @@ def get_translation(obj, language_code):
     except ObjectDoesNotExist:
         return obj
     return obj_trans
+
+
+@register.assignment_tag()
+def get_next_subchapter(current_page):
+    """Returns the previous subchapter page, if available, otherwise None."""
+    sibling = current_page.get_next_sibling()
+    if sibling:
+        return sibling
+    parent_sibling = current_page.parent.get_next_sibling()
+    if parent_sibling and parent_sibling.get_children():
+        return parent_sibling.get_children()[0]
+    return None
+
+
+@register.assignment_tag()
+def get_next_chapter(current_page):
+    """returns the previous chapter page, if available, otherwise none."""
+    next_sibling = current_page.parent.get_next_sibling()
+    if not next_sibling:
+        return None
+    children = next_sibling.get_children()
+    if children:
+        return children[0]
+    return None
+
+
+@register.assignment_tag()
+def get_previous_chapter(current_page):
+    """returns the previous chapter page, if available, otherwise none."""
+    previous_sibling = current_page.parent.get_previous_sibling()
+    if not previous_sibling:
+        return current_page.parent.parent
+    children = previous_sibling.get_children()
+    if children:
+        return children[0]
+    return None
+
+
+@register.assignment_tag()
+def get_previous_subchapter(current_page):
+    """Returns the previous subchapter page, if available, otherwise None."""
+    sibling = current_page.get_previous_sibling()
+    if sibling:
+        return sibling
+    parent_sibling = current_page.parent.get_previous_sibling()
+    if parent_sibling and parent_sibling.get_children():
+        return parent_sibling.get_children()[0]
+    return current_page.parent.parent
+
+
+@register.assignment_tag()
+def is_level1_selected(node):
+    """Returns the level1 page for the given menu node."""
+    if not node.children and node.selected:
+        return True
+    for child in node.children:
+        if child.selected:
+            return True
+    return False
+
+
+@register.assignment_tag()
+def is_root_page_selected(current_page, menu_id):
+    """Returns ``True`` if the current page has the given menu id."""
+    return current_page.reverse_id == menu_id
 
 
 @register.assignment_tag
