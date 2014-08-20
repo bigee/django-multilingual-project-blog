@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load cms_tags future i18n menu_tags multilingual_project_blog_tags sekizai_tags %}
+{% load cms_tags future i18n multilingual_project_blog_tags %}
 
 {% block main %}
 <div class="container">
@@ -20,25 +20,16 @@
 			{% placeholder content %}
             <hr>
             <div class="pagination pagination-centered span9 hidden-phone">
-                {% if is_root_page_selected_ %}
-                    <ul>
-                        <li class="active"><a href="#">« {% trans "Previous Chapter" %}</a></li>
-                        <li class="active"><a href="#">{% trans "Previous Sub-Chapter" %}</a></li>
-                        <li class=""><a href="{{ current_page.get_children.0.get_children.0.get_absolute_url }}">{% trans "Next Sub-Chapter" %}</a></li>
-                        <li class=""><a href="{{ current_page.get_children.0.get_children.0.get_absolute_url }}">{% trans "Next Chapter" %} »</a></li>
-                    </ul>
-                {% else %}
-                    {% get_previous_chapter request.current_page as previous_chapter %}
-                    {% get_previous_subchapter request.current_page as previous_subchapter %}
-                    {% get_next_subchapter request.current_page as next_subchapter %}
-                    {% get_next_chapter request.current_page as next_chapter %}
-                    <ul>
-                        <li class="{% if not previous_chapter %}active{% endif %}"><a href="{% if previous_chapter %}{{ previous_chapter.get_absolute_url }}{% else %}#{% endif %}">« {% trans "Previous Chapter" %}</a></li>
-                        <li class="{% if not previous_subchapter %}active{% endif %}"><a href="{% if previous_subchapter %}{{ previous_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Previous Sub-Chapter" %}</a></li>
-                        <li class="{% if not next_subchapter %}active{% endif %}"><a href="{% if next_subchapter %}{{ next_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Sub-Chapter" %}</a></li>
-                        <li class="{% if not next_chapter %}active{% endif %}"><a href="{% if next_chapter %}{{ next_chapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Chapter" %} »</a></li>
-                    </ul>
-                {% endif %}
+                {% get_previous_chapter request.current_page as previous_chapter %}
+                {% get_previous_subchapter request.current_page as previous_subchapter %}
+                {% get_next_subchapter request.current_page as next_subchapter %}
+                {% get_next_chapter request.current_page as next_chapter %}
+                <ul>
+                    <li class="{% if not previous_chapter %}active{% endif %}"><a href="{% if previous_chapter %}{{ previous_chapter.get_absolute_url }}{% else %}#{% endif %}">« {% trans "Previous Chapter" %}</a></li>
+                    <li class="{% if not previous_subchapter %}active{% endif %}"><a href="{% if previous_subchapter %}{{ previous_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Previous Sub-Chapter" %}</a></li>
+                    <li class="{% if not next_subchapter %}active{% endif %}"><a href="{% if next_subchapter %}{{ next_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Sub-Chapter" %}</a></li>
+                    <li class="{% if not next_chapter %}active{% endif %}"><a href="{% if next_chapter %}{{ next_chapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Chapter" %} »</a></li>
+                </ul>
             </div>
 	    </div><!--/span9-->
     </div><!--/row-->
