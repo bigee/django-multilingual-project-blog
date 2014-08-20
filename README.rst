@@ -61,6 +61,27 @@ Run the South migrations::
     ./manage.py migrate
 
 
+Virtual Academy
+---------------
+
+This app contains a template named ``Page Submenu Right`` (filename:
+``cms/standard_submenu_right.html``) which can be used to create a
+2-level-hierarchy of sub-pages. In order to set this up, please do the
+following:
+
+1. Create a top-level page (i.e. called `Virtual Academy`)
+2. Create any number of children for that top-level page. These are your main
+   chapter pages.
+3. Create one or more children for each chapter page. These are your sub
+   chapter pages which will contain the content.
+4. On the top-level page, give it the ``reverse_id`` "subpages_root" and add
+   a redirect to your first sub chapter.
+5. On each main chapter page, add a redirect to it's first sub chapter.
+
+Now the menu and the paginator should work properly and you will not be able
+to access the empty root page or it's main chapter pages (those pages should
+not contain any content).
+
 Roadmap
 -------
 
