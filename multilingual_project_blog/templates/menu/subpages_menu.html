@@ -1,12 +1,6 @@
 {% load cms_tags i18n multilingual_project_blog_tags %}
 {% is_root_page_selected request.current_page menu_id as is_root_page_selected_ %}
 
-<div class="well {% if is_root_page_selected_ %}active-chapter{% endif %}" style="max-width: 340px; padding: 8px 0;">
-    <ul class="nav nav-list">
-        <li class="nav-header"><a href="{% page_url menu_id %}">{% trans "Introduction" %}</a></li>
-    </ul>
-</div>
-
 {% for child in children %}
     {% is_level1_selected child as is_level1_selected_ %}
     {% if child.children %}

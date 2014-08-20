@@ -13,15 +13,10 @@
         </div>
 
 	    <div class="span9 pull-left">
-            {% is_root_page_selected request.current_page menu_id as is_root_page_selected_ %}
-            {% if is_root_page_selected_ %}
-                <h2>{% trans "Introduction" %}</h2>
-            {% else %}
-                <h5 class="uppercase"><strong>
-                    {{ request.current_page.parent.get_title }}
-                </strong></h5>
-                <h2>{{ request.current_page.get_title }}</h2>
-            {% endif %}
+            <h5 class="uppercase"><strong>
+                {{ request.current_page.parent.get_title }}
+            </strong></h5>
+            <h2>{{ request.current_page.get_title }}</h2>
 			{% placeholder content %}
             <hr>
             <div class="pagination pagination-centered span9 hidden-phone">

@@ -151,7 +151,7 @@ def get_previous_chapter(current_page):
     """returns the previous chapter page, if available, otherwise none."""
     previous_sibling = current_page.parent.get_previous_sibling()
     if not previous_sibling:
-        return current_page.parent.parent
+        return None
     children = previous_sibling.get_children()
     if children:
         return children[0]
@@ -166,8 +166,8 @@ def get_previous_subchapter(current_page):
         return sibling
     parent_sibling = current_page.parent.get_previous_sibling()
     if parent_sibling and parent_sibling.get_children():
-        return parent_sibling.get_children()[0]
-    return current_page.parent.parent
+        return parent_sibling.get_children().last()
+    return None
 
 
 @register.assignment_tag()
