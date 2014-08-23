@@ -108,7 +108,7 @@ def get_person_info(person):
         result_parts.append(u'{0}: {1}'.format(
             _('Nickname'), person.chosen_name))
     if person.role:
-        result_parts.append(person.role.get_translation().name)
+        result_parts.append(person.role.name)
     return ', '.join(result_parts)
 
 
