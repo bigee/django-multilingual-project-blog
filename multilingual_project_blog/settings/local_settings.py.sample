@@ -66,5 +66,3 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, '../../myproject_static')
 # Some settings the depend on the DEBUG setting
 if DEBUG_TOOLBAR:
     INSTALLED_APPS.append('debug_toolbar')
-    MIDDLEWARE_CLASSES.append(
-        'debug_toolbar.middleware.DebugToolbarMiddleware')

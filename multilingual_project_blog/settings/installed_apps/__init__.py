@@ -37,7 +37,6 @@ PROJECT_BLOG_APPS = [
     'localized_names',
     'roadmap',
     'good_practice_examples',
-    'debug_toolbar',
 
     # django-cms related apps
     'djangocms_text_ckeditor',
