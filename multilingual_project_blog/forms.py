@@ -1,12 +1,11 @@
 from django.conf import settings
 from django.db.models import Q
-
-from simple_translation.forms import TranslationModelForm
+from django import forms
 
 from hero_slider.models import SliderItem
 
 
-class CustomSliderItemAdminForm(TranslationModelForm):
+class CustomSliderItemAdminForm(forms.ModelForm):
     class Meta:
         model = SliderItem
 

@@ -1,0 +1,76 @@
+{% extends "multilingual_news/multilingual_news_base.html" %}
+{% load i18n cms_tags placeholder_tags %}
+{% load  multilingual_project_blog_tags %}
+{% load url from future %}
+
+{% block meta_container %}{{ block.super }}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{% block extrameta %}{% endblock %}
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% url "news_rss" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% url "news_rss_any" %}" />
+{% endblock %}
+
+
+{% block main %}
+<div class="container">
+
+	<div class="row-fluid">
+      <h2 class="title-divider">
+        {% language SESSION_LANGUAGE %}
+      	<span>{% trans "Project" %}
+      		<span class="de-em">{% trans "Blog" %}</span>
+      	</span>
+        {% endlanguage %}
+      </h2>
+    </div>
+
+    <div class="row">
+        <div class="span9 blog-roll blog-list">
+            {% block archive_headline %}
+                <h3 class="blog-category">{% block archive_headline_sector %}{% endblock %} <span>{% block archive_headline_sector_name %}{% endblock %}</span></h3>
+            {% endblock %}
+            {% render_model_add object_list.0 %}
+            {% block archive_objects %}
+                {% if object_list %}
+                    {% include "multilingual_news/entry_list_include.html" %}
+                    {% if is_paginated %}
+                        {% include "multilingual_news/partials/pagination.html" %}
+                    {% endif %}
+                {% else %}
+                    <p>{% trans "No entries" %}</p>
+                {% endif %}
+            {% endblock %}
+        </div>
+        <div class="span3 sidebar">
+            {% placeholder "blog_introtext" as my_placeholder %}
+			{% if my_placeholder %}
+			<div class="well intro">
+                <small>
+                    {{ my_placeholder }}
+                </small>
+            </div>
+			{% endif %}
+
+            {% render_categories exclude_empty=1 %}
+
+			{% include "multilingual_news/partials/blog-widget-tabs.html" %}
+
+            <div class="block">
+            	 <div class="btn-group">
+            	  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
+            	    <i class="icon-rss"></i> {% trans "Subscribe via RSS" %}
+            	    <span class="caret"></span>
+            	  </a>
+            	  <ul class="dropdown-menu">
+            	    <li><a href="{% url "news_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
+            	    <li><a href="{% url "news_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
+            	  </ul>
+            	</div>
+			</div>
+
+        </div> <!-- /span3 -->
+    </div> <!-- /row -->
+</div><!-- /container -->
+{% endblock %}

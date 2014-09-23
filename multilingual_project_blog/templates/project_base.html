@@ -15,39 +15,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Host: {{ ENVIRONMENT }} -->
-	    {% if ENVIRONMENT == "prod" %}
-	    	<meta name="robots" content="index, follow">
-	    	<meta name="robots" content="noimageindex"> <!-- prevents images index -->
-	    	<meta name="robots" content="noimageclick"> <!-- prevents image path -->
-	    	<meta name="robots" content="noarchive"> <!-- prevents cache -->
-	    {% else %}
-	    	<meta name="robots" content="noindex">
-	    	<meta name="robots" content="nofollow">
-	    {% endif %}
+        {% if ENVIRONMENT == "prod" %}
+            <meta name="robots" content="index, follow">
+            <meta name="robots" content="noimageindex"> <!-- prevents images index -->
+            <meta name="robots" content="noimageclick"> <!-- prevents image path -->
+            <meta name="robots" content="noarchive"> <!-- prevents cache -->
+        {% else %}
+            <meta name="robots" content="noindex">
+            <meta name="robots" content="nofollow">
+        {% endif %}
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/bootstrap.css">
-		
+
         <!-- Custom CSS (temp) -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/project-blog-styles.css">
 
         <!-- Font Awesome CSS + IE7 Support -->
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/font-awesome.min.css">
         <!--[if IE 7]>
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-ie7.min.css">
-		<![endif]-->
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-ie7.min.css">
+        <![endif]-->
 
-		{% block webfonts %}{% endblock %}
+        {% block webfonts %}{% endblock %}
 
         <link rel="stylesheet" href="{{ STATIC_URL }}multilingual_project_blog/css/bootstrap-responsive.css">
         {% render_block "css" %}
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	    <!--[if lt IE 9]>
-	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-	    <!-- jQuery -->
+        <!-- jQuery -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <!-- sample href for latest 1.x jQuery: //ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js -->
 
@@ -56,12 +56,12 @@
         <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/modernizr-2.6.2.min.js"></script>
 
         <!-- Fav and touch icons -->
-	<!-- / iOs icons created with http://www.pic2icon.com/site_icon_for_iphone_ipad_generator.php -->
-	<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
-	<link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}apple-touch-icon-ipad3.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-iphone4.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-ipad.png">
-	<link rel="apple-touch-icon" href="{{ STATIC_URL }}apple-touch-icon-iphone.png">
+    <!-- / iOs icons created with http://www.pic2icon.com/site_icon_for_iphone_ipad_generator.php -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ STATIC_URL }}apple-touch-icon-ipad3.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-iphone4.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-ipad.png">
+    <link rel="apple-touch-icon" href="{{ STATIC_URL }}apple-touch-icon-iphone.png">
 
         {% block extrahead %}{% endblock %}
     </head>
@@ -70,6 +70,8 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+
+        {% cms_toolbar %}
 
         <div class="wrapper">
             <div class="container">
@@ -91,13 +93,11 @@
                 </div>
             </div>
 
-            {% language SESSION_LANGUAGE %}
             {% include "cms/partials/base-navigation.html" with style="" search="google" signup="no" %}
-            {% endlanguage %}
 
             {% comment %}
-                style: 	emtpy|inverse
-                search:	empty|standard|google
+                style:     emtpy|inverse
+                search:    empty|standard|google
             {% endcomment %}
 
             {% block main %}
@@ -163,15 +163,15 @@
         <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/bootstrap.min.js"></script>
 
         <!--Non-Bootstrap JavaScript -->
-		<script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/jquery.quicksand.js"></script>
+        <script src="{{ STATIC_URL }}multilingual_project_blog/js/libs/jquery.quicksand.js"></script>
 
-		<!--Custom JavaScript -->
-		<script src="{{ STATIC_URL }}multilingual_project_blog/js/custom-scripts.js"></script>
+        <!--Custom JavaScript -->
+        <script src="{{ STATIC_URL }}multilingual_project_blog/js/custom-scripts.js"></script>
 
         {% render_block "js" %}
 
         {% if ENVIRONMENT == "prod" %}
-	        <script type="text/javascript">
+            <script type="text/javascript">
                 var _gaq=[['_setAccount','{{ ANALYTICS_TRACKING_ID }}'],['_trackPageview'],['_gat._anonymizeIp']];
 
                 (function() {
@@ -179,7 +179,7 @@
                     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
-			</script>
+            </script>
         {% endif %}
     </body>
 </html>

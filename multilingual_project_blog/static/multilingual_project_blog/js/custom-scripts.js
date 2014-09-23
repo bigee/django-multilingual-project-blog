@@ -18,6 +18,13 @@ if(isiPhone == 1) {
   });
 }
 
+jQuery(function($){
+	$("li:last-child").addClass("last-child");
+	$("tr:last-child").addClass("last-child");
+	$("td:last-child").addClass("last-td");
+	$(".item:last-child").addClass("last-child");
+});
+
 
 $(document).ready(function() {
   //var defaultColour = 'green';

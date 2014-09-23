@@ -17,9 +17,9 @@ class CustomIndexDashboard(Dashboard):
     def init_with_context(self, context):
         self.children += [
             modules.ModelList(_('Blog'), [
-                'cmsplugin_blog.models.Entry',
-                'cmsplugin_blog_categories.models.Category',
-                'tagging.models.Tag']),
+                'multilingual_news.models.NewsEntry',
+                'multilingual_news.models.Category',
+                'multilingual_tags.models.Tag']),
             modules.ModelList(_('Filer'), [
                 'cmsplugin_filer_image*',
                 'filer*']),

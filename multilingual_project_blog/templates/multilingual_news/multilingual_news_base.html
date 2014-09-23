@@ -1,15 +1,13 @@
 {% extends "base.html" %}
-{% load i18n cms_tags placeholder_tags %}
-{% load cmsplugin_blog_categories_tags multilingual_project_blog_tags %}
-{% load url from future %}
+{% load i18n cms_tags multilingual_project_blog_tags %}
 
 {% block meta_container %}{{ block.super }}{% endblock %}
 
 {% block extrahead %}
 {{ block.super }}
 {% block extrameta %}{% endblock %}
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}" />
-<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed" %}" href="{% url "news_rss" %}" />
+<link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed (any language)" %}" href="{% url "news_rss_any" %}" />
 {% endblock %}
 
 
@@ -18,11 +16,9 @@
 
 	<div class="row-fluid">
       <h2 class="title-divider">
-        {% language SESSION_LANGUAGE %}
       	<span>{% trans "Project" %}
       		<span class="de-em">{% trans "Blog" %}</span>
       	</span>
-        {% endlanguage %}
       </h2>
     </div>
 
@@ -42,7 +38,7 @@
 
             {% render_categories exclude_empty=1 %}
 
-			{% include "cmsplugin_blog/partials/blog-widget-tabs.html" %}
+			{% include "multilingual_news/partials/blog-widget-tabs.html" %}
 
             <div class="block">
             	 <div class="btn-group">
@@ -51,8 +47,8 @@
             	    <span class="caret"></span>
             	  </a>
             	  <ul class="dropdown-menu">
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
-            	    <li><a href="{% if request.LANGUAGE_CODE %}/{{ request.LANGUAGE_CODE }}{% endif %}{% url "blog_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
+            	    <li><a href="{% url "news_rss" %}"><i class="icon-rss"></i> {% trans "RSS feed" %}</a></li>
+            	    <li><a href="{% url "news_rss_any" %}"><i class="icon-rss"></i> {% trans "RSS feed (any language)" %}</a></li>
             	  </ul>
             	</div>
 			</div>

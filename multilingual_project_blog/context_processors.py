@@ -50,9 +50,8 @@ def session_language(request):
        available.
 
     """
-    if 'django_language' in request.session:
-        lang = request.session['django_language']
+    if 'lang' in request.GET:
+        lang = request.GET.get('lang')
     else:
-        lang = translation.get_language_from_request(request)
-        request.session['django_language'] = lang
+        lang = translation.get_language()
     return {'SESSION_LANGUAGE': lang, }

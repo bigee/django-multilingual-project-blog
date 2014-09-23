@@ -1,15 +1,16 @@
-{% load i18n simple_translation_tags %}
-{% with document|get_preferred_translation_from_request:request as document_title %}
-    <div class="media team-short" style="overflow:visible;">
-        <div class="pull-left">
-            <img alt="{{ document_title.title }}" class="media-object img-polaroid plugin-image-small" style="height:60p;width;60px;" src="{{ MEDIA_URL }}images/document_placeholder.png">
-        </div>
-        <div class="media-body" style="overflow:visible;">
-            <h5 class="media-heading" style="padding:10px 0;">{{ document_title.title }}</h5>
+{% load i18n multilingual_project_blog_tags %}
+<div class="media team-short" style="overflow:visible;">
+    <div class="pull-left">
+        <img alt="{{ document.title }}" class="media-object img-polaroid plugin-image-small" src="{{ STATIC_URL }}/multilingual_project_blog/images/document_placeholder.png">
+    </div>
+    <div class="media-body" style="overflow:visible;">
+        {% language SESSION_LANGUAGE %}
+            {% get_translation document SESSION_LANGUAGE as doc_trans %}
+            <h5 class="media-heading" style="padding:10px 0;">{{ doc_trans.title }}</h5>
             {% include "document_library/partials/single_document_download_button.html" with btn_class="btn-mini btn-info" %}
             <a class="btn btn-mini" style="margin-bottom:2px;" href="{{ document.get_absolute_url }}">{% trans "View details" %}</a>
-        </div>
+        {% endlanguage %}
     </div>
-    <div style="clear:both;"></div>
-    <hr style="margin:10px 0 5px 0; ">
-{% endwith %}
+</div>
+<div style="clear:both;"></div>
+<hr style="margin:10px 0 5px 0; ">

@@ -1,12 +1,10 @@
 {% extends "base.html" %}
-{% load i18n sekizai_tags simple_translation_tags multilingual_events_tags %}
-{% load cms_tags %}
-{% load url from future %}
+{% load i18n sekizai_tags cms_tags multilingual_events_tags %}
 
 {% block main %}
 <div class="container">
     <h2 class="title-divider"><span>{% trans "Event" %} <span class="de-em">{% trans "Database" %}</span></span></h2>
-    <!-- {{ event_title.description }} -->
+    <!-- {{ event.description }} -->
 
     <!-- // EVENT LIST FILTER -->
     {% addtoblock "js" %}
@@ -22,7 +20,7 @@
 	                $(".event-list .tab-pane .row .event").hide();
 	                $(".event-list .tab-pane .row .event."+type).show();
                 }
-                
+
                 // count visible events
                 var numItems = $('.event:visible').length;
                 if(numItems == 0) {
@@ -31,14 +29,14 @@
                 }else{
 	                $(".tab-pane .no-events").hide();
                 }
-                
+
         });
     </script>
     {% endaddtoblock %}
 
     <div class="row">
 
-    	
+
     	<!-- events -->
 
     	<div class="span9" id="events-content">
@@ -77,8 +75,8 @@
 		    </div>
 
     	</div> <!-- /span9 events-content -->
-    	
-    	
+
+
     	<!-- /sidebar -->
 
     	<div class="span3 sidebar" id="events-sidebar">
@@ -94,14 +92,14 @@
 
     		<h4 class="title-divider"><span>{% trans "Filter" %}</span></h4>
 
-    		
+
     		<div class="well" style="max-width: 340px; padding: 8px 0;">
               <ul class="nav nav-list event-list-filter">
                 <li class="nav-header">{% trans "Events" %}</li>
                 {% get_event_categories as event_categories %}
                 <li class="active"><a href="#all">{% trans "All Events" %}</a></li>
                 {% for category in event_categories %}
-		            <li><a href="#type-{{ category.slug }}">{{ category.get_translation.title }}</a></li>
+		            <li><a href="#type-{{ category.slug }}">{{ category.title }}</a></li>
 		        {% endfor %}
               </ul>
             </div>

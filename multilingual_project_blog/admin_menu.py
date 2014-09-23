@@ -23,11 +23,11 @@ class CustomMenu(Menu):
             items.Bookmarks(),
             items.AppList(
                 _('Blog'),
-                models=('cmsplugin_blog*',)
+                models=('multilingual_news*',)
             ),
             items.AppList(
                 _('Applications'),
-                exclude=('django.contrib.*', 'cmsplugin_blog*',)
+                exclude=('django.contrib.*', 'multilingual_news*',)
             ),
             items.AppList(
                 _('Administration'),

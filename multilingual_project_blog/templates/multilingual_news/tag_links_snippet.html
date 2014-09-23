@@ -1,0 +1,12 @@
+{% load i18n %}
+{% load url from future %}
+
+<div class="tag-cloud">
+{% for item in tag_list %}
+    {% url "news_archive_tagged" tag=item.tag.name as tag_url %}
+    <span class="{% if tag_url == request.path %}active{% endif %}">
+        <a class="tag" href="{{ tag_url }}">{{ item.tag.name }}</a>
+        <span class="label">{{ item.tagged_items }}</span>
+    </span>
+{% endfor %}
+</div>

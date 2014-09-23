@@ -1,0 +1,6 @@
+<div class="tags">
+{% for tag in tags %}
+    <a class="tag" href="{% url "news_archive_tagged" tag=tag.slug %}">{{ tag.name }}</a>
+    {% if not forloop.last %} / {% endif %}
+{% endfor %}
+</div>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load cms_tags future i18n multilingual_project_blog_tags %}
+
+{% block main %}
+<div class="container">
+
+	<h2 class="title-divider"><span>{% trans "Virtual" %} <span class="de-em">{% trans "Academy" %}</span></span></h2>
+
+    <div class="row">
+	    <div class="span3 sidebar sidebar-list-filter pull-right">
+			<h4 class="title-divider"><span>{% trans "Chapters" %}</span></h4>
+            {% include "menu/subpages_menu_template.html" with menu_id="subpages_root" %}
+        </div>
+
+	    <div class="span9 pull-left">
+            <h5 class="uppercase"><strong>
+                {{ request.current_page.parent.get_title }}
+            </strong></h5>
+            <h2>{{ request.current_page.get_title }}</h2>
+			{% placeholder content %}
+            <hr>
+            <div class="pagination pagination-centered span9 hidden-phone">
+                {% get_previous_chapter request.current_page as previous_chapter %}
+                {% get_previous_subchapter request.current_page as previous_subchapter %}
+                {% get_next_subchapter request.current_page as next_subchapter %}
+                {% get_next_chapter request.current_page as next_chapter %}
+                <ul>
+                    <li class="{% if not previous_chapter %}active{% endif %}"><a href="{% if previous_chapter %}{{ previous_chapter.get_absolute_url }}{% else %}#{% endif %}">« {% trans "Previous Chapter" %}</a></li>
+                    <li class="{% if not previous_subchapter %}active{% endif %}"><a href="{% if previous_subchapter %}{{ previous_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Previous Sub-Chapter" %}</a></li>
+                    <li class="{% if not next_subchapter %}active{% endif %}"><a href="{% if next_subchapter %}{{ next_subchapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Sub-Chapter" %}</a></li>
+                    <li class="{% if not next_chapter %}active{% endif %}"><a href="{% if next_chapter %}{{ next_chapter.get_absolute_url }}{% else %}#{% endif %}">{% trans "Next Chapter" %} »</a></li>
+                </ul>
+            </div>
+	    </div><!--/span9-->
+    </div><!--/row-->
+</div><!--/container-->
+{% endblock %}

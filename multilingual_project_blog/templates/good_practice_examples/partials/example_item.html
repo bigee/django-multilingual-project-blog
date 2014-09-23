@@ -1,19 +1,15 @@
-{% load i18n simple_translation_tags multilingual_events_tags placeholder_tags multilingual_project_blog_tags cmsplugin_blog_tags %}
-{% load url from future %}
+{% load i18n  multilingual_events_tags placeholder_tags multilingual_project_blog_tags %}
 
-{% with example|get_preferred_translation_from_request:request as example_trans %}
 <div class="span9">
     <div class="example event thumbnail{% for goal in example.goals.all %} goal{{ goal.pk }}{% endfor %}{% for sector in example.sectors.all %} sector{{ sector.pk }}{% endfor %}{% for country in example.countries.all %} country{{ country.pk }}{% endfor %}">
 
-        <h3 class="title">{{ example_trans.title }}</h3>
+        <h3 class="title">{{ example.title }}</h3>
 
-        {% placeholder_has_plugins example.placeholders "practice_description" as has_plugins %}
+        {% placeholder_has_plugins example.practice_description as has_plugins %}
         {% if has_plugins %}
-            {% with example.placeholders|choose_placeholder:"practice_description" as practice_description %}
-                <div class="description">{% render_placeholder practice_description %}</div>
-            {% endwith %}
+            <div class="description">{% render_placeholder example.practice_description %}</div>
         {% endif %}
-        
+
         <table class="table table-condensed table-bordered table-striped">
         	<tr>
         		<td class="span1"><strong>{% trans "Country" %}: </strong></td>
@@ -28,7 +24,6 @@
         		<td>{% for goal in example.goals.all %} <span class="badge">{{ goal }}</span> {% endfor %}</td>
         	</tr>
         </table>
-        
+
     </div><!-- /example -->
 </div><!-- /span9 -->
-{% endwith %}

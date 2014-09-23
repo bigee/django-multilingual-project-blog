@@ -1,14 +1,11 @@
 {% extends "base.html" %}
-{% load i18n multilingual_project_blog_tags sekizai_tags placeholder_tags cmsplugin_blog_tags simple_translation_tags %}
-{% load url from future %}
+{% load i18n cms_tags multilingual_project_blog_tags sekizai_tags %}
 
 {% block title %}
-{% with event|get_preferred_translation_from_request:request as event_title %}
-{{ event_title.title }} - {{ block.super }}
-{% endwith %}
+{{ event.title }} - {{ block.super }}
 {% endblock %}
 
-{% block description %}{% with event|get_preferred_translation_from_request:request as event_title %}{{ event_title.get_meta_description }}{% endwith %}{% endblock %}
+{% block description %}{{ event.get_meta_description }}{% endblock %}
 
 {% block main %}
 {% addtoblock "js" %}
@@ -23,15 +20,14 @@
 
 <div class="container">
     <div class="row">
-    	{% with event|get_preferred_translation_from_request:request as event_title %}
     	<div class="span12">
             <a href="{% url "multilingual_events_list" %}"><i class="icon-circle-arrow-left"></i> {% trans "Back to Events" %}</a>
     		<h2 class="title-divider">
-				<span>{{ event_title.title }}</span>
+				<span>{{ event.title }}</span>
 			</h2>
     	</div>
     	<div class="span8">
-            <p>{{ event_title.description }}<p>
+            <p>{{ event.description }}<p>
 
 
             <!--
@@ -51,26 +47,21 @@
 			</div>
             -->
 
-            {% placeholder_has_plugins event.placeholders "detailed_description" as has_plugins %}
+            {% placeholder_has_plugins event.detailed_description as has_plugins %}
             {% if has_plugins %}
-                {% with event.placeholders|choose_placeholder:"detailed_description" as content %}
-                	<br>
-                    <h4 class="title-divider"><span>{% trans "Detailed description" %}</span></h4>
-                    {% render_placeholder content %}
-                {% endwith %}
+                <br>
+                <h4 class="title-divider"><span>{% trans "Detailed description" %}</span></h4>
+                {% render_placeholder event.detailed_description %}
             {% endif %}
 
-            {% placeholder_has_plugins event.placeholders "conference" as has_plugins %}
+            {% placeholder_has_plugins event.conference as has_plugins %}
             {% if has_plugins %}
-                {% with event.placeholders|choose_placeholder:"conference" as content %}
-                	<br>
-                    <h4 class="title-divider"><span>{% trans "Event agenda" %}</span></h4>
-                    {% render_placeholder content %}
-                {% endwith %}
+                <br>
+                <h4 class="title-divider"><span>{% trans "Event agenda" %}</span></h4>
+                {% render_placeholder event.conference %}
             {% endif %}
 
         </div>
-        {% endwith %}
         <div class="span3 offset1 sidebar" style="">
 
         	<div class="block short-info">
@@ -106,7 +97,6 @@
                     {% endif %}
 
 					{% addtoblock "js" %}
-						{% with event|get_preferred_translation_from_request:request as event_title %}
 						<!-- iCalendar by http://keith-wood.name/icalendar.html -->
 					    <script type="text/javascript">
 					    	//new Date(2008, 0-1, 26, 11, 30, 00),
@@ -117,19 +107,18 @@
 					    	  {% else %}
 					    	  end: null,
 					    	  {% endif %}
-					    	  title: '{{ event_title.title }}',
-					    	  summary: '{{ event_title.title }}',
+					    	  title: '{{ event.title }}',
+					    	  summary: '{{ event.title }}',
 					    	  icons: '/static/multilingual_project_blog/js/libs/icalendar/icalendar.png',
 					    	  description: '{{ event.category.get_translation.title }}',
 					    	  url: window.location,
-					    	  location: '{{ event_title.venue_name  }} {{ event.get_city_and_country }}'
+					    	  location: '{{ event.venue_name  }} {{ event.get_city_and_country }}'
 					    	};
 						$('#iCalendar').icalendar($.extend({
                             compact: true, sites: ['icalendar', 'google', 'outlook', 'yahoo'], echoUrl: '{% url "ics_generator" %}'
 						}, myEvent));
 						$("#iCalendar a").addClass("no-ico");
 					    </script>
-					    {% endwith %}
 					{% endaddtoblock %}
 
 					<span id="iCalendar"></span>
@@ -147,11 +136,10 @@
                         <a href="#mapModal" role="button" class="" data-toggle="modal"><i class="icon-map-marker"></i> {% trans "View on map" %}</a>
 
                         <!-- modal -->
-                        {% with event|get_preferred_translation_from_request:request as event_title %}
                         <div id="mapModal" class="modal hide fade">
 						  <div class="modal-header">
 						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						    <h3>{{ event_title.venue_name  }}</h3>
+						    <h3>{{ event.venue_name  }}</h3>
 						  </div>
 						  <div class="modal-body">
 						    {% addtoblock "js" %}
@@ -172,7 +160,7 @@
 						            mapOptions);
 
 						        var contentString = '<div id="content">'+
-						            //'<strong>{{ event_title.venue_name  }}</strong>'+
+						            //'<strong>{{ event.venue_name  }}</strong>'+
 						            '<div id="bodyContent">'+
 						            '<p>{{ event.get_address|safe }}</p>'+
 						            '{{ event.get_translation.room }}'+
@@ -187,7 +175,7 @@
 						        var marker = new google.maps.Marker({
 						            position: myLatlng,
 						            map: map,
-						            title: '{{ event_title.title }}'
+						            title: '{{ event.title }}'
 						        });
 
 						        google.maps.event.addListener(marker, 'click', function() {
@@ -211,7 +199,6 @@
 						  </div>
 
 						</div>
-						{% endwith %}
 
                         <!-- /modal -->
 
@@ -239,7 +226,7 @@
 					<h4></h4>
 					<ul>
                         {% for alt_event in event.get_alternative_events %}
-                            <li><a href="{{ alt_event.get_absolute_url }}">{{ alt_event.get_title }}</a> {{ alt_event.start_date|date:"Y/m/d" }}</li>
+                            <li><a href="{{ alt_event.get_absolute_url }}">{{ alt_event.get }}</a> {{ alt_event.start_date|date:"Y/m/d" }}</li>
                         {% empty %}
                             <li>{% trans "No other events found." %}</li>
                         {% endfor %}

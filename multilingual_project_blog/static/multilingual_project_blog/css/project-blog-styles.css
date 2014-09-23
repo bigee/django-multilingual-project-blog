@@ -69,6 +69,9 @@ h5 span p {
 	display: inline;
 }
 
+.uppercase {
+	text-transform: uppercase;
+}
 
 
 
@@ -94,6 +97,7 @@ h5 span p {
 
 .dropdown-menu li {
 	border-bottom: 1px solid #f3f3f3;
+	z-index: 9999;
 }
 
 .dropdown-menu li > a {
@@ -415,6 +419,10 @@ a.tag {
 
 }
 
+.tag-cloud span.label {
+	background: #999999;
+}
+
 
 .category-cloud {
 	text-transform: uppercase;
@@ -505,6 +513,10 @@ ul.entryLanguages li {
 	margin:10px 0px;
 }
 
+.content-text {
+	padding-top: 15px;
+}
+
 
 /* ========= ROADMAP ========== */
 
@@ -569,8 +581,7 @@ table.roadmap-list tr.last .c1 {
 }
 
 .plugin-image-small {
-    height: 60px;
-    width: 60px;
+
 }
 
 .plugin-image-big {
@@ -629,6 +640,7 @@ table.roadmap-list tr.last .c1 {
 
 .library li .title {
   /*height:45px;*/
+  letter-spacing: 0.01em;
 }
 .library li .description {
   /*height:120px;
@@ -636,6 +648,7 @@ table.roadmap-list tr.last .c1 {
   padding-bottom: 10px;
   padding-top: 5px;
   font-size: 90%;*/
+  font-size: 12px;
 }
 .library li .file {
 
@@ -655,11 +668,11 @@ table.roadmap-list tr.last .c1 {
 }
 
 .document_info_wrapper {
-	height:180px;margin-bottom:15px; 
+	height:180px;margin-bottom:15px;
 	overflow: hidden;
 }
 
-.bottom_fade {
+/*.bottom_fade {
 	background: url("/static/multilingual_project_blog/images/library_item_fadeout.png") repeat-x scroll bottom left;
 	width: 540px;
 	height: 48px;
@@ -667,6 +680,13 @@ table.roadmap-list tr.last .c1 {
 	position: absolute;
 	top:170px;
 
+}*/
+
+.info .title {
+	font-size: 85%;
+	padding-bottom: 15px;
+	padding-top: 8px;
+	display: block;
 }
 
 
@@ -704,6 +724,35 @@ table.roadmap-list tr.last .c1 {
 .team-short p, .team-short li {
 	font-size: 90%;
 }
+
+
+
+
+/* ========== Virtual Academy ========== */
+.sidebar-list-filter li {
+	font-size: 12px;
+	border-bottom: 1px solid #ccc;
+}
+
+.sidebar-list-filter li.last-child {
+	border: 0;
+}
+
+.sidebar-list-filter li.active {
+	border-bottom: 0;
+}
+
+
+
+.sidebar-list-filter .well:hover,
+.active-chapter {
+	background-color: #E1F7FF;
+}
+
+.sidebar-list-filter li.nav-header a {
+	background: transparent;
+}
+
 
 
 
@@ -838,10 +887,12 @@ footer {
 }
 
 .blog-roll.blog-list .blog-post .media-object {
-	float: right;
-	margin: 0.5em 15px;
-	max-width: 55%;
+	float: none;
+	margin: 0.5em 5px;
+	margin-left: 0;
+
 }
+
 
 }
 @media (max-width: 979px) {

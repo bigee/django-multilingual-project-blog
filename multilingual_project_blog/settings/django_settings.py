@@ -22,6 +22,7 @@ LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', gettext('English')),
+    ('de', gettext('German')),
     ('zh', gettext('Chinese')),
 ]
 
@@ -57,31 +58,30 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 
 MIDDLEWARE_CLASSES = [
-    'johnny.middleware.LocalStoreClearMiddleware',
-    'johnny.middleware.QueryCacheMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    #'johnny.middleware.LocalStoreClearMiddleware',
+    #'johnny.middleware.QueryCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'multilingual_project_blog.middleware.SwitchLanguageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.doc.XViewMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'multilingual_project_blog.middleware.CanonicalURLMiddleware',
-    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'simple_translation.middleware.MultilingualGenericsMiddleware',
-    'cmsplugin_blog.middleware.MultilingualBlogEntriesMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 ]
-
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
-    'cms.context_processors.media',
+    'cms.context_processors.cms_settings',
     'sekizai.context_processors.sekizai',
     'multilingual_project_blog.context_processors.project_settings',
     'multilingual_project_blog.context_processors.session_language',
@@ -94,6 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+LOGGING_CONFIG = None
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

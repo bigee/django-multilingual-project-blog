@@ -1,0 +1,18 @@
+{% load cms_tags i18n multilingual_project_blog_tags %}
+{% is_root_page_selected request.current_page menu_id as is_root_page_selected_ %}
+
+{% for child in children %}
+    {% is_level1_selected child as is_level1_selected_ %}
+    {% if child.children %}
+        <div class="well {% if child.selected or is_level1_selected_ %}active-chapter{% endif %}" style="max-width: 340px; padding: 8px 0;">
+            <ul class="nav nav-list">
+                <li class="nav-header"><a href="{{ child.children.0.get_absolute_url }}">{{ child.get_menu_title }}</a></li>
+                {% if not is_root_page_selected_ and is_level1_selected_ %}
+                    {% for subchild in child.children %}
+                        <li class="{% if subchild.selected %}active{% endif %}"><a href="{{ subchild.get_absolute_url }}">{{ subchild.get_menu_title }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endfor %}

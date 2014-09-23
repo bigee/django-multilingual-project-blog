@@ -1,13 +1,12 @@
-{% load i18n l10n simple_translation_tags thumbnail %}
+{% load i18n l10n thumbnail %}
 
-{% with initiative|get_preferred_translation_from_request:request as trans %}
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
-            <div title="{{ trans.title }}" class="media-object img-polaroid plugin-image-small" style="width:60px;height:60px;background:url({% thumbnail initiative.logo.image|default:'images/initiative_placeholder.png' 60x60 upscale %}) no-repeat center center;"></div>
+            <div title="{{ initiative.title }}" class="media-object img-polaroid plugin-image-small" style="width:60px;height:60px;background:url({% thumbnail initiative.logo.image|default:'images/initiative_placeholder.png' 60x60 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">{{ initiative.get_translation.title }}</h5>
+            <h5 class="media-heading">{{ initiative.title }}</h5>
             {% if initiative.phone or initiative.website or initiative.description or initiative.start_date %}
                 <ul class="inline">
                     {% if initiative.start_date %}
@@ -29,10 +28,10 @@
 {% else %}
     <div class="media team">
         <div class="pull-left">
-            <div title="{{ trans.title }}" class="media-object img-polaroid plugin-image-big" style="width:140px;height:140px;background:url({% thumbnail initiative.logo.image|default:'images/initiative_placeholder.png' 140x140 upscale %}) no-repeat center center;"></div>
+            <div title="{{ initiative.title }}" class="media-object img-polaroid plugin-image-big" style="width:140px;height:140px;background:url({% thumbnail initiative.logo.image|default:'images/initiative_placeholder.png' 140x140 upscale %}) no-repeat center center;"></div>
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{{ initiative.get_translation.title }}</h4>
+            <h4 class="media-heading">{{ initiative.title }}</h4>
             {% if initiative.phone or initiative.website %}
                 <ul class="inline">
                     {% if initiative.start_date %}
@@ -53,4 +52,4 @@
         </div>
     </div>
 {% endif %}
-{% endwith %}
+<hr style="margin:10px 0 5px 0; ">

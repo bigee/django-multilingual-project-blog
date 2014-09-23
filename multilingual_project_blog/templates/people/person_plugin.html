@@ -1,21 +1,20 @@
-{% load i18n simple_translation_tags thumbnail localized_names_tags multilingual_project_blog_tags %}
+{% load i18n thumbnail localized_names_tags multilingual_project_blog_tags %}
 
-{% with person|get_preferred_translation_from_request:request as trans %}
 {% if display_type == 'small' %}
     <div class="media team-short">
         <div class="pull-left">
             {% if person.gender = "female" %}
-            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 60x60 crop upscale bw %}">
+            <img alt="{{ person.roman_first_name }} {{ person.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 60x60 crop upscale bw %}">
             {% else %}
-            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 60x60 crop upscale bw %}">
+            <img alt="{{ person.roman_first_name }} {{ person.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 60x60 crop upscale bw %}">
             {% endif %}
         </div>
         <div class="media-body">
             <h5 class="media-heading">
                 {% if person.non_roman_first_name %}
-                    {{ person.get_translation|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
+                    {{ person|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
                 {% else %}
-                    {{ person.get_translation|get_name }}
+                    {{ person|get_name }}
                 {% endif %}
             </h5>
             {% get_person_info person as person_info %}
@@ -43,17 +42,17 @@
     <div class="media team">
         <div class="pull-left">
         	{% if person.gender = "female" %}
-            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 120x120 crop upscale bw %}">
+            <img alt="{{ person.roman_first_name }} {{ person.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/female_placeholder.png' 120x120 crop upscale bw %}">
             {% else %}
-            <img alt="{{ trans.roman_first_name }} {{ trans.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 120x120 crop upscale bw %}">
+            <img alt="{{ person.roman_first_name }} {{ person.roman_last_name }}" class="img-polaroid media-object" src="{% thumbnail person.picture.image|default:'images/male_placeholder.png' 120x120 crop upscale bw %}">
             {% endif %}
         </div>
         <div class="media-body">
             <h4 class="media-heading">
                 {% if person.non_roman_first_name %}
-                    {{ person.get_translation|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
+                    {{ person|get_name:"LONG_NAME_FORMAT_NON_ROMAN" }}
                 {% else %}
-                    {{ person.get_translation|get_name }}
+                    {{ person|get_name }}
                 {% endif %}
             </h4>
             {% get_person_info person as person_info %}
@@ -63,9 +62,9 @@
                 </p>
             {% endif %}
             <p>
-                {% if trans.bio %}
+                {% if person.bio %}
                 <strong>{% trans "Short Bio" %}</strong><br>
-                {{ trans.bio }}
+                {{ person.bio }}
                 {% endif %}
                 &nbsp;
             </p>
@@ -73,7 +72,7 @@
             <ul class="inline">
             {% if person.link_set.all %}
                 {% for link in person.link_set.all %}
-                    <li><a href="{{ link.url }}" class="no-ico"><i class="icon-{{ link.link_type.slug }}"></i> {{ link.link_type.get_translation.name }}</a></li>
+                    <li><a href="{{ link.url }}" class="no-ico"><i class="icon-{{ link.link_type.slug }}"></i> {{ link.link_type.name }}</a></li>
                 {% endfor %}
             {% endif %}
 
@@ -89,4 +88,5 @@
         </div>
     </div>
 {% endif %}
-{% endwith %}
+<hr style="margin:10px 0 5px 0; ">
+

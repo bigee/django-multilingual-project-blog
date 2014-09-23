@@ -1,0 +1,12 @@
+{% load i18n multilingual_project_blog_tags %}
+
+<div class="block">
+	<h4 class="title-divider"><span>{% trans "Categories" %}</span></h4>
+	<div class="category-cloud">
+    {% for category in categories %}
+        <span class="item {% if category == category %}active{% endif %}">
+            <a class="category" href="{{ category.get_absolute_url }}">{{ category.title }}</a> <span class="label">{{ category.num_posts }}</span>
+        </span><br>
+    {% endfor %}
+	</div>
+</div>

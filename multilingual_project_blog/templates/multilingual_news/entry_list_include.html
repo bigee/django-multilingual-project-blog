@@ -1,0 +1,5 @@
+{% load i18n multilingual_news_tags cms_tags %}
+
+{% for entry in object_list %}
+    {% include "multilingual_news/partials/newsentry_list_item.html" %}
+{% endfor %}

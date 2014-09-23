@@ -1,34 +1,32 @@
-{% load i18n multilingual_project_blog_tags simple_translation_tags %}
+{% load i18n multilingual_project_blog_tags %}
 {% if attachments %}
 <a name="downloads" id="downloads"></a>
 <div class="attachments">
     <h4 class="title-divider"><span>{% trans "Downloads" %}</span></h4>
     {% for attachment in attachments %}
-        {% with attachment.document|get_preferred_translation_from_request:request as document_title %}
-            {% if document_title.is_published %}
-                    {% if document.download_url %}
-                        <a class="btn" href="{{ attachment.document.download_url }}" target="_blank" title="{{ attachment.document.download_url }}">{{ document_title.title }}<i class="icon-external-link"></i></a>
-                    {% else %}
-                        <div class="file">
-                            <p>
-                                <div class="btn-group">
-                                    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {{ document_title.title }} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        {% for document_title2 in attachment.document.documenttitle_set.all %}
-                                            <li><a href="{{ document_title2.filer_file.url }}">
-                                                <i class="icon-download-alt"></i>
-                                                {{ document_title2.filer_file.original_filename }}
-                                                {% custom_get_language_info document_title2.language as lang %}
-                                                [{% trans lang.name %}]
-                                            </a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </p>
-                        </div>
-                    {% endif %}
-            {% endif %}
-        {% endwith %}
+        {% if document.is_published %}
+                {% if document.download_url %}
+                    <a class="btn" href="{{ attachment.document.download_url }}" target="_blank" title="{{ attachment.document.download_url }}">{{ document.title }}<i class="icon-external-link"></i></a>
+                {% else %}
+                    <div class="file">
+                        <p>
+                            <div class="btn-group">
+                                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> {{ document.title }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    {% for document_translation in attachment.document.translations.all %}
+                                        <li><a href="{{ document_translation.filer_file.url }}">
+                                            <i class="icon-download-alt"></i>
+                                            {{ document_translation.filer_file.original_filename }}
+                                            {% custom_get_language_info document_translation.language_code as lang %}
+                                            [{% trans lang.name %}]
+                                        </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </p>
+                    </div>
+                {% endif %}
+        {% endif %}
     {% endfor %}
 </div>
 {% endif %}

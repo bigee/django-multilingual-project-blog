@@ -1,9 +1,0 @@
-{% load simple_translation_tags %}
-<div class="tags">
-{% for tag in tags %}
-    {% with tag|get_preferred_translation_from_request:request as tag_title %}
-    <a class="tag" href="{% url blog_archive_tagged tag=tag.name %}">{{ tag_title.trans_name }}</a>
-    {% endwith %}
-    {% if not forloop.last %} / {% endif %}
-{% endfor %}
-</div>

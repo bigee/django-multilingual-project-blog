@@ -1,0 +1,7 @@
+{% extends "multilingual_news/entry_archive_base.html" %}
+{% load i18n multilingual_project_blog_tags %}
+
+{% block archive_headline_sector %}{% trans "Entries tagged:" %}{% endblock %}
+{% block archive_headline_sector_name %}
+    {{ tag.name }}
+{% endblock %}

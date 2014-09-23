@@ -1,4 +1,4 @@
-{% load i18n thumbnail sekizai_tags simple_translation_tags %}
+{% load i18n thumbnail sekizai_tags %}
 
 {% addtoblock "js" %}
     <!-- FANCYBOX JS -->
@@ -73,13 +73,11 @@
     <div class="cmsplugin_filer_folder_list" id="folder_{{ instance.id }}">
         <ul class="unstyled">
             {% for image in folder_images %}
-                {% with image|get_preferred_translation_from_request:request as image_trans %}
-                    <li>
-                        <a class="fancybox thumbnail" rel="group" href="{{ image.url }}" title="{{ image_trans.trans_name }} {{ image_trans.trans_caption|default:"" }}">
-                            <img src="{% thumbnail image.file 130x87 crop="scale" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}">
-                        </a>
-                    </li>
-                {% endwith %}
+                <li>
+                    <a class="fancybox thumbnail" rel="group" href="{{ image.url }}" title="{{ image.translation.name }} {{ image.translation.caption|default:"" }}">
+                        <img src="{% thumbnail image.file 130x87 crop="scale" upscale="True" %}" alt="{{ image.translation.alt_text }}">
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     </div>
@@ -88,15 +86,15 @@
     <div id="myCarousel_{{ object.id }}" class="carousel slide thumbnail">
 	    <div class="carousel-inner">
 	        {% for image in folder_images %}
-                {% with image|get_preferred_translation_from_request:request as image_trans %}
 	            <div class="item{% if forloop.first %} active{% endif %}">
-                    <img src="{% thumbnail image.file 790x527 crop="scale" upscale="True" %}" alt="{{ image_trans.trans_alt_text }}">
+                    <img src="{% thumbnail image.file 790x527 crop="scale" upscale="True" %}" alt="{{ image.translation.alt_text }}">
+                    {% if image.translation.caption %}
                     <div class="carousel-caption">
-                        {% if image_trans.trans_caption %}<h4>{{ image_trans.trans_caption }}</h4>{% endif %}
-                        {% if image_trans.trans_description %}<p>{{ image_trans.trans_description }}</p>{% endif %}
+                        {% if image.translation.caption %}<h4>{{ image.translation.caption }}</h4>{% endif %}
+                        {% if image.translation.description %}<p>{{ image.translation.description }}</p>{% endif %}
                     </div>
+                    {% endif %}
 	            </div>
-                {% endwith %}
 	        {% endfor %}
 	    </div>
 	    {% if folder_images.count > 1 %}
