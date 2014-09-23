@@ -14,9 +14,9 @@
                             {% custom_get_language_info document_translation.language_code as lang %}
                             [{% trans lang.name %}]
                             {% if document_translation.title %}
-                                {{ document_translation.title }}
+                                {{ document_translation.title|truncatewords:5 }}
                             {% else %}
-                                {{ document_translation.filer_file.original_filename }}
+                                {{ document_translation.filer_file.original_filename|truncatewords:5 }}
                             {% endif %}
                         </a>
                     </li>

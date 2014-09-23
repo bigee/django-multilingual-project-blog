@@ -97,6 +97,7 @@ h5 span p {
 
 .dropdown-menu li {
 	border-bottom: 1px solid #f3f3f3;
+	z-index: 9999;
 }
 
 .dropdown-menu li > a {
@@ -418,6 +419,10 @@ a.tag {
 
 }
 
+.tag-cloud span.label {
+	background: #999999;
+}
+
 
 .category-cloud {
 	text-transform: uppercase;
@@ -508,6 +513,10 @@ ul.entryLanguages li {
 	margin:10px 0px;
 }
 
+.content-text {
+	padding-top: 15px;
+}
+
 
 /* ========= ROADMAP ========== */
 
@@ -572,8 +581,7 @@ table.roadmap-list tr.last .c1 {
 }
 
 .plugin-image-small {
-    height: 60px;
-    width: 60px;
+
 }
 
 .plugin-image-big {
@@ -660,7 +668,7 @@ table.roadmap-list tr.last .c1 {
 }
 
 .document_info_wrapper {
-	height:180px;margin-bottom:15px; 
+	height:180px;margin-bottom:15px;
 	overflow: hidden;
 }
 
@@ -673,6 +681,13 @@ table.roadmap-list tr.last .c1 {
 	top:170px;
 
 }*/
+
+.info .title {
+	font-size: 85%;
+	padding-bottom: 15px;
+	padding-top: 8px;
+	display: block;
+}
 
 
 @media (min-width: 768px) and (max-width: 979px) {
@@ -872,10 +887,12 @@ footer {
 }
 
 .blog-roll.blog-list .blog-post .media-object {
-	float: right;
-	margin: 0.5em 15px;
-	max-width: 55%;
+	float: none;
+	margin: 0.5em 5px;
+	margin-left: 0;
+
 }
+
 
 }
 @media (max-width: 979px) {
