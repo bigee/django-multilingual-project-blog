@@ -18,10 +18,15 @@ DEBUG = True
 SANDBOX = True
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = TEMPLATE_DEBUG
-DEBUG_TOOLBAR = True
 ENVIRONMENT = 'dev'
 SITE_URL = 'http://www.example.com'
 ANALYTICS_TRACKING_ID = 'UA-XXXXXXX-XX'
+
+# Toolbar related
+DEBUG_TOOLBAR = True
+INTERNAL_IPS = ('127.0.0.1', '::1', )
+def show_toolbar(request):
+    return True
 
 
 DATABASES = {
