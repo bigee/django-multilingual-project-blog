@@ -82,7 +82,7 @@
                 <p class="alert-info">{% trans "Content" %}</p>
             {% endif %}
 
-        	{% render_placeholder entry.content language SESSION_LANGUAGE %}
+        	<div class="content-text">{% render_placeholder entry.content language SESSION_LANGUAGE %}</div>
 
             {% include "document_library/partials/attachments.html" with attachments=entry.attachments.all %}
 

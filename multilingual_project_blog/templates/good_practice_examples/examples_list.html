@@ -74,28 +74,9 @@
 
     <div class="row">
 
+		<!-- sidebar -->
 
-    	<!-- examples -->
-
-    	<div class="span9" id="examples-content">
-		    <div class="example-list">
-				<div class="row">
-                    <div class="span9 no-examples hide"><span class="label label-info">{% trans "No examples found." %}</span></div>
-                        <!-- EXAMPLE -->
-                    {% for example in object_list %}
-                        {% include "good_practice_examples/partials/example_item.html" %}
-                    {% empty %}
-                        <div class="span9">
-                            <div class="alert alert-warning">{% trans "No examples found." %}</div>
-                        </div>
-                    {% endfor %}
-				</div><!--/row-->
-            </div>
-    	</div> <!-- /span9 exampes-content -->
-
-    	<!-- /sidebar -->
-
-    	<div class="span3 sidebar" id="examples-sidebar">
+    	<div class="span3 sidebar pull-right" id="examples-sidebar">
 
     		{% placeholder "goodpractice_introtext" as my_placeholder %}
 			{% if my_placeholder %}
@@ -142,6 +123,27 @@
             </div> <!-- /well -->
 
         </div> <!-- /span3 sidebar -->
+
+
+        <!-- examples -->
+
+    	<div class="span9 pull-left" id="examples-content">
+		    <div class="example-list">
+				<div class="row">
+                    <div class="span9 no-examples hide"><span class="label label-info">{% trans "No examples found." %}</span></div>
+                        <!-- EXAMPLE -->
+                    {% for example in object_list %}
+                        {% include "good_practice_examples/partials/example_item.html" %}
+                    {% empty %}
+                        <div class="span9">
+                            <div class="alert alert-warning">{% trans "No examples found." %}</div>
+                        </div>
+                    {% endfor %}
+				</div><!--/row-->
+            </div>
+    	</div> <!-- /span9 exampes-content -->
+
+    	<!-- /sidebar -->
 
 
     </div><!-- /row -->

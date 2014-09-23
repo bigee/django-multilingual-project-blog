@@ -6,7 +6,7 @@
     {% url "news_archive_tagged" tag=item.tag.name as tag_url %}
     <span class="{% if tag_url == request.path %}active{% endif %}">
         <a class="tag" href="{{ tag_url }}">{{ item.tag.name }}</a>
-        ({{ item.tagged_items }})
+        <span class="label">{{ item.tagged_items }}</span>
     </span>
 {% endfor %}
 </div>

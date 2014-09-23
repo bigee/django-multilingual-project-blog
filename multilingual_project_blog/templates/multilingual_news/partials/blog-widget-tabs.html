@@ -1,5 +1,6 @@
 {% load i18n  multilingual_project_blog_tags %}
 
+{% if tags %}
 <div class="block">
     <h4 class="title-divider"><span>{% trans "Tags" %}</span></h4>
     <div class="tag-cloud">
@@ -7,3 +8,4 @@
     </div>
 </div><!--/block -->
 <!-- {% render_latest_entries_links %} -->
+{% endif %}
