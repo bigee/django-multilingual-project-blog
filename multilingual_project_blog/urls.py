@@ -44,5 +44,15 @@ urlpatterns += patterns(
     url(r'^blog/rss/any/$', CustomNewsEntriesFeed(), {'any_language': True},
         name='news_rss_any'),
     url(r'^pos/', include('generic_positions.urls')),
+)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
+
+
+urlpatterns += patterns('',
     url(r'^', include('cms.urls')),
 )

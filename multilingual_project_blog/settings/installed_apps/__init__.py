@@ -26,6 +26,7 @@ PROJECT_BLOG_APPS = [
     'django.contrib.sitemaps',
 
     # Other important apps
+    'debug_toolbar',
     'django_extensions',
     'django_libs',
     'south',
