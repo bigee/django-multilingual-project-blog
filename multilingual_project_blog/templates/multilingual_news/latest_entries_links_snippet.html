@@ -1,8 +1,8 @@
 {% load multilingual_news_tags multilingual_project_blog_tags %}
 
 <div class="recent-posts">
-    {% get_published_entries entries request.LANGUAGE_CODE as published_entries %}
-	{% for entry in published_entries|slice:":4"%}
+    {% get_recent_news limit=5 as recent_news %}
+	{% for entry in recent_news %}
         <hr style="margin:0;">
         <span class="meta">{{ entry.pub_date.date }}{% for category in entry.categories.all %} / {{ category.get_title}}{% endfor %}</span><br>
         <a href="{{ entry.get_absolute_url }}">{{ entry.title|truncatechars:50 }}</a>
