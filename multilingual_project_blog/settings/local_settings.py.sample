@@ -25,6 +25,10 @@ ANALYTICS_TRACKING_ID = 'UA-XXXXXXX-XX'
 # Toolbar related
 DEBUG_TOOLBAR = True
 INTERNAL_IPS = ('127.0.0.1', '::1', )
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+    'SHOW_TOOLBAR_CALLBACK': 'projectname.settings.local_settings.show_toolbar',
+}
 def show_toolbar(request):
     return True
 
