@@ -5,7 +5,6 @@
 <h2 class="title-divider"><span><i class="icon-road"></i> {% trans "Roadmap" %}</span></h2>
 {% for milestone in milestone_list %}
     <h4 class="title-divider"><span>{{ milestone.name }}</span></h4>
-    {% endwith %}
     <table class="table table-condensed roadmap">
         <tbody>
             {% for event in milestone.events.all %}
@@ -13,19 +12,17 @@
                     <td class="c1 tags"><span class="tag">{{ event.start_date_text|safe }}</span></td>
 
                     {% if event.description %}
-                    <td class="c2 collapse-group">
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#details_{{ event.id }}">{{ event.title|safe }}</a>
-                        <p class="collapse description" id="details_{{ event.id }}">
-                            {{ event.description|safe }}
-                        </p>
-                    </td>
+                        <td class="c2 collapse-group">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#details_{{ event.id }}">{{ event.title|safe }}</a>
+                            <p class="collapse description" id="details_{{ event.id }}">
+                                {{ event.description|safe }}
+                            </p>
+                        </td>
                     {% else %}
-                    <td class="c2">
-                        {{ event.title|safe }}
-                    </td>
+                        <td class="c2">
+                            {{ event.title|safe }}
+                        </td>
                     {% endif %}
-
-                    {% endwith %}
                 </tr>
             {% endfor %}
         </tbody>
