@@ -49,7 +49,7 @@ djangocms-text-ckeditor==2.1.4
 # and when you install the source distribution the symlink will no longer be
 # valid
 django-people==1.0
-django-document-library==1.0
+django-document-library==1.4.2
 django-multilingual-events==1.0
 # END OF ATTENTION
 

@@ -5,6 +5,6 @@
 	{% for entry in published_entries|slice:":4"%}
         <hr style="margin:0;">
         <span class="meta">{{ entry.pub_date.date }}{% for category in entry.categories.all %} / {{ category.get_title}}{% endfor %}</span><br>
-        <a href="{{ entry.get_absolute_url }}">{{ entry.title|truncatechars:45 }}</a>
+        <a href="{{ entry.get_absolute_url }}">{{ entry.title|truncatechars:50 }}</a>
 	{% endfor %}
 </div>

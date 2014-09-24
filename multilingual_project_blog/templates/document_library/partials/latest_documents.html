@@ -1,0 +1,8 @@
+{% load document_library_tags i18n %}
+{% get_latest_documents as latest_documents %}
+{% for document in latest_documents %}
+    {% get_files_for_document document as files %}
+    <hr style="margin:0;">
+    <span class="meta">{{ document.creation_date|date }} / {{ document.category.title }} [{{ files.0.extension }}]</span><br />
+    <a href="{{ document.get_absolute_url }}">{{ document.title|truncatechars:50 }}</a>
+{% endfor %}
