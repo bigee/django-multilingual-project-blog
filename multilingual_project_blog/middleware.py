@@ -34,3 +34,30 @@ class CanonicalURLMiddleware(object):
         if not found_language and settings.CMS_SEO_ROOT:
             return HttpResponseRedirect('/{0}{1}'.format(
                 lang, request_url))
+
+
+class VirtualAcademyMiddleware(object):
+    """
+    Redirects to first subchapter if any chapter or root page is requested.
+
+    """
+    def process_request(self, request):
+        if 'admin' in request.path_info:
+            return
+        if not hasattr(request.current_page, 'get_root'):
+            return
+        if not request.current_page.get_root().reverse_id == 'subpages_root':
+            return
+        if request.current_page.is_leaf_node():
+            return
+        try:
+            child = request.current_page.get_children()[0]
+        except IndexError:
+            return
+        if child.is_leaf_node():
+            return HttpResponseRedirect(child.get_absolute_url())
+        try:
+            child_child = child.get_children()[0]
+        except IndexError:
+            return
+        return HttpResponseRedirect(child_child.get_absolute_url())

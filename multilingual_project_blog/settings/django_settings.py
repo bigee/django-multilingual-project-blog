@@ -73,6 +73,7 @@ MIDDLEWARE_CLASSES = [
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
+    'multilingual_project_blog.middleware.VirtualAcademyMiddleware',
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
