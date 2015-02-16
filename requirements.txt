@@ -34,7 +34,7 @@ cmsplugin-filer-image-translated==0.2
 # ============================================================================
 # django-cms related packages
 # ============================================================================
--e git+https://github.com/divio/django-cms.git@ab3a843ebb550ae0ed67f81e66910026b110a115#egg=cms
+django-cms==3.0.10
 cmsplugin-markdown==0.1.1
 cmsplugin_googlemap==0.1.5
 cmsplugin_link_extended==0.2
